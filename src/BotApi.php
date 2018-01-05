@@ -317,6 +317,7 @@ class BotApi extends MethodFunctions
 
     private function createInstanceOfMethod($method, $arguments)
     {
+        $method = lcfirst($method);
         $declaration = $this->methodMap[$method];
         $instance = "\\TelegramBot\\Api\\Methods\\$method";
         $instance = new $instance($this);
