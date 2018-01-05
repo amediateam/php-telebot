@@ -23,9 +23,11 @@ class Updater
         return $this->dispatcher->getBot();
     }
 
-    public function handleWebhookUpdate()
+    public function handleWebhookUpdate(array $data = null)
     {
-        $data = stream_get_contents(STDIN);
+        if ($data === null) {
+            $data = stream_get_contents(STDIN);
+        }
         try {
             $data = \GuzzleHttp\json_decode($data);;
         } catch (\InvalidArgumentException $e) {
@@ -65,7 +67,7 @@ class Updater
             if ($sleepTime > 0) {
                 sleep($sleepTime);
             }
-            if($oneTime){
+            if ($oneTime) {
                 return $offset;
             }
         }
