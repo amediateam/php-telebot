@@ -215,7 +215,7 @@ class BotApi extends MethodFunctions
         if ($method->hasInputFile()) {
             $options['multipart'] = $this->createMultipart($method);
         } else {
-            $options['form_params'] = $method->toJson(true);
+            $options['json'] = $method->toJson(true);
         }
         try {
             $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);

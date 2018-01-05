@@ -135,7 +135,7 @@ function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocum
         'ArrayOfMessage' => '\\TelegramBot\\Api\\Types\\Message',
         'ArrayOfArrayOfPhotoSize' => '\\TelegramBot\\Api\\Types\\ArrayOfPhotoSize',
         'ArrayOfArrayOfKeyboardButton' => '\\TelegramBot\\Api\\Types\\ArrayOfKeyboardButton',
-        'ArrayOfArrayOfInlineKeyboardButton' => '\\TelegramBot\\Api\\Types\\ArrayOfInlineKeyboardButton',
+        'ArrayOfArrayOfInlineKeyboardButton' => '\\TelegramBot\\Api\\Types\\InlineKeyboardButton' . ($returnType ? '[]' : ''),
     ];
     if (isset($map[$type])) {
         return $parameter ? 'array' : $map[$type] . ($returnType ? ($isDocumentReturnType ? '' : '::class') : '[]');

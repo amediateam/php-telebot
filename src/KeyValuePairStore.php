@@ -68,12 +68,12 @@ class KeyValuePairStore
             return (bool)$value;
         } else if ($type == 'float') {
             return (float)$value;
-        } else if(strpos($type, 'TelegramBot\\Api\\Types\\') !== false){
+        } else if (strpos($type, 'TelegramBot\\Api\\Types\\') !== false) {
             return $type::fromResponse($botApi, $value);
-        } else if(strpos($type, 'ArrayOf') !== false){
+        } else if (strpos($type, 'ArrayOf') !== false) {
             return $type::fromResponse($botApi, $value);
         }
-        throw new InvalidArgumentException("Type $type not implemeted.");
+        throw new InvalidArgumentException("Type $type not implemented.");
     }
 
     public static function validateType($value, $types)
@@ -92,10 +92,14 @@ class KeyValuePairStore
                 $condition = is_bool($value);
             } else if ($type == 'float') {
                 $condition = is_float($value);
-            } else if(strpos($type, 'TelegramBot\\Api\\Types\\') !== false){
-                return $type::validate($value);
-            } else if(strpos($type, 'TelegramBot\\Api\\Iterators\\') !== false){
-                return $type::validate($value);
+            } else if (
+                strpos($type, 'TelegramBot\\Api\\Types\\') !== false ||
+                strpos($type, 'TelegramBot\\Api\\Iterators\\') !== false) {
+                if (is_a($value, '\\' . $type)) {
+                    $condition = true;
+                } else {
+                    $condition = $type::validate($value);
+                }
             }
             if ($condition) {
                 $sumUp = true;

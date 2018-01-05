@@ -3,8 +3,8 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineKeyboardMarkup setInlineKeyboard(\TelegramBot\Api\Types\ArrayOfInlineKeyboardButton[] $inlineKeyboard)
- * @method \TelegramBot\Api\Types\ArrayOfInlineKeyboardButton[] getInlineKeyboard()
+ * @method \TelegramBot\Api\Types\InlineKeyboardMarkup setInlineKeyboard(\TelegramBot\Api\Types\InlineKeyboardButton[] $inlineKeyboard)
+ * @method \TelegramBot\Api\Types\InlineKeyboardButton[] getInlineKeyboard()
 */
 class InlineKeyboardMarkup extends BaseType implements TypeInterface
 {
