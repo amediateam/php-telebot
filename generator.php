@@ -228,8 +228,8 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                     'returnType' => ['\GuzzleHttp\Promise\PromiseInterface::class'],
                     'paramsMap' => array_keys($declaration['map']),
                 ];
-                echo "* @method \GuzzleHttp\Promise\PromiseInterface {$method}Async($parameters)\n";
-                echo "* @method \TelegramBot\Api\Methods\{$method} init$typeInCamelCase($parameters)\n";
+                echo "* @method \\GuzzleHttp\\Promise\\PromiseInterface {$method}Async($parameters)\n";
+                echo "* @method \\TelegramBot\\Api\\Methods\\$method init$typeInCamelCase($parameters)\n";
             }
         }
     }
