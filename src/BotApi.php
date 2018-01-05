@@ -1,24 +1,12 @@
 <?php
-
 namespace TelegramBot\Api;
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use function lcfirst;
-use ReflectionClass;
 use ReflectionException;
-use function strtolower;
 use TelegramBot\Api\Extension\KeyboardBuilder;
 use TelegramBot\Api\Types\File;
-use TelegramBot\Api\Types\ForceReply;
-use TelegramBot\Api\Types\InlineKeyboardButton;
-use TelegramBot\Api\Types\InlineKeyboardMarkup;
-use TelegramBot\Api\Types\KeyboardButton;
 use TelegramBot\Api\Types\Message;
-use TelegramBot\Api\Types\ReplyKeyboardMarkup;
-use TelegramBot\Api\Types\ReplyKeyboardRemove;
 use TelegramBot\Api\Types\Update;
-
 /**
  * Class BotApi
  *

@@ -16,7 +16,6 @@ abstract class BaseMethod extends KeyValuePairStore
     protected $method;
     public function __construct()
     {
-        $this->setBot($bot);
     }
     public function getMethod()
     {
