@@ -261,9 +261,10 @@ class BotApi extends MethodFunctions
      * @throws HttpException
      * @throws TelegramException
      */
-    private function callArr($method, array $args, $async = false)
+    private function callArr($method, array $args)
     {
-        return $this->__call($method, $args, true, $async);
+        $args['keyValuePair'] = true;
+        return $this->__call($method, $args);
     }
 
 
@@ -359,17 +360,17 @@ class BotApi extends MethodFunctions
      * @return mixed
      * @throws TelegramException|InvalidJsonException|InvalidArgumentException
      */
-    public function __call($method, $arguments, $isKeyValue = false, $async = false)
+    public function __call($method, $arguments)
     {
         if (strtolower(substr($method, 0, 6)) == 'create') {
             return $this->createInstanceOfType(substr($method, 6), $arguments);
         }
-        $async = $async || strtolower(substr($method, -5)) == 'async';
+        $async = strtolower(substr($method, -5)) == 'async';
         $declaration = $this->methodMap[$method];
         $method = "\\TelegramBot\\Api\\Methods\\$method";
         $method = new $method($this);
         /* @var $method BaseMethod */
-        if($isKeyValue){
+        if(isset($arguments['keyValuePair'])){
             $params = $arguments;
         } else {
             $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
