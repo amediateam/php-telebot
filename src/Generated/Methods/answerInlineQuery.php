@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
  * @method \TelegramBot\Api\Methods\answerInlineQuery setCacheTime(integer $cacheTime)
  * @method integer getCacheTime()
  * @method \TelegramBot\Api\Methods\answerInlineQuery setIsPersonal(boolean $isPersonal)
- * @method boolean getIsPersonal()
+ * @method boolean isPersonal()
  * @method \TelegramBot\Api\Methods\answerInlineQuery setNextOffset(string $nextOffset)
  * @method string getNextOffset()
  * @method \TelegramBot\Api\Methods\answerInlineQuery setSwitchPmText(string $switchPmText)

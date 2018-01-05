@@ -38,6 +38,12 @@ use TelegramBot\Api\TypeInterface;
 */
 class ChatMember extends BaseType implements TypeInterface
 {
+	const CREATOR = 'creator';
+	const ADMINISTRATOR = 'administrator';
+	const MEMBER = 'member';
+	const RESTRICTED = 'restricted';
+	const LEFT = 'left';
+	const KICKED = 'kicked';
 	static protected $requiredParams = [
 		'user',
 		'status'

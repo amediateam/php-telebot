@@ -92,4 +92,12 @@ abstract class BaseType extends KeyValuePairStore
     {
         $this->botApi = $bot;
     }
+
+    /**
+     * @return BotApi
+     */
+    public function getBot()
+    {
+        return $this->botApi;
+    }
 }

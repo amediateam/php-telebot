@@ -6,7 +6,7 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\User setId(integer $id)
  * @method integer getId()
  * @method \TelegramBot\Api\Types\User setIsBot(boolean $isBot)
- * @method boolean getIsBot()
+ * @method boolean isBot()
  * @method \TelegramBot\Api\Types\User setFirstName(string $firstName)
  * @method string getFirstName()
  * @method \TelegramBot\Api\Types\User setLastName(string $lastName)

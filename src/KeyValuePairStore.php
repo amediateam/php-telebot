@@ -24,8 +24,9 @@ class KeyValuePairStore
     public function __call($name, $arguments)
     {
         $threeFirstChars = strtolower(substr($name, 0, 3));
-        if ($threeFirstChars == 'get') {
-            $property = self::toUnderscoreCase(substr($name, 3));
+        $twoFirstChars = substr($threeFirstChars, -2);
+        if ($threeFirstChars == 'get' || $twoFirstChars == 'is') { //is for boolean
+            $property = self::toUnderscoreCase(substr($name, $threeFirstChars == 'get' ? 3 : 2));
             if (array_key_exists($property, static::$map)) {
                 if (isset($this->data[$property])) {
                     return $this->data[$property];

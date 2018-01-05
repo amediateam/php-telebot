@@ -5,5 +5,4 @@ class StickerSet extends Types\StickerSet
 {
 
 
-
 }

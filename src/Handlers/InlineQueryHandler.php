@@ -7,7 +7,7 @@ use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Types\Update;
 
-class ChosenInlineResultHandler extends BaseHandler
+class InlineQueryHandler extends BaseHandler
 {
     protected $regex;
     public function __construct(callable $callback, $regex = null)
@@ -18,10 +18,10 @@ class ChosenInlineResultHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$chosenInlineResult::filter($update)) {
+        if (!Filters::$inlineQuery::filter($update)) {
             return false;
         }
-        if (!is_null($this->regex) && !preg_match($this->regex, $update->getChosenInlineResult()->getQuery())) {
+        if (!is_null($this->regex) && !preg_match($this->regex, $update->getInlineQuery()->getQuery())) {
             return false;
         }
         return true;
@@ -33,6 +33,6 @@ class ChosenInlineResultHandler extends BaseHandler
         if (!is_null($this->regex)) {
             preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
         }
-        return $this->invokeArgs([$dispatcher->getBot(), $update->getChosenInlineResult(), $matches]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update->getInlineQuery(), $matches]);
     }
 }

@@ -318,6 +318,14 @@ return [
                 'can_send_other_messages' => 'Boolean',
                 'can_add_web_page_previews' => 'Boolean',
             ],
+            'constants' => [
+                'CREATOR' => 'creator',
+                'ADMINISTRATOR' => 'administrator',
+                'MEMBER' => 'member',
+                'RESTRICTED' => 'restricted',
+                'LEFT' => 'left',
+                'KICKED' => 'kicked',
+            ],
         ],
         'ResponseParameters' => [
             'requiredParams' => [],
@@ -327,10 +335,13 @@ return [
             ],
         ],
         'InlineQuery' => [
-            'requiredParams' => ['id', 'from'],
+            'requiredParams' => ['id', 'from', 'query'],
             'map' => [
                 'id' => 'String',
                 'from' => 'User',
+                'location' => 'Location',
+                'query' => 'String',
+                'offset' => 'String',
             ],
         ],
         'InlineQueryResultCachedAudio' => [

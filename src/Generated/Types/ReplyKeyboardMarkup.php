@@ -3,8 +3,8 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup setKeyboard(\TelegramBot\Api\Types\ArrayOfKeyboardButton[] $keyboard)
- * @method \TelegramBot\Api\Types\ArrayOfKeyboardButton[] getKeyboard()
+ * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup setKeyboard(\TelegramBot\Api\Types\KeyboardButton[] $keyboard)
+ * @method \TelegramBot\Api\Types\KeyboardButton[] getKeyboard()
  * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup setResizeKeyboard(boolean $resizeKeyboard)
  * @method boolean getResizeKeyboard()
  * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup setOneTimeKeyboard(boolean $oneTimeKeyboard)

@@ -37,7 +37,7 @@ use TelegramBot\Api\BaseMethod;
  * @method \TelegramBot\Api\Methods\sendInvoice setNeedShippingAddress(boolean $needShippingAddress)
  * @method boolean getNeedShippingAddress()
  * @method \TelegramBot\Api\Methods\sendInvoice setIsFlexible(boolean $isFlexible)
- * @method boolean getIsFlexible()
+ * @method boolean isFlexible()
  * @method \TelegramBot\Api\Methods\sendInvoice setDisableNotification(boolean $disableNotification)
  * @method boolean getDisableNotification()
  * @method \TelegramBot\Api\Methods\sendInvoice setReplyToMessageId(integer $replyToMessageId)

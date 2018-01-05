@@ -81,7 +81,11 @@ function generateDoc($className, $data, $isType)
         } else {
             $string .= " * @method {$returnType}set{$camelCased}({$itemType}\${$key})\n";
         }
-        $string .= " * @method {$itemType}get{$camelCased}()\n";
+        if(substr($camelCased, 0, 2) == "Is"){
+            $string .= " * @method {$itemType}".lcfirst($camelCased)."()\n";
+        } else {
+            $string .= " * @method {$itemType}get{$camelCased}()\n";
+        }
     }
     $string .= "*/\n";
     return $string;
@@ -133,8 +137,8 @@ function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocum
         'ArrayOfChatMember' => '\\TelegramBot\\Api\\Types\\ChatMember',
         'ArrayOfInputMedia' => '\\TelegramBot\\Api\\Types\\InputMedia',
         'ArrayOfMessage' => '\\TelegramBot\\Api\\Types\\Message',
-        'ArrayOfArrayOfPhotoSize' => '\\TelegramBot\\Api\\Types\\ArrayOfPhotoSize',
-        'ArrayOfArrayOfKeyboardButton' => '\\TelegramBot\\Api\\Types\\ArrayOfKeyboardButton',
+        'ArrayOfArrayOfPhotoSize' => '\\TelegramBot\\Api\\Types\\PhotoSize' . ($returnType ? '[]' : ''),
+        'ArrayOfArrayOfKeyboardButton' => '\\TelegramBot\\Api\\Types\\KeyboardButton' . ($returnType ? '[]' : ''),
         'ArrayOfArrayOfInlineKeyboardButton' => '\\TelegramBot\\Api\\Types\\InlineKeyboardButton' . ($returnType ? '[]' : ''),
     ];
     if (isset($map[$type])) {
