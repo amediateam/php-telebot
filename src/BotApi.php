@@ -262,7 +262,7 @@ class BotApi extends MethodFunctions
      */
     private function callArr($method, array $args, $async = false)
     {
-        return $this->__call($method, $args, $async);
+        return $this->__call($method, $args, true, $async);
     }
 
 
@@ -358,20 +358,21 @@ class BotApi extends MethodFunctions
      * @return mixed
      * @throws TelegramException|InvalidJsonException|InvalidArgumentException
      */
-    public function __call($method, $arguments)
+    public function __call($method, $arguments, $isKeyValue = false, $async = false)
     {
         if (strtolower(substr($method, 0, 6)) == 'create') {
             return $this->createInstanceOfType(substr($method, 6), $arguments);
         }
-        $async = false;
-        if (strtolower(substr($method, -5)) == 'async') {
-            $async = true;
-        }
+        $async = $async || strtolower(substr($method, -5)) == 'async';
         $declaration = $this->methodMap[$method];
         $method = "\\TelegramBot\\Api\\Methods\\$method";
         $method = new $method($this);
         /* @var $method BaseMethod */
-        $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
+        if($isKeyValue){
+            $params = $arguments;
+        } else {
+            $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
+        }
         $method->mergeData($params);
         try {
             $response = $this->call($method, $async);
