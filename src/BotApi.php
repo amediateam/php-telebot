@@ -242,7 +242,8 @@ class BotApi extends MethodFunctions
                 throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
             }
             $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-            if (!isset($body['ok'])) {
+            if (array_keys($body, 'ok') && false === (bool) $body['ok']) {
+                echo $method->getMethod();
                 throw new TelegramException($body['description'], $body['error_code']);
             }
             return $body['result'];
