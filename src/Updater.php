@@ -47,7 +47,7 @@ class Updater
     public function poll($offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
     {
         /** @var Update[] $updates */
-        $updates = $this->getDispatcher()->getBot()->getUpdates($offset, $limit, $timeout, $allowedUpdates);
+        $updates = $this->getDispatcher()->getBot()->getUpdates($offset+1, $limit, $timeout, $allowedUpdates);
         foreach ($updates as $update) {
             $this->getDispatcher()->processUpdate($update);
         }
