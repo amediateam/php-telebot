@@ -225,6 +225,13 @@ function generateMethodFunctionsMethodsAndTypesDoc()
 
                 if (!empty($returnType)) $returnType .= ' ';
                 echo "* @method {$returnType}$method($parameters)\n";
+
+                $methodMap[$method . 'Async'] = [
+                    'returnType' => ['\GuzzleHttp\Promise\PromiseInterface::class'],
+                    'paramsMap' => array_keys($declaration['map']),
+                ];
+                echo "* @method \GuzzleHttp\Promise\PromiseInterface {$method}Async($parameters)\n";
+
             }
         }
     }

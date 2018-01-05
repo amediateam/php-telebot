@@ -2,61 +2,117 @@
 namespace TelegramBot\Api;
 /**
 * @method \TelegramBot\Api\Types\Update[] getUpdates(integer $offset = null, integer $limit = null, integer $timeout = null, array $allowedUpdates = [])
+* @method \GuzzleHttp\Promise\PromiseInterface getUpdatesAsync(integer $offset = null, integer $limit = null, integer $timeout = null, array $allowedUpdates = [])
 * @method boolean setWebhook(string $url, \TelegramBot\Api\Extension\InputFile $certificate, integer $maxConnections = null, array $allowedUpdates = [])
+* @method \GuzzleHttp\Promise\PromiseInterface setWebhookAsync(string $url, \TelegramBot\Api\Extension\InputFile $certificate, integer $maxConnections = null, array $allowedUpdates = [])
 * @method boolean deleteWebhook()
+* @method \GuzzleHttp\Promise\PromiseInterface deleteWebhookAsync()
 * @method boolean getWebhookInfo()
+* @method \GuzzleHttp\Promise\PromiseInterface getWebhookInfoAsync()
 * @method \TelegramBot\Api\Types\User getMe()
+* @method \GuzzleHttp\Promise\PromiseInterface getMeAsync()
 * @method \TelegramBot\Api\Types\Message sendMessage(integer|string $chatId, string $text, string $parseMode = null, boolean $disableWebPagePreview = false, boolean $disableNotification = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null, integer $replyToMessageId = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendMessageAsync(integer|string $chatId, string $text, string $parseMode = null, boolean $disableWebPagePreview = false, boolean $disableNotification = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null, integer $replyToMessageId = null)
 * @method \TelegramBot\Api\Types\Message forwardMessage(integer $chatId, integer $fromChatId, integer $messageId, boolean $disableNotification = false)
+* @method \GuzzleHttp\Promise\PromiseInterface forwardMessageAsync(integer $chatId, integer $fromChatId, integer $messageId, boolean $disableNotification = false)
 * @method \TelegramBot\Api\Types\Message sendPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $photo, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendPhotoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $photo, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendAudio(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $audio, integer $duration = null, string $performer = null, string $title = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendAudioAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $audio, integer $duration = null, string $performer = null, string $title = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendDocument(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $document, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendDocumentAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $document, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendVideo(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $video, integer $duration = null, integer $width = null, integer $height = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendVideoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $video, integer $duration = null, integer $width = null, integer $height = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendVoice(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $voice, string $caption = null, integer $duration = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendVoiceAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $voice, string $caption = null, integer $duration = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendVideoNote(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $videoNote, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendVideoNoteAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $videoNote, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message[] sendMediaGroup(integer|string $chatId, array $media, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendMediaGroupAsync(integer|string $chatId, array $media, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null)
 * @method \TelegramBot\Api\Types\Message sendLocation(integer $chatId, float $latitude, float $longitude, integer $livePeriod = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendLocationAsync(integer $chatId, float $latitude, float $longitude, integer $livePeriod = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message|boolean editMessageLiveLocation(float $latitude, float $longitude, integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface editMessageLiveLocationAsync(float $latitude, float $longitude, integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message|boolean stopMessageLiveLocation(integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface stopMessageLiveLocationAsync(integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendVenue(integer $chatId, float $latitude, float $longitude, string $title, string $address, string $foursquareId = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendVenueAsync(integer $chatId, float $latitude, float $longitude, string $title, string $address, string $foursquareId = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message sendContact(integer $chatId, string $phoneNumber, string $firstName, string $lastName = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendContactAsync(integer $chatId, string $phoneNumber, string $firstName, string $lastName = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method boolean sendChatAction(integer $chatId, string $action)
+* @method \GuzzleHttp\Promise\PromiseInterface sendChatActionAsync(integer $chatId, string $action)
 * @method \TelegramBot\Api\Types\UserProfilePhotos getUserProfilePhotos(integer $userId, integer $offset = null, integer $limit = null)
+* @method \GuzzleHttp\Promise\PromiseInterface getUserProfilePhotosAsync(integer $userId, integer $offset = null, integer $limit = null)
 * @method \TelegramBot\Api\Types\File getFile(string $fileId)
+* @method \GuzzleHttp\Promise\PromiseInterface getFileAsync(string $fileId)
 * @method boolean kickChatMember(integer $chatId, integer|string $userId, integer $untilDate = null)
+* @method \GuzzleHttp\Promise\PromiseInterface kickChatMemberAsync(integer $chatId, integer|string $userId, integer $untilDate = null)
 * @method boolean unbanChatMember(integer $chatId, integer|string $userId)
+* @method \GuzzleHttp\Promise\PromiseInterface unbanChatMemberAsync(integer $chatId, integer|string $userId)
 * @method boolean restrictChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canSendMessages = false, boolean $canSendMediaMessages = false, boolean $canSendOtherMessages = false, boolean $canAddWebPagePreviews = false)
+* @method \GuzzleHttp\Promise\PromiseInterface restrictChatMemberAsync(integer $chatId, integer $userId, integer $untilDate = null, boolean $canSendMessages = false, boolean $canSendMediaMessages = false, boolean $canSendOtherMessages = false, boolean $canAddWebPagePreviews = false)
 * @method boolean promoteChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canChangeInfo = false, boolean $canPostMessages = false, boolean $canEditMessages = false, boolean $canDeleteMessages = false, boolean $canInviteUsers = false, boolean $canRestrictMembers = false, boolean $canPinMessages = false, boolean $canPromoteMembers = false)
+* @method \GuzzleHttp\Promise\PromiseInterface promoteChatMemberAsync(integer $chatId, integer $userId, integer $untilDate = null, boolean $canChangeInfo = false, boolean $canPostMessages = false, boolean $canEditMessages = false, boolean $canDeleteMessages = false, boolean $canInviteUsers = false, boolean $canRestrictMembers = false, boolean $canPinMessages = false, boolean $canPromoteMembers = false)
 * @method string exportChatInviteLink(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface exportChatInviteLinkAsync(integer|string $chatId)
 * @method boolean setChatPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile $photo)
+* @method \GuzzleHttp\Promise\PromiseInterface setChatPhotoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile $photo)
 * @method boolean deleteChatPhoto(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface deleteChatPhotoAsync(integer|string $chatId)
 * @method boolean setChatTitle(integer|string $chatId, string $title)
+* @method \GuzzleHttp\Promise\PromiseInterface setChatTitleAsync(integer|string $chatId, string $title)
 * @method boolean setChatDescription(integer|string $chatId, string $description = null)
+* @method \GuzzleHttp\Promise\PromiseInterface setChatDescriptionAsync(integer|string $chatId, string $description = null)
 * @method boolean pinChatMessage(integer|string $chatId, integer $messageId, boolean $disableNotification = false)
+* @method \GuzzleHttp\Promise\PromiseInterface pinChatMessageAsync(integer|string $chatId, integer $messageId, boolean $disableNotification = false)
 * @method boolean unpinChatMessage(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface unpinChatMessageAsync(integer|string $chatId)
 * @method boolean leaveChat(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface leaveChatAsync(integer|string $chatId)
 * @method \TelegramBot\Api\Types\Chat getChat(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface getChatAsync(integer|string $chatId)
 * @method \TelegramBot\Api\Types\ChatMember[] getChatAdministrators(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface getChatAdministratorsAsync(integer|string $chatId)
 * @method integer getChatMembersCount(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface getChatMembersCountAsync(integer|string $chatId)
 * @method \TelegramBot\Api\Types\ChatMember getChatMember(integer $chatId, integer|string $userId)
+* @method \GuzzleHttp\Promise\PromiseInterface getChatMemberAsync(integer $chatId, integer|string $userId)
 * @method boolean setChatStickerSet(integer|string $chatId, string $stickerSetName)
+* @method \GuzzleHttp\Promise\PromiseInterface setChatStickerSetAsync(integer|string $chatId, string $stickerSetName)
 * @method boolean deleteChatStickerSet(integer|string $chatId)
+* @method \GuzzleHttp\Promise\PromiseInterface deleteChatStickerSetAsync(integer|string $chatId)
 * @method boolean answerCallbackQuery(string $callbackQueryId, string $text = null, boolean $showAlert = false, boolean $url = false, integer $cacheTime = null)
+* @method \GuzzleHttp\Promise\PromiseInterface answerCallbackQueryAsync(string $callbackQueryId, string $text = null, boolean $showAlert = false, boolean $url = false, integer $cacheTime = null)
 * @method \TelegramBot\Api\Types\Message|boolean editMessageText(integer|string $chatId, integer $messageId, string $text, string $inlineMessageId = null, string $parseMode = null, boolean $disableWebPagePreview = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface editMessageTextAsync(integer|string $chatId, integer $messageId, string $text, string $inlineMessageId = null, string $parseMode = null, boolean $disableWebPagePreview = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message|boolean editMessageCaption(integer|string $chatId, integer $messageId, string $caption, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface editMessageCaptionAsync(integer|string $chatId, integer $messageId, string $caption, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\Message|boolean editMessageReplyMarkup(integer|string $chatId, integer $messageId, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup, string $inlineMessageId = null)
+* @method \GuzzleHttp\Promise\PromiseInterface editMessageReplyMarkupAsync(integer|string $chatId, integer $messageId, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup, string $inlineMessageId = null)
 * @method boolean deleteMessage(integer|string $chatId, integer $messageId)
+* @method \GuzzleHttp\Promise\PromiseInterface deleteMessageAsync(integer|string $chatId, integer $messageId)
 * @method \TelegramBot\Api\Types\Message sendSticker(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $sticker, boolean $disableNotification = false, boolean $replyToMessageId = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
+* @method \GuzzleHttp\Promise\PromiseInterface sendStickerAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $sticker, boolean $disableNotification = false, boolean $replyToMessageId = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
 * @method \TelegramBot\Api\Types\StickerSet getStickerSet(string $name)
+* @method \GuzzleHttp\Promise\PromiseInterface getStickerSetAsync(string $name)
 * @method \TelegramBot\Api\Types\File uploadStickerFile(integer $userId, \TelegramBot\Api\Extension\InputFile $pngSticker)
+* @method \GuzzleHttp\Promise\PromiseInterface uploadStickerFileAsync(integer $userId, \TelegramBot\Api\Extension\InputFile $pngSticker)
 * @method boolean createNewStickerSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, boolean $containsMasks = false, \TelegramBot\Api\Types\MaskPosition $maskPosition)
+* @method \GuzzleHttp\Promise\PromiseInterface createNewStickerSetAsync(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, boolean $containsMasks = false, \TelegramBot\Api\Types\MaskPosition $maskPosition)
 * @method boolean addStickerToSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, \TelegramBot\Api\Types\MaskPosition $maskPosition)
+* @method \GuzzleHttp\Promise\PromiseInterface addStickerToSetAsync(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, \TelegramBot\Api\Types\MaskPosition $maskPosition)
 * @method boolean setStickerPositionInSet(string $sticker, integer $position)
+* @method \GuzzleHttp\Promise\PromiseInterface setStickerPositionInSetAsync(string $sticker, integer $position)
 * @method boolean deleteStickerFromSet(string $sticker)
+* @method \GuzzleHttp\Promise\PromiseInterface deleteStickerFromSetAsync(string $sticker)
 * @method boolean answerInlineQuery(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
+* @method \GuzzleHttp\Promise\PromiseInterface answerInlineQueryAsync(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
 * @method \TelegramBot\Api\Types\Message sendInvoice(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
+* @method \GuzzleHttp\Promise\PromiseInterface sendInvoiceAsync(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
 * @method boolean answerShippingQuery(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
+* @method \GuzzleHttp\Promise\PromiseInterface answerShippingQueryAsync(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
 * @method boolean answerPreCheckoutQuery(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
+* @method \GuzzleHttp\Promise\PromiseInterface answerPreCheckoutQueryAsync(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
 * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup createReplyKeyboardMarkup(array $keyboard, boolean $resizeKeyboard = false, boolean $oneTimeKeyboard = false, boolean $selective = false)
 * @method \TelegramBot\Api\Types\KeyboardButton createKeyboardButton(string $text, boolean $requestContact = false, boolean $requestLocation = false)
 * @method \TelegramBot\Api\Types\ReplyKeyboardRemove createReplyKeyboardRemove(boolean $removeKeyboard, boolean $selective = false)
@@ -95,9 +151,31 @@ class MethodFunctions{
 				'allowed_updates',
 			],
 		],
+		'getUpdatesAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'offset',
+				'limit',
+				'timeout',
+				'allowed_updates',
+			],
+		],
 		'setWebhook' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'url',
+				'certificate',
+				'max_connections',
+				'allowed_updates',
+			],
+		],
+		'setWebhookAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'url',
@@ -113,9 +191,23 @@ class MethodFunctions{
 			'paramsMap' => [
 			],
 		],
+		'deleteWebhookAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+			],
+		],
 		'getWebhookInfo' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+			],
+		],
+		'getWebhookInfoAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 			],
@@ -127,9 +219,30 @@ class MethodFunctions{
 			'paramsMap' => [
 			],
 		],
+		'getMeAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+			],
+		],
 		'sendMessage' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'text',
+				'parse_mode',
+				'disable_web_page_preview',
+				'disable_notification',
+				'reply_markup',
+				'reply_to_message_id',
+			],
+		],
+		'sendMessageAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -152,9 +265,33 @@ class MethodFunctions{
 				'message_id',
 			],
 		],
+		'forwardMessageAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'from_chat_id',
+				'disable_notification',
+				'message_id',
+			],
+		],
 		'sendPhoto' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'photo',
+				'caption',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
+		'sendPhotoAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -181,6 +318,22 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendAudioAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'audio',
+				'duration',
+				'performer',
+				'title',
+				'caption',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'sendDocument' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
@@ -194,9 +347,38 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendDocumentAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'document',
+				'caption',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'sendVideo' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'video',
+				'duration',
+				'width',
+				'height',
+				'caption',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
+		'sendVideoAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -224,9 +406,37 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendVoiceAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'voice',
+				'caption',
+				'duration',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'sendVideoNote' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'video_note',
+				'duration',
+				'length',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
+		'sendVideoNoteAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -251,9 +461,36 @@ class MethodFunctions{
 				'reply_to_message_id',
 			],
 		],
+		'sendMediaGroupAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'media',
+				'duration',
+				'length',
+				'disable_notification',
+				'reply_to_message_id',
+			],
+		],
 		'sendLocation' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'latitude',
+				'longitude',
+				'live_period',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
+		'sendLocationAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -279,6 +516,19 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'editMessageLiveLocationAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'inline_message_id',
+				'latitude',
+				'longitude',
+				'reply_markup',
+			],
+		],
 		'stopMessageLiveLocation' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
@@ -291,9 +541,36 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'stopMessageLiveLocationAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'inline_message_id',
+				'reply_markup',
+			],
+		],
 		'sendVenue' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'latitude',
+				'longitude',
+				'title',
+				'address',
+				'foursquare_id',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
+		'sendVenueAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -321,9 +598,32 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendContactAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'phone_number',
+				'first_name',
+				'last_name',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'sendChatAction' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'action',
+			],
+		],
+		'sendChatActionAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -340,6 +640,16 @@ class MethodFunctions{
 				'limit',
 			],
 		],
+		'getUserProfilePhotosAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'user_id',
+				'offset',
+				'limit',
+			],
+		],
 		'getFile' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\File::class,
@@ -348,9 +658,27 @@ class MethodFunctions{
 				'file_id',
 			],
 		],
+		'getFileAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'file_id',
+			],
+		],
 		'kickChatMember' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'user_id',
+				'until_date',
+			],
+		],
+		'kickChatMemberAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -367,9 +695,32 @@ class MethodFunctions{
 				'user_id',
 			],
 		],
+		'unbanChatMemberAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'user_id',
+			],
+		],
 		'restrictChatMember' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'user_id',
+				'until_date',
+				'can_send_messages',
+				'can_send_media_messages',
+				'can_send_other_messages',
+				'can_add_web_page_previews',
+			],
+		],
+		'restrictChatMemberAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -399,9 +750,35 @@ class MethodFunctions{
 				'can_promote_members',
 			],
 		],
+		'promoteChatMemberAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'user_id',
+				'until_date',
+				'can_change_info',
+				'can_post_messages',
+				'can_edit_messages',
+				'can_delete_messages',
+				'can_invite_users',
+				'can_restrict_members',
+				'can_pin_messages',
+				'can_promote_members',
+			],
+		],
 		'exportChatInviteLink' => [
 			'returnType' => [
 				'string',
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
+		'exportChatInviteLinkAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -416,9 +793,26 @@ class MethodFunctions{
 				'photo',
 			],
 		],
+		'setChatPhotoAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'photo',
+			],
+		],
 		'deleteChatPhoto' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
+		'deleteChatPhotoAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -433,9 +827,27 @@ class MethodFunctions{
 				'title',
 			],
 		],
+		'setChatTitleAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'title',
+			],
+		],
 		'setChatDescription' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'description',
+			],
+		],
+		'setChatDescriptionAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -452,9 +864,27 @@ class MethodFunctions{
 				'disable_notification',
 			],
 		],
+		'pinChatMessageAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'disable_notification',
+			],
+		],
 		'unpinChatMessage' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
+		'unpinChatMessageAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -468,9 +898,25 @@ class MethodFunctions{
 				'chat_id',
 			],
 		],
+		'leaveChatAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
 		'getChat' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Chat::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
+		'getChatAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -484,6 +930,14 @@ class MethodFunctions{
 				'chat_id',
 			],
 		],
+		'getChatAdministratorsAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
 		'getChatMembersCount' => [
 			'returnType' => [
 				'integer',
@@ -492,9 +946,26 @@ class MethodFunctions{
 				'chat_id',
 			],
 		],
+		'getChatMembersCountAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
 		'getChatMember' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ChatMember::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'user_id',
+			],
+		],
+		'getChatMemberAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -510,6 +981,15 @@ class MethodFunctions{
 				'sticker_set_name',
 			],
 		],
+		'setChatStickerSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'sticker_set_name',
+			],
+		],
 		'deleteChatStickerSet' => [
 			'returnType' => [
 				'boolean',
@@ -518,9 +998,29 @@ class MethodFunctions{
 				'chat_id',
 			],
 		],
+		'deleteChatStickerSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+			],
+		],
 		'answerCallbackQuery' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'callback_query_id',
+				'text',
+				'show_alert',
+				'url',
+				'cache_time',
+			],
+		],
+		'answerCallbackQueryAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'callback_query_id',
@@ -545,10 +1045,36 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'editMessageTextAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'inline_message_id',
+				'text',
+				'parse_mode',
+				'disable_web_page_preview',
+				'reply_markup',
+			],
+		],
 		'editMessageCaption' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\Message::class,
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'inline_message_id',
+				'caption',
+				'reply_markup',
+			],
+		],
+		'editMessageCaptionAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -570,9 +1096,29 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'editMessageReplyMarkupAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+				'inline_message_id',
+				'reply_markup',
+			],
+		],
 		'deleteMessage' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'chat_id',
+				'message_id',
+			],
+		],
+		'deleteMessageAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'chat_id',
@@ -591,9 +1137,29 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendStickerAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'sticker',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'getStickerSet' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\StickerSet::class,
+			],
+			'paramsMap' => [
+				'name',
+			],
+		],
+		'getStickerSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'name',
@@ -608,9 +1174,31 @@ class MethodFunctions{
 				'png_sticker',
 			],
 		],
+		'uploadStickerFileAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'user_id',
+				'png_sticker',
+			],
+		],
 		'createNewStickerSet' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'user_id',
+				'name',
+				'png_sticker',
+				'emojis',
+				'contains_masks',
+				'mask_position',
+			],
+		],
+		'createNewStickerSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'user_id',
@@ -633,9 +1221,30 @@ class MethodFunctions{
 				'mask_position',
 			],
 		],
+		'addStickerToSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'user_id',
+				'name',
+				'png_sticker',
+				'emojis',
+				'mask_position',
+			],
+		],
 		'setStickerPositionInSet' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'sticker',
+				'position',
+			],
+		],
+		'setStickerPositionInSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'sticker',
@@ -650,9 +1259,31 @@ class MethodFunctions{
 				'sticker',
 			],
 		],
+		'deleteStickerFromSetAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'sticker',
+			],
+		],
 		'answerInlineQuery' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'inline_query_id',
+				'results',
+				'cache_time',
+				'is_personal',
+				'next_offset',
+				'switch_pm_text',
+				'switch_pm_parameter',
+			],
+		],
+		'answerInlineQueryAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'inline_query_id',
@@ -692,6 +1323,34 @@ class MethodFunctions{
 				'reply_markup',
 			],
 		],
+		'sendInvoiceAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'chat_id',
+				'title',
+				'description',
+				'payload',
+				'provider_token',
+				'start_parameter',
+				'currency',
+				'prices',
+				'provider_data',
+				'photo_url',
+				'photo_size',
+				'photo_width',
+				'photo_height',
+				'need_name',
+				'need_phone_number',
+				'need_email',
+				'need_shipping_address',
+				'is_flexible',
+				'disable_notification',
+				'reply_to_message_id',
+				'reply_markup',
+			],
+		],
 		'answerShippingQuery' => [
 			'returnType' => [
 				'boolean',
@@ -703,9 +1362,30 @@ class MethodFunctions{
 				'error_message',
 			],
 		],
+		'answerShippingQueryAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
+			],
+			'paramsMap' => [
+				'shipping_query_id',
+				'ok',
+				'shipping_options',
+				'error_message',
+			],
+		],
 		'answerPreCheckoutQuery' => [
 			'returnType' => [
 				'boolean',
+			],
+			'paramsMap' => [
+				'pre_checkout_query_id',
+				'ok',
+				'error_message',
+			],
+		],
+		'answerPreCheckoutQueryAsync' => [
+			'returnType' => [
+				\GuzzleHttp\Promise\PromiseInterface::class,
 			],
 			'paramsMap' => [
 				'pre_checkout_query_id',
