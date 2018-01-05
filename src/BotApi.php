@@ -229,6 +229,7 @@ class BotApi extends MethodFunctions
         } else {
             $options['form_params'] = $method->toJson(true);
         }
+        echo $method->getMethod();
         try {
             $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);
             if ($async) {
@@ -243,7 +244,6 @@ class BotApi extends MethodFunctions
             }
             $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
             if (array_keys($body, 'ok') && false === (bool) $body['ok']) {
-                echo $method->getMethod();
                 throw new TelegramException($body['description'], $body['error_code']);
             }
             return $body['result'];
