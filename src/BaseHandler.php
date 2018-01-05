@@ -1,27 +1,16 @@
 <?php
-
 namespace TelegramBot\Api;
 
-use function call_user_func_array;
-use Closure;
-use ReflectionFunction;
-use ReflectionMethod;
 use TelegramBot\Api\Types\Update;
+use function call_user_func_array;
 
 abstract class BaseHandler
 {
-    protected $callbackArr;
     protected $callback;
 
     public function __construct(Callable $callback)
     {
-        $this->callbackArr = $callback;
-        if (is_array($callback)) {
-            $this->callback = new ReflectionMethod($callback[0], $callback[1]);
-        } else {
-            $this->callback = $callback;
-
-        }
+        $this->callback = $callback; //function or class method
     }
 
     abstract public function checkUpdate(Update $update);
@@ -30,9 +19,6 @@ abstract class BaseHandler
 
     public function invokeArgs(array $args = [])
     {
-        if ($this->callback instanceof ReflectionMethod) {
-            return $this->callback->invokeArgs($this->callbackArr[0], $args);
-        }
         return call_user_func_array($this->callback, $args);
     }
 }
