@@ -41,10 +41,15 @@ class Updater
         return false;
     }
 
-    public function start_polling($offset = null, $limit = 100, $timeout = 60, array $allowedUpdates = [], $sleepTime = 0)
+    public function start_polling($offset = null,
+                                  $limit = 100,
+                                  $timeout = 60,
+                                  array $allowedUpdates = [],
+                                  $sleepTime = 0,
+                                  $oneTime = false)
     {
         $loop = true;
-        if (function_exists("pcntl_signal")) {
+        if (!$oneTime && function_exists("pcntl_signal")) {
             $signalHandler = function ($signal) use ($loop) {
                 $loop = false;
             };
@@ -59,6 +64,9 @@ class Updater
             $offset = $updates[sizeof($updates) - 1]->getUpdateId();
             if ($sleepTime > 0) {
                 sleep($sleepTime);
+            }
+            if($oneTime){
+                return $offset;
             }
         }
         return $offset;
