@@ -6,7 +6,6 @@ use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Types\Update;
-use function preg_match;
 
 class CallbackQueryHandler extends BaseHandler
 {
@@ -35,6 +34,6 @@ class CallbackQueryHandler extends BaseHandler
         if (!is_null($this->regex)) {
             preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
         }
-        return $this->callback->invokeArgs([$dispatcher->getBot(), $update, $update->getCallbackQuery(), $matches]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getCallbackQuery(), $matches]);
     }
 }

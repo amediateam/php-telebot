@@ -2,7 +2,6 @@
 
 namespace TelegramBot\Api\Handlers;
 
-use function call_user_func_array;
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
@@ -42,6 +41,6 @@ class MessageHandler extends BaseHandler
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
-        return $this->callback->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage()]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage()]);
     }
 }

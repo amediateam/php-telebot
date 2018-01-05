@@ -51,6 +51,6 @@ class RegexHandler extends BaseHandler
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
-        return $this->callback->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $matches]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $matches]);
     }
 }

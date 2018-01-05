@@ -6,7 +6,6 @@ use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Types\Update;
-use function preg_match;
 
 class ChosenInlineResultHandler extends BaseHandler
 {
@@ -26,6 +25,6 @@ class ChosenInlineResultHandler extends BaseHandler
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
-        return $this->callback->invokeArgs([$dispatcher->getBot(), $update, $update->getChosenInlineResult()]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getChosenInlineResult()]);
     }
 }

@@ -7,7 +7,6 @@ use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Types\TextCommand;
 use TelegramBot\Api\Types\Update;
-use function strtolower;
 
 class CommandHandler extends BaseHandler
 {
@@ -41,6 +40,6 @@ class CommandHandler extends BaseHandler
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
-        return $this->callback->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command]);
     }
 }
