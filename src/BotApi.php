@@ -260,7 +260,7 @@ class BotApi extends MethodFunctions
      * @throws HttpException
      * @throws TelegramException
      */
-    private function callArr($method, array $args)
+    public function callArr($method, array $args)
     {
         $args['keyValuePair'] = true;
         return $this->__call($method, $args);
@@ -321,7 +321,18 @@ class BotApi extends MethodFunctions
         $declaration = $this->typeMap[$type];
         $instance = "\\TelegramBot\\Api\\Types\\$type";
         $instance = new $instance($this);
-        /* @var $method BaseType */
+        /* @var $instance BaseType */
+        $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
+        $instance->mergeData($params);
+        return $instance;
+    }
+
+    private function createInstanceOfMethod($method, $arguments)
+    {
+        $declaration = $this->methodMap[$method];
+        $instance = "\\TelegramBot\\Api\\Methods\\$method";
+        $instance = new $instance($this);
+        /* @var $instance BaseMethod */
         $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
         $instance->mergeData($params);
         return $instance;
@@ -363,6 +374,9 @@ class BotApi extends MethodFunctions
     {
         if (strtolower(substr($method, 0, 6)) == 'create') {
             return $this->createInstanceOfType(substr($method, 6), $arguments);
+        }
+        if (strtolower(substr($method, 0, 6)) == 'init') {
+            return $this->createInstanceOfMethod(substr($method, 4), $arguments);
         }
         $async = strtolower(substr($method, -5)) == 'async';
         $declaration = $this->methodMap[$method];

@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api;
 
+use TelegramBot\Api\Methods\getUpdates;
 use TelegramBot\Api\Types\Update;
 
 class Updater
@@ -43,12 +44,7 @@ class Updater
         return false;
     }
 
-    public function start_polling($offset = null,
-                                  $limit = 100,
-                                  $timeout = 60,
-                                  array $allowedUpdates = [],
-                                  $sleepTime = 0,
-                                  $oneTime = false)
+    public function start_polling(getUpdates $getUpdates, $oneTime = false, $sleepTime = 0)
     {
         $loop = true;
         if (!$oneTime && function_exists("pcntl_signal")) {
@@ -59,7 +55,7 @@ class Updater
             pcntl_signal(SIGHUP, $signalHandler);
         }
         while ($loop) {
-            $updates = $this->getDispatcher()->getBot()->getUpdates($offset + 1, $limit, $timeout, $allowedUpdates);
+            $updates = $this->getDispatcher()->getBot()->getUpdates($getUpdates->getOffset() + 1, $getUpdates->getLimit(), $getUpdates->getTimeout(), $getUpdates->getAllowedUpdates());
             foreach ($updates as $update) {
                 $this->getDispatcher()->processUpdate($update);
             }

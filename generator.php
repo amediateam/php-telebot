@@ -213,25 +213,23 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 if (!empty($returnType)) $returnType .= ' ';
                 echo "* @method {$returnType}create$typeInCamelCase($parameters)\n";
             } else {
+                $typeInCamelCase = toCamelCase($method);
                 $returnType = str_replace("'", null, implode("|", getReturnType($declaration['returnType'])));
                 $methodMap[$method] = [
                     'returnType' => getReturnType($declaration['returnType'], true),
                     'paramsMap' => array_keys($declaration['map']),
                 ];
-
                 if (strpos($returnType, 'ArrayOf') !== false) {
                     $returnType = fixArrayOfType($returnType, false, false, true);
                 }
-
                 if (!empty($returnType)) $returnType .= ' ';
                 echo "* @method {$returnType}$method($parameters)\n";
-
                 $methodMap[$method . 'Async'] = [
                     'returnType' => ['\GuzzleHttp\Promise\PromiseInterface::class'],
                     'paramsMap' => array_keys($declaration['map']),
                 ];
                 echo "* @method \GuzzleHttp\Promise\PromiseInterface {$method}Async($parameters)\n";
-
+                echo "* @method \TelegramBot\Api\Methods\{$method} init$typeInCamelCase($parameters)\n";
             }
         }
     }
