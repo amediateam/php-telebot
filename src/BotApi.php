@@ -363,7 +363,7 @@ class BotApi extends MethodFunctions
         if (strtolower(substr($method, 0, 6)) == 'create') {
             return $this->createInstanceOfType(substr($method, 6), $arguments);
         }
-        if (strtolower(substr($method, 0, 6)) == 'init') {
+        if (strtolower(substr($method, 0, 4)) == 'init') {
             return $this->createInstanceOfMethod(substr($method, 4), $arguments);
         }
         $async = strtolower(substr($method, -5)) == 'async';
