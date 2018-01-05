@@ -44,10 +44,21 @@ class Updater
         return false;
     }
 
-    public function start_polling(getUpdates $getUpdates, $oneTime = false, $sleepTime = 0)
+    public function poll($offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
+    {
+        /** @var Update[] $updates */
+        $updates = $this->getDispatcher()->getBot()->getUpdates($offset, $limit, $timeout, $allowedUpdates);
+        foreach ($updates as $update) {
+            $this->getDispatcher()->processUpdate($update);
+        }
+        $offset = $updates[sizeof($updates) - 1]->getUpdateId();
+        return $offset;
+    }
+
+    public function start_polling($offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [], $sleepTime = 0)
     {
         $loop = true;
-        if (!$oneTime && function_exists("pcntl_signal")) {
+        if (function_exists("pcntl_signal")) {
             $signalHandler = function ($signal) use ($loop) {
                 $loop = false;
             };
@@ -55,17 +66,8 @@ class Updater
             pcntl_signal(SIGHUP, $signalHandler);
         }
         while ($loop) {
-            $updates = $this->getDispatcher()->getBot()->getUpdates($getUpdates->getOffset() + 1, $getUpdates->getLimit(), $getUpdates->getTimeout(), $getUpdates->getAllowedUpdates());
-            foreach ($updates as $update) {
-                $this->getDispatcher()->processUpdate($update);
-            }
-            $offset = $updates[sizeof($updates) - 1]->getUpdateId();
-            if ($sleepTime > 0) {
-                sleep($sleepTime);
-            }
-            if ($oneTime) {
-                return $offset;
-            }
+            $offset = $this->poll($offset, $limit, $timeout, $allowedUpdates);
+            if($sleepTime > 0) sleep($sleepTime);
         }
         return $offset;
     }

@@ -209,7 +209,7 @@ class BotApi extends MethodFunctions
      * @throws HttpException
      * @throws TelegramException
      */
-    private function call(BaseMethod $method, $async = false)
+    public function call(BaseMethod $method, $async = false)
     {
         $options = [];
         if ($method->hasInputFile()) {
