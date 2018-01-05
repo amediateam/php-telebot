@@ -30,13 +30,6 @@ abstract class BaseHandler
         if ($this->callback instanceof ReflectionMethod) {
             return $this->callback->invokeArgs($this->callbackArr[0], $args);
         }
-        call_user_func(
-            \Closure::bind(
-                $this->callback->getClosure(),
-                $this->callback->getClosureThis(),
-                $this->callback->getClosureScopeClass()->name
-            )
-        );
         return $this->callback->invokeArgs($args);
     }
 }
