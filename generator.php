@@ -190,6 +190,8 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                         $defaultValue = 'false';
                     } else if (strpos($parameterType, 'ArrayOf') !== false) {
                         $defaultValue = '[]';
+                    } else if (array_key_exists($parameterType, $schema['types'])) {
+                        $defaultValue = 'null';
                     }
                 } else if (!$required) {
                     $defaultValue = 'null';
