@@ -253,6 +253,20 @@ class BotApi extends MethodFunctions
 
 
     /**
+     * @param $method
+     * @param array $args
+     * @param bool $async
+     * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
+     * @throws HttpException
+     * @throws TelegramException
+     */
+    private function callArr($method, array $args, $async = false)
+    {
+        return $this->__call($method, $args, $async);
+    }
+
+
+    /**
      * @return string
      */
     public function getUrl()
