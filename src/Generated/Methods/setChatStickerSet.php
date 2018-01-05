@@ -9,6 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class setChatStickerSet extends BaseMethod
 {
+	protected $method = 'setChatStickerSet';
 	static protected $requiredParams = [
 		'chat_id',
 		'sticker_set_name'

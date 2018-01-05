@@ -11,6 +11,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class answerPreCheckoutQuery extends BaseMethod
 {
+	protected $method = 'answerPreCheckoutQuery';
 	static protected $requiredParams = [
 		'pre_checkout_query_id',
 		'ok'

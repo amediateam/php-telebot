@@ -7,6 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class deleteChatStickerSet extends BaseMethod
 {
+	protected $method = 'deleteChatStickerSet';
 	static protected $requiredParams = [
 		'chat_id'
 	];

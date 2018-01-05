@@ -17,6 +17,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class editMessageLiveLocation extends BaseMethod
 {
+	protected $method = 'editMessageLiveLocation';
 	static protected $requiredParams = [
 		'latitude',
 		'longitude'

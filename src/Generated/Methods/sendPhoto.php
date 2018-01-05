@@ -17,6 +17,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendPhoto extends BaseMethod
 {
+	protected $method = 'sendPhoto';
 	static protected $requiredParams = [
 		'chat_id',
 		'photo'

@@ -13,6 +13,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class answerShippingQuery extends BaseMethod
 {
+	protected $method = 'answerShippingQuery';
 	static protected $requiredParams = [
 		'shipping_query_id',
 		'ok'

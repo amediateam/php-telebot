@@ -23,6 +23,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendVideo extends BaseMethod
 {
+	protected $method = 'sendVideo';
 	static protected $requiredParams = [
 		'chat_id',
 		'video'

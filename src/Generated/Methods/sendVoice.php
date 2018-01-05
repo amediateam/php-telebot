@@ -19,6 +19,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendVoice extends BaseMethod
 {
+	protected $method = 'sendVoice';
 	static protected $requiredParams = [
 		'chat_id',
 		'voice'

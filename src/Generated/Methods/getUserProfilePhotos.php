@@ -11,6 +11,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getUserProfilePhotos extends BaseMethod
 {
+	protected $method = 'getUserProfilePhotos';
 	static protected $requiredParams = [
 		'user_id'
 	];

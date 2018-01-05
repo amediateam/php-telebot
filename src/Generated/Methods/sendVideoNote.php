@@ -19,6 +19,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendVideoNote extends BaseMethod
 {
+	protected $method = 'sendVideoNote';
 	static protected $requiredParams = [
 		'chat_id',
 		'video_note'

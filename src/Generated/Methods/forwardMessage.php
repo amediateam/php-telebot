@@ -13,6 +13,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class forwardMessage extends BaseMethod
 {
+	protected $method = 'forwardMessage';
 	static protected $requiredParams = [
 		'chat_id',
 		'from_chat_id',

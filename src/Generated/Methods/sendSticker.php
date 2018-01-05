@@ -15,6 +15,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendSticker extends BaseMethod
 {
+	protected $method = 'sendSticker';
 	static protected $requiredParams = [
 		'chat_id',
 		'sticker'

@@ -17,6 +17,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendDocument extends BaseMethod
 {
+	protected $method = 'sendDocument';
 	static protected $requiredParams = [
 		'chat_id',
 		'document'

@@ -161,7 +161,7 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 $paramsArray[] = $key;
             }
             foreach ($paramsArray as $parameter) {
-                if(in_array(strtolower($parameter), $defined_types)){
+                if (in_array(strtolower($parameter), $defined_types)) {
                     echo $method;
                     exit("Oops");
                 }
@@ -403,6 +403,7 @@ function generateMethod($type)
     echo generateDoc($type, $typeInfo, false);
     echo 'class ' . $type . ' extends BaseMethod' . PHP_EOL;
     echo '{' . PHP_EOL;
+    echo "\t" . 'protected $method = \'' . $type . '\';' . "\n";
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], false);
     echo generateMap($typeInfo['map'], false);

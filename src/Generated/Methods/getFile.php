@@ -7,6 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getFile extends BaseMethod
 {
+	protected $method = 'getFile';
 	static protected $requiredParams = [
 		'file_id'
 	];

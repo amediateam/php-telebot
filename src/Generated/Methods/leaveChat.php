@@ -7,6 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class leaveChat extends BaseMethod
 {
+	protected $method = 'leaveChat';
 	static protected $requiredParams = [
 		'chat_id'
 	];

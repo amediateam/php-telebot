@@ -13,6 +13,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class stopMessageLiveLocation extends BaseMethod
 {
+	protected $method = 'stopMessageLiveLocation';
 	static protected $requiredParams = [
 		
 	];

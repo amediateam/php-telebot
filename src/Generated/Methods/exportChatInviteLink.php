@@ -7,6 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class exportChatInviteLink extends BaseMethod
 {
+	protected $method = 'exportChatInviteLink';
 	static protected $requiredParams = [
 		'chat_id'
 	];

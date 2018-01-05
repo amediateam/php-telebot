@@ -5,6 +5,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getMe extends BaseMethod
 {
+	protected $method = 'getMe';
 	static protected $requiredParams = [
 		
 	];

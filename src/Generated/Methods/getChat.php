@@ -7,6 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getChat extends BaseMethod
 {
+	protected $method = 'getChat';
 	static protected $requiredParams = [
 		'chat_id'
 	];
