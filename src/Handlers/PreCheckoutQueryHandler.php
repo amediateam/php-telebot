@@ -24,6 +24,6 @@ class PreCheckoutQueryHandler extends BaseHandler
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
-        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getPreCheckoutQuery()]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update->getPreCheckoutQuery()]);
     }
 }

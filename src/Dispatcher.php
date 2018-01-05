@@ -4,6 +4,7 @@ namespace TelegramBot\Api;
 
 use function array_push;
 use function array_search;
+use Exception;
 use function function_exists;
 use function pcntl_signal;
 use const SIGHUP;
@@ -53,13 +54,18 @@ class Dispatcher
 
     public function processUpdate(Update $update)
     {
-        foreach ($this->handlerGroups as $handlerGroup) {
-            foreach ($handlerGroup as $handler) {
-                /** @var $handler BaseHandler */
-                if ($handler->checkUpdate($update)) {
-                    return $handler->handleUpdate($update, $this);
+        try {
+            foreach ($this->handlerGroups as $handlerGroup) {
+                foreach ($handlerGroup as $handler) {
+                    /** @var $handler BaseHandler */
+                    if ($handler->checkUpdate($update)) {
+                        return $handler->handleUpdate($update, $this);
+                    }
                 }
             }
+        } catch (Exception $e){
+            echo $e->getMessage();
+            //TODO: log
         }
         return false;
     }

@@ -25,6 +25,6 @@ class ChosenInlineResultHandler extends BaseHandler
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher)
     {
-        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getChosenInlineResult()]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update->getChosenInlineResult()]);
     }
 }

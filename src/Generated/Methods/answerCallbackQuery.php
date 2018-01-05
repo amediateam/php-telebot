@@ -8,8 +8,8 @@ use TelegramBot\Api\BaseMethod;
  * @method string getText()
  * @method \TelegramBot\Api\Methods\answerCallbackQuery setShowAlert(boolean $showAlert)
  * @method boolean getShowAlert()
- * @method \TelegramBot\Api\Methods\answerCallbackQuery setUrl(boolean $url)
- * @method boolean getUrl()
+ * @method \TelegramBot\Api\Methods\answerCallbackQuery setUrl(string $url)
+ * @method string getUrl()
  * @method \TelegramBot\Api\Methods\answerCallbackQuery setCacheTime(integer $cacheTime)
  * @method integer getCacheTime()
 */
@@ -23,7 +23,7 @@ class answerCallbackQuery extends BaseMethod
 		'callback_query_id' => 'string',
 		'text' => 'string',
 		'show_alert' => 'boolean',
-		'url' => 'boolean',
+		'url' => 'string',
 		'cache_time' => 'integer',
 	];
 	static protected $defaultData = [

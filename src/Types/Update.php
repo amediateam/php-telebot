@@ -23,16 +23,6 @@ class Update extends Types\Update
         if ($this->getEffectiveMessage()) {
             return $this->effectiveChat = $this->getEffectiveMessage()->getChat();
         }
-        if ($this->getChosenInlineResult()) {
-            return $this->effectiveChat = $this->getInlineQuery()->getFrom();
-        }
-        if ($this->getCallbackQuery()) {
-            return $this->effectiveChat = $this->getCallbackQuery()->getFrom();
-        }
-        if ($this->getInlineQuery()) {
-            return $this->effectiveChat = $this->getInlineQuery()->getFrom();
-        }
-
         return $this->effectiveChat = false;
     }
 

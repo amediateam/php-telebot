@@ -34,6 +34,6 @@ class CallbackQueryHandler extends BaseHandler
         if (!is_null($this->regex)) {
             preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
         }
-        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getCallbackQuery(), $matches]);
+        return $this->invokeArgs([$dispatcher->getBot(), $update->getCallbackQuery(), $matches]);
     }
 }

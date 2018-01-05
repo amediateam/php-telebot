@@ -906,7 +906,7 @@ return [
             ]
         ],
         'Update' => [
-            'requiredParams' => ['update_id', 'message'],
+            'requiredParams' => ['update_id'],
             'map' => [
                 'update_id' => 'Integer',
                 'message' => 'Message',
@@ -1422,7 +1422,7 @@ return [
                 'callback_query_id' => 'String',
                 'text' => 'String',
                 'show_alert' => 'Boolean',
-                'url' => 'Boolean',
+                'url' => 'String',
                 'cache_time' => 'Integer',
             ],
             'returnType' => 'boolean'

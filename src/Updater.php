@@ -51,7 +51,10 @@ class Updater
         foreach ($updates as $update) {
             $this->getDispatcher()->processUpdate($update);
         }
-        $offset = $updates[sizeof($updates) - 1]->getUpdateId();
+        $size = sizeof($updates);
+        if($size){
+            $offset = $updates[$size - 1]->getUpdateId();
+        }
         return $offset;
     }
 

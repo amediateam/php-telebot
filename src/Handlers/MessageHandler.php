@@ -25,7 +25,9 @@ class MessageHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::filter($update, $this->filters)) {
+        if (!Filters::$message::filter($update, $this->filters)) {
+            return false;
+        } else if (!Filters::filter($update, $this->filters)) {
             return false;
         } else if (!$this->editedUpdates && $update->isEdited()) {
             return false;
