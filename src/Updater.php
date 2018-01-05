@@ -50,7 +50,6 @@ class Updater
             };
             pcntl_signal(SIGTERM, $signalHandler);
             pcntl_signal(SIGHUP, $signalHandler);
-            pcntl_signal(SIGKILL, $signalHandler);
         }
         while ($loop) {
             $updates = $this->getDispatcher()->getBot()->getUpdates($offset + 1, $limit, $timeout, $allowedUpdates);
