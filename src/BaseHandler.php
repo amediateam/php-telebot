@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api;
 
+use function call_user_func_array;
 use Closure;
 use ReflectionFunction;
 use ReflectionMethod;
@@ -19,9 +20,7 @@ abstract class BaseHandler
             $this->callback = new ReflectionMethod($callback[0], $callback[1]);
         } else {
             $this->callback = new ReflectionFunction($callback);
-            if ($this->callback->getClosureScopeClass() === null || $this->callback->getClosureThis() !== null) {
-                Closure::bind($this->callback->getClosure(), $this->callback->getClosureThis(), $this->callback->getClosureScopeClass());
-            }
+
         }
     }
 
@@ -33,6 +32,13 @@ abstract class BaseHandler
     {
         if ($this->callback instanceof ReflectionMethod) {
             return $this->callback->invokeArgs($this->callbackArr[0], $args);
+        }
+        if ($this->callback->getClosureScopeClass() === null || $this->callback->getClosureThis() !== null) {
+            return call_user_func_array(Closure::bind(
+                $this->callback->getClosure(),
+                $this->callback->getClosureThis(),
+                $this->callback->getClosureScopeClass()
+            ), $args);
         }
         return $this->callback->invokeArgs($args);
     }
