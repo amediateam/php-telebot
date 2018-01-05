@@ -381,7 +381,7 @@ class BotApi extends MethodFunctions
         $async = strtolower(substr($method, -5)) == 'async';
         $declaration = $this->methodMap[$method];
         $method = "\\TelegramBot\\Api\\Methods\\$method";
-        $method = new $method($this);
+        $method = new $method();
         /* @var $method BaseMethod */
         if(isset($arguments['keyValuePair'])){
             $params = $arguments;
