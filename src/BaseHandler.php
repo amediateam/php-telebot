@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api;
 use ReflectionFunction;
+use ReflectionMethod;
 use TelegramBot\Api\Types\Update;
 
 abstract class BaseHandler
@@ -9,7 +10,11 @@ abstract class BaseHandler
 
     public function __construct(Callable $callback)
     {
-        $this->callback = new ReflectionFunction($callback);
+        if(is_array($callback)){
+            $this->callback = new ReflectionMethod($callback[0], $callback[1]);
+        } else {
+            $this->callback = new ReflectionFunction($callback);
+        }
     }
 
     abstract public function checkUpdate(Update $update);
