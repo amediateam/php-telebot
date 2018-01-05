@@ -230,6 +230,8 @@ class BotApi extends MethodFunctions
             $options['form_params'] = $method->toJson(true);
         }
         try {
+            echo "Calling method " . get_class($method);
+            echo "Calling method " . basename(get_class($method));
             echo "Calling method {$method->getMethod()}";
             $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);
             if ($async) {
