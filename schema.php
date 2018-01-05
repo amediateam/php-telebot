@@ -1618,7 +1618,7 @@ return [
             'returnType' => 'Message'
         ],
         'answerShippingQuery' => [
-            'requiredParams' => ['shipping_query_id', 'Boolean'],
+            'requiredParams' => ['shipping_query_id', 'ok'],
             'map' => [
                 'shipping_query_id' => 'String',
                 'ok' => 'Boolean',
@@ -1629,7 +1629,7 @@ return [
             'returnType' => 'Boolean'
         ],
         'answerPreCheckoutQuery' => [
-            'requiredParams' => ['pre_checkout_query_id', 'Boolean'],
+            'requiredParams' => ['pre_checkout_query_id', 'ok'],
             'map' => [
                 'pre_checkout_query_id' => 'String',
                 'ok' => 'Boolean',

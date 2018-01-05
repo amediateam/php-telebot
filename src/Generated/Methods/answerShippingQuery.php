@@ -15,7 +15,7 @@ class answerShippingQuery extends BaseMethod
 {
 	static protected $requiredParams = [
 		'shipping_query_id',
-		'Boolean'
+		'ok'
 	];
 	static protected $map = [
 		'shipping_query_id' => 'string',

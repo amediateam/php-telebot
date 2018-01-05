@@ -55,12 +55,8 @@ namespace TelegramBot\Api;
 * @method boolean deleteStickerFromSet(string $sticker)
 * @method boolean answerInlineQuery(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
 * @method \TelegramBot\Api\Types\Message sendInvoice(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
-
-Notice: Undefined index: Boolean in C:\Users\Amirhossein Matini\Documents\Workspace\Repository\php-telegrambot\generator.php on line 164
-* @method boolean answerShippingQuery(string $shippingQueryId, $boolean, boolean $ok = false, array $shippingOptions = [], string $errorMessage = null)
-
-Notice: Undefined index: Boolean in C:\Users\Amirhossein Matini\Documents\Workspace\Repository\php-telegrambot\generator.php on line 164
-* @method boolean answerPreCheckoutQuery(string $preCheckoutQueryId, $boolean, boolean $ok = false, string $errorMessage = null)
+* @method boolean answerShippingQuery(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
+* @method boolean answerPreCheckoutQuery(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
 * @method \TelegramBot\Api\Types\ReplyKeyboardMarkup createReplyKeyboardMarkup(array $keyboard, boolean $resizeKeyboard = false, boolean $oneTimeKeyboard = false, boolean $selective = false)
 * @method \TelegramBot\Api\Types\KeyboardButton createKeyboardButton(string $text, boolean $requestContact = false, boolean $requestLocation = false)
 * @method \TelegramBot\Api\Types\ReplyKeyboardRemove createReplyKeyboardRemove(boolean $removeKeyboard, boolean $selective = false)

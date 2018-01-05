@@ -145,7 +145,7 @@ function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocum
 
 function generateMethodFunctionsMethodsAndTypesDoc()
 {
-    global $schema;
+    global $schema, $defined_types;
     $methodMap = $typeMap = [];
     for ($zz = 0; $zz <= 1; ++$zz) {
         $isType = $zz == 1;
@@ -161,6 +161,10 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 $paramsArray[] = $key;
             }
             foreach ($paramsArray as $parameter) {
+                if(in_array(strtolower($parameter), $defined_types)){
+                    echo $method;
+                    exit("Oops");
+                }
                 $parameterType = $declaration['map'][$parameter];
                 if (!empty($parameters)) $parameters .= ', ';
                 if (is_array($parameterType)) {

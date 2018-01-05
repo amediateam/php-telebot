@@ -13,7 +13,7 @@ class answerPreCheckoutQuery extends BaseMethod
 {
 	static protected $requiredParams = [
 		'pre_checkout_query_id',
-		'Boolean'
+		'ok'
 	];
 	static protected $map = [
 		'pre_checkout_query_id' => 'string',
