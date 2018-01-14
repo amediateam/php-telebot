@@ -3,7 +3,7 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultArticle setType(string $type)
+ * @method \TelegramBot\Api\Types\InlineQueryResultArticle setType(string $type = 'article')
  * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultArticle setId(string $id)
  * @method string getId()
@@ -29,7 +29,6 @@ use TelegramBot\Api\TypeInterface;
 class InlineQueryResultArticle extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
-		'type',
 		'id',
 		'title',
 		'input_message_content'

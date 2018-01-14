@@ -345,7 +345,7 @@ return [
             ],
         ],
         'InlineQueryResultCachedAudio' => [
-            'requiredParams' => ['type', 'id', 'audio_file_id'],
+            'requiredParams' => ['id', 'audio_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -358,10 +358,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'audio'
+            ],
         ],
         'InlineQueryResultCachedDocument' => [
-            'requiredParams' => ['type', 'id', 'document_file_id'],
+            'requiredParams' => ['id', 'document_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -376,10 +379,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'document'
+            ],
         ],
         'InlineQueryResultCachedGif' => [
-            'requiredParams' => ['type', 'id', 'gif_file_id'],
+            'requiredParams' => ['id', 'gif_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -394,10 +400,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'gif'
+            ],
         ],
         'InlineQueryResultCachedMpeg4Gif' => [
-            'requiredParams' => ['type', 'id', 'mpeg4_file_id'],
+            'requiredParams' => ['id', 'mpeg4_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -411,10 +420,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'mpeg4_gif'
+            ],
         ],
         'InlineQueryResultCachedPhoto' => [
-            'requiredParams' => ['type', 'id', 'photo_file_id'],
+            'requiredParams' => ['id', 'photo_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -429,10 +441,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'photo'
+            ],
         ],
         'InlineQueryResultCachedSticker' => [
-            'requiredParams' => ['type', 'id', 'sticker_file_id'],
+            'requiredParams' => ['id', 'sticker_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -444,10 +459,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'sticker'
+            ],
         ],
         'InlineQueryResultCachedVideo' => [
-            'requiredParams' => ['type', 'id', 'video_file_id'],
+            'requiredParams' => ['id', 'video_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -462,10 +480,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'video'
+            ],
         ],
         'InlineQueryResultCachedVoice' => [
-            'requiredParams' => ['type', 'id', 'voice_file_id'],
+            'requiredParams' => ['id', 'voice_file_id'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -479,10 +500,13 @@ return [
                     'InputVenueMessageContent',
                     'InputContactMessageContent',
                 ]
-            ]
+            ],
+            'defaultData' => [
+                'type' => 'voice'
+            ],
         ],
         'InlineQueryResultArticle' => [
-            'requiredParams' => ['type', 'id', 'title', 'input_message_content'],
+            'requiredParams' => ['id', 'title', 'input_message_content'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -501,10 +525,13 @@ return [
                 'thumb_width' => 'Integer',
                 'thumb_height' => 'Integer',
             ],
+            'defaultData' => [
+                'type' => 'article',
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultAudio' => [
-            'requiredParams' => ['type', 'id', 'audio_url'],
+            'requiredParams' => ['id', 'audio_url'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -521,10 +548,13 @@ return [
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'mp3',
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultContact' => [
-            'requiredParams' => ['type', 'id', 'phone_number', 'first_name'],
+            'requiredParams' => ['id', 'phone_number', 'first_name'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -542,10 +572,13 @@ return [
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'contact'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultGame' => [
-            'requiredParams' => ['type', 'id', 'document_url', 'title'],
+            'requiredParams' => ['id', 'document_url', 'title'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -562,20 +595,26 @@ return [
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'game'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultDocument' => [
-            'requiredParams' => ['type', 'id', 'game_short_name'],
+            'requiredParams' => ['id', 'game_short_name'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
                 'game_short_name' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'document'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultGif' => [
-            'requiredParams' => ['type', 'id', 'gif_url'],
+            'requiredParams' => ['id', 'gif_url'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -594,10 +633,13 @@ return [
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'gif'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultLocation' => [
-            'requiredParams' => ['type', 'id', 'latitude', 'longitude', 'title'],
+            'requiredParams' => ['id', 'latitude', 'longitude', 'title'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -616,10 +658,13 @@ return [
                 'thumb_width' => 'Integer',
                 'thumb_height' => 'Integer',
             ],
+            'defaultData' => [
+                'type' => 'location'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultMpeg4Gif' => [
-            'requiredParams' => ['type', 'id', 'mpeg4_url'],
+            'requiredParams' => ['id', 'mpeg4_url'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -638,10 +683,13 @@ return [
                     'InputContactMessageContent',
                 ],
             ],
+            'defaultData' => [
+                'type' => 'mpeg4_gif'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultPhoto' => [
-            'requiredParams' => ['type', 'id', 'photo_url'],
+            'requiredParams' => ['id', 'photo_url'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -659,10 +707,13 @@ return [
                     'InputContactMessageContent',
                 ],
             ],
+            'defaultData' => [
+                'type' => 'photo'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultVenue' => [
-            'requiredParams' => ['type', 'id', 'latitude', 'longitude', 'title', 'address'],
+            'requiredParams' => ['id', 'latitude', 'longitude', 'title', 'address'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -681,10 +732,13 @@ return [
                 'thumb_width' => 'Integer',
                 'thumb_height' => 'Integer',
             ],
+            'defaultData' => [
+                'type' => 'venue'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultVideo' => [
-            'requiredParams' => ['type', 'id', 'video_url', 'mime_type'],
+            'requiredParams' => ['id', 'video_url', 'mime_type'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -705,10 +759,13 @@ return [
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
             ],
+            'defaultData' => [
+                'type' => 'video'
+            ],
             'creatable' => true,
         ],
         'InlineQueryResultVoice' => [
-            'requiredParams' => ['type', 'id', 'voice_url', 'title'],
+            'requiredParams' => ['id', 'voice_url', 'title'],
             'map' => [
                 'type' => 'String',
                 'id' => 'String',
@@ -723,6 +780,9 @@ return [
                     'InputContactMessageContent',
                 ],
                 'reply_markup' => 'InlineKeyboardMarkup',
+            ],
+            'defaultData' => [
+                'type' => 'voice'
             ],
             'creatable' => true,
         ],

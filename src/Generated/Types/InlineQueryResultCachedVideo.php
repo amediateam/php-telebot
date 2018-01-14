@@ -3,7 +3,7 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setType(string $type)
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setType(string $type = 'video')
  * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setId(string $id)
  * @method string getId()
@@ -23,7 +23,6 @@ use TelegramBot\Api\TypeInterface;
 class InlineQueryResultCachedVideo extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
-		'type',
 		'id',
 		'video_file_id'
 	];

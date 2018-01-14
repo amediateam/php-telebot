@@ -3,7 +3,7 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setType(string $type)
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setType(string $type = 'audio')
  * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setId(string $id)
  * @method string getId()
@@ -19,7 +19,6 @@ use TelegramBot\Api\TypeInterface;
 class InlineQueryResultCachedAudio extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
-		'type',
 		'id',
 		'audio_file_id'
 	];

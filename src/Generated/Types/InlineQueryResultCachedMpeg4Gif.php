@@ -3,7 +3,7 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setType(string $type)
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setType(string $type = 'mpeg4_gif')
  * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setId(string $id)
  * @method string getId()
@@ -21,7 +21,6 @@ use TelegramBot\Api\TypeInterface;
 class InlineQueryResultCachedMpeg4Gif extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
-		'type',
 		'id',
 		'mpeg4_file_id'
 	];
