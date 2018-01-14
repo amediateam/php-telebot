@@ -17,7 +17,7 @@ class KeyValuePairStore
 
     public function __construct()
     {
-        $this->data = self::$defaultData;
+        $this->data = static::$defaultData;
     }
 
     /**
