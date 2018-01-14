@@ -29,17 +29,15 @@ class Updater
         if ($data === null) {
             $data = stream_get_contents(STDIN);
         }
-        if(!is_array($data)){
+        if (!is_array($data)) {
             try {
-                $data = \GuzzleHttp\json_decode($data);;
+                $data = \GuzzleHttp\json_decode($data, true);
             } catch (\InvalidArgumentException $e) {
                 return false;
             }
         }
         try {
-            if (Update::validate($data)) {
-                $this->getDispatcher()->processUpdate(Update::fromResponse($this->getBot(), $data));
-            }
+            $this->getDispatcher()->processUpdate(Update::fromResponse($this->getBot(), $data));
         } catch (InvalidArgumentException $e) {
             return false;
         }
