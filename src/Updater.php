@@ -7,7 +7,7 @@ use TelegramBot\Api\Types\Update;
 
 class Updater
 {
-    private $dispatcher;
+    protected $dispatcher;
 
     public function __construct($token)
     {
@@ -24,15 +24,17 @@ class Updater
         return $this->dispatcher->getBot();
     }
 
-    public function handleWebhookUpdate(array $data = null)
+    public function handleWebhookUpdate($data = null)
     {
         if ($data === null) {
             $data = stream_get_contents(STDIN);
         }
-        try {
-            $data = \GuzzleHttp\json_decode($data);;
-        } catch (\InvalidArgumentException $e) {
-            return false;
+        if(!is_array($data)){
+            try {
+                $data = \GuzzleHttp\json_decode($data);;
+            } catch (\InvalidArgumentException $e) {
+                return false;
+            }
         }
         try {
             if (Update::validate($data)) {
