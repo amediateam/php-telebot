@@ -23,6 +23,6 @@ class Chat extends Types\Chat
 
     public function getChatMember($user_id)
     {
-        return $this->botApi->getChatMember($this->getId(), $user_id);
+        return $this->getBot()->getChatMember($this->getId(), $user_id);
     }
 }

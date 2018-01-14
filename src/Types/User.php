@@ -8,6 +8,6 @@ class User extends Types\User
 {
     public function getUserProfilePhotos($offset = null, $limit = null)
     {
-        return $this->botApi->getUserProfilePhotos($this->getId(), $offset, $limit);
+        return $this->getBot()->getUserProfilePhotos($this->getId(), $offset, $limit);
     }
 }

@@ -1,9 +1,5 @@
 <?php
-
 namespace TelegramBot\Api\Types;
-
-use function array_values;
-
 class TextCommand
 {
     private $name;

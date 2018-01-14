@@ -8,16 +8,16 @@ class CallbackQuery extends Types\CallbackQuery
 {
     public function answer()
     {
-        return $this->botApi->answerCallbackQuery($this->getId());
+        return $this->getBot()->answerCallbackQuery($this->getId());
     }
 
     public function answerText($text, $showAlert = false, $cacheTime = null)
     {
-        return $this->botApi->answerCallbackQuery($this->getId(), $text, $showAlert, null, $cacheTime);
+        return $this->getBot()->answerCallbackQuery($this->getId(), $text, $showAlert, null, $cacheTime);
     }
 
     public function answerUrl($url, $cacheTime = null)
     {
-        return $this->botApi->answerCallbackQuery($this->getId(), null, false, $url, $cacheTime);
+        return $this->getBot()->answerCallbackQuery($this->getId(), null, false, $url, $cacheTime);
     }
 }
