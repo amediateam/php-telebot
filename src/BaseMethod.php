@@ -19,7 +19,6 @@ abstract class BaseMethod extends KeyValuePairStore
 
     public function __construct(BotApi $bot = null)
     {
-        parent::__construct();
         if($bot instanceof BotApi){
             $this->setBot($bot);
         }

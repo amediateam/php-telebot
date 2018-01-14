@@ -15,11 +15,6 @@ class KeyValuePairStore
     protected static $defaultData = [];
     protected $hasInputFile = false;
 
-    public function __construct()
-    {
-        $this->data = static::$defaultData;
-    }
-
     /**
      * @param $name
      * @param $arguments
