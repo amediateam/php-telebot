@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedVoice setType(string $type = 'voice')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVoice setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVoice setVoiceFileId(string $voiceFileId)
@@ -17,6 +15,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVoice setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedVoice setType(string $type = 'voice')
+ * @method string getType()
 */
 class InlineQueryResultCachedVoice extends BaseType implements TypeInterface
 {
@@ -25,7 +25,6 @@ class InlineQueryResultCachedVoice extends BaseType implements TypeInterface
 		'voice_file_id'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'voice_file_id' => 'string',
 		'title' => 'string',
@@ -37,7 +36,9 @@ class InlineQueryResultCachedVoice extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'voice'
 	];
 }

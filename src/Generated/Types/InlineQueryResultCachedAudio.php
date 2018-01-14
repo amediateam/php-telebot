@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setType(string $type = 'audio')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setAudioFileId(string $audioFileId)
@@ -15,6 +13,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setType(string $type = 'audio')
+ * @method string getType()
 */
 class InlineQueryResultCachedAudio extends BaseType implements TypeInterface
 {
@@ -23,7 +23,6 @@ class InlineQueryResultCachedAudio extends BaseType implements TypeInterface
 		'audio_file_id'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'audio_file_id' => 'string',
 		'caption' => 'string',
@@ -34,7 +33,9 @@ class InlineQueryResultCachedAudio extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'audio'
 	];
 }

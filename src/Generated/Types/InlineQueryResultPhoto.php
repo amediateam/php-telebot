@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setType(string $type = 'photo')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setPhotoUrl(string $photoUrl)
@@ -23,6 +21,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setType(string $type = 'photo')
+ * @method string getType()
 */
 class InlineQueryResultPhoto extends BaseType implements TypeInterface
 {
@@ -31,7 +31,6 @@ class InlineQueryResultPhoto extends BaseType implements TypeInterface
 		'photo_url'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'photo_url' => 'string',
 		'thumb_url' => 'string',
@@ -46,7 +45,9 @@ class InlineQueryResultPhoto extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'photo'
 	];
 }

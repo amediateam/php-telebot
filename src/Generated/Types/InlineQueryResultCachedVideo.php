@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setType(string $type = 'video')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setVideoFileId(string $videoFileId)
@@ -19,6 +17,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedVideo setType(string $type = 'video')
+ * @method string getType()
 */
 class InlineQueryResultCachedVideo extends BaseType implements TypeInterface
 {
@@ -27,7 +27,6 @@ class InlineQueryResultCachedVideo extends BaseType implements TypeInterface
 		'video_file_id'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'video_file_id' => 'string',
 		'title' => 'string',
@@ -40,7 +39,9 @@ class InlineQueryResultCachedVideo extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'video'
 	];
 }

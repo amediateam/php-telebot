@@ -46,5 +46,6 @@ class InlineQueryResultGame extends BaseType implements TypeInterface
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 	];
 	static protected $defaultData = [
+		'type' => 'game'
 	];
 }

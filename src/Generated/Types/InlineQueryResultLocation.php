@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultLocation setType(string $type = 'location')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultLocation setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultLocation setLatitude(float $latitude)
@@ -25,6 +23,8 @@ use TelegramBot\Api\TypeInterface;
  * @method integer getThumbWidth()
  * @method \TelegramBot\Api\Types\InlineQueryResultLocation setThumbHeight(integer $thumbHeight)
  * @method integer getThumbHeight()
+ * @method \TelegramBot\Api\Types\InlineQueryResultLocation setType(string $type = 'location')
+ * @method string getType()
 */
 class InlineQueryResultLocation extends BaseType implements TypeInterface
 {
@@ -35,7 +35,6 @@ class InlineQueryResultLocation extends BaseType implements TypeInterface
 		'title'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'latitude' => 'float',
 		'longitude' => 'float',
@@ -51,7 +50,9 @@ class InlineQueryResultLocation extends BaseType implements TypeInterface
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 		'thumb_width' => 'integer',
 		'thumb_height' => 'integer',
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'location'
 	];
 }

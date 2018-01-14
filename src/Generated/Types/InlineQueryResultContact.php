@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultContact setType(string $type = 'contact')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultContact setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultContact setPhoneNumber(string $phoneNumber)
@@ -23,6 +21,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultContact setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
+ * @method \TelegramBot\Api\Types\InlineQueryResultContact setType(string $type = 'contact')
+ * @method string getType()
 */
 class InlineQueryResultContact extends BaseType implements TypeInterface
 {
@@ -32,7 +32,6 @@ class InlineQueryResultContact extends BaseType implements TypeInterface
 		'first_name'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'phone_number' => 'string',
 		'first_name' => 'string',
@@ -47,7 +46,9 @@ class InlineQueryResultContact extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'contact'
 	];
 }

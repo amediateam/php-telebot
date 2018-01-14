@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setType(string $type = 'mpeg4_gif')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setMpeg4FileId(string $mpeg4FileId)
@@ -17,6 +15,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedMpeg4Gif setType(string $type = 'mpeg4_gif')
+ * @method string getType()
 */
 class InlineQueryResultCachedMpeg4Gif extends BaseType implements TypeInterface
 {
@@ -25,7 +25,6 @@ class InlineQueryResultCachedMpeg4Gif extends BaseType implements TypeInterface
 		'mpeg4_file_id'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'mpeg4_file_id' => 'string',
 		'title' => 'string',
@@ -37,7 +36,9 @@ class InlineQueryResultCachedMpeg4Gif extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'mpeg4_gif'
 	];
 }

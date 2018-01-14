@@ -303,12 +303,12 @@ function generateMethodFunctions()
 }
 
 
-function generateDefaultData($defaultData, $isType)
+function generateDefaultData($info, $isType)
 {
     $string = null;
     $string .= "\t" . 'static protected $defaultData = [' . PHP_EOL;
-    foreach ($defaultData as $t => $tt) {
-        if (!isset($typeInfo['map'][$t])) continue;
+    foreach ($info['defaultData'] as $t => $tt) {
+        if (!isset($info['map'][$t])) continue;
         $string .= "\t\t" . sprintf("'%s' => %s", $t, sprintf("'%s'", addslashes($tt))) . "\n";
     }
     $string .= "\t];\n";
@@ -382,7 +382,7 @@ function generateType($type)
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], true);
     echo generateMap($typeInfo['map'], true);
-    echo generateDefaultData($typeInfo['defaultData'], true);
+    echo generateDefaultData($typeInfo, true);
     echo '}' . PHP_EOL;
     return ob_get_clean();
 }
@@ -411,7 +411,7 @@ function generateMethod($type)
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], false);
     echo generateMap($typeInfo['map'], false);
-    echo generateDefaultData($typeInfo['defaultData'], false);
+    echo generateDefaultData($typeInfo, false);
     echo '}' . PHP_EOL;
     return ob_get_clean();
 }

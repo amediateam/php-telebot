@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultVideo setType(string $type = 'video')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setVideoUrl(string $videoUrl)
@@ -29,6 +27,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
+ * @method \TelegramBot\Api\Types\InlineQueryResultVideo setType(string $type = 'video')
+ * @method string getType()
 */
 class InlineQueryResultVideo extends BaseType implements TypeInterface
 {
@@ -38,7 +38,6 @@ class InlineQueryResultVideo extends BaseType implements TypeInterface
 		'mime_type'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'video_url' => 'string',
 		'mime_type' => 'string',
@@ -56,7 +55,9 @@ class InlineQueryResultVideo extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'video'
 	];
 }

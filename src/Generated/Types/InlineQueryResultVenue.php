@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultVenue setType(string $type = 'venue')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultVenue setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultVenue setLatitude(float $latitude)
@@ -25,6 +23,8 @@ use TelegramBot\Api\TypeInterface;
  * @method integer getThumbWidth()
  * @method \TelegramBot\Api\Types\InlineQueryResultVenue setThumbHeight(integer $thumbHeight)
  * @method integer getThumbHeight()
+ * @method \TelegramBot\Api\Types\InlineQueryResultVenue setType(string $type = 'venue')
+ * @method string getType()
 */
 class InlineQueryResultVenue extends BaseType implements TypeInterface
 {
@@ -36,7 +36,6 @@ class InlineQueryResultVenue extends BaseType implements TypeInterface
 		'address'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'latitude' => 'float',
 		'longitude' => 'float',
@@ -52,7 +51,9 @@ class InlineQueryResultVenue extends BaseType implements TypeInterface
 		'thumb_url' => 'string',
 		'thumb_width' => 'integer',
 		'thumb_height' => 'integer',
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'venue'
 	];
 }

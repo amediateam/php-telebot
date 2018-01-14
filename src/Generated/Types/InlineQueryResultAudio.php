@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultAudio setType(string $type = 'mp3')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setAudioUrl(string $audioUrl)
@@ -21,6 +19,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
+ * @method \TelegramBot\Api\Types\InlineQueryResultAudio setType(string $type = 'mp3')
+ * @method string getType()
 */
 class InlineQueryResultAudio extends BaseType implements TypeInterface
 {
@@ -29,7 +29,6 @@ class InlineQueryResultAudio extends BaseType implements TypeInterface
 		'audio_url'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'audio_url' => 'string',
 		'title' => 'string',
@@ -43,7 +42,9 @@ class InlineQueryResultAudio extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'mp3'
 	];
 }

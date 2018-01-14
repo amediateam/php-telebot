@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultCachedDocument setType(string $type = 'document')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedDocument setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedDocument setTitle(string $title)
@@ -19,6 +17,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedDocument setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedDocument setType(string $type = 'document')
+ * @method string getType()
 */
 class InlineQueryResultCachedDocument extends BaseType implements TypeInterface
 {
@@ -27,7 +27,6 @@ class InlineQueryResultCachedDocument extends BaseType implements TypeInterface
 		'document_file_id'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'title' => 'string',
 		'document_file_id' => 'string',
@@ -40,7 +39,9 @@ class InlineQueryResultCachedDocument extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'document'
 	];
 }

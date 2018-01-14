@@ -22,5 +22,6 @@ class InputMediaPhoto extends BaseType implements TypeInterface
 		'caption' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'photo'
 	];
 }

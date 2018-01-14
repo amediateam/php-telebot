@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultArticle setType(string $type = 'article')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultArticle setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultArticle setTitle(string $title)
@@ -25,6 +23,8 @@ use TelegramBot\Api\TypeInterface;
  * @method integer getThumbWidth()
  * @method \TelegramBot\Api\Types\InlineQueryResultArticle setThumbHeight(integer $thumbHeight)
  * @method integer getThumbHeight()
+ * @method \TelegramBot\Api\Types\InlineQueryResultArticle setType(string $type = 'article')
+ * @method string getType()
 */
 class InlineQueryResultArticle extends BaseType implements TypeInterface
 {
@@ -34,7 +34,6 @@ class InlineQueryResultArticle extends BaseType implements TypeInterface
 		'input_message_content'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'title' => 'string',
 		'input_message_content' => [
@@ -50,7 +49,9 @@ class InlineQueryResultArticle extends BaseType implements TypeInterface
 		'thumb_url' => 'string',
 		'thumb_width' => 'integer',
 		'thumb_height' => 'integer',
+		'type' => 'string',
 	];
 	static protected $defaultData = [
+		'type' => 'article'
 	];
 }

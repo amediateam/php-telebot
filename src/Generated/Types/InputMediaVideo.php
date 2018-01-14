@@ -31,5 +31,6 @@ class InputMediaVideo extends BaseType implements TypeInterface
 		'duration' => 'integer',
 	];
 	static protected $defaultData = [
+		'type' => 'video'
 	];
 }
