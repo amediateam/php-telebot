@@ -176,10 +176,12 @@ namespace TelegramBot\Api;
 * @method \TelegramBot\Api\Types\InlineKeyboardButton createInlineKeyboardButton(string $text, string $url = null, string $callbackData = null, string $switchInlineQuery = null, string $switchInlineQueryCurrentChat = null, \TelegramBot\Api\Types\CallbackGame $callbackGame = null, boolean $pay = false)
 * @method \TelegramBot\Api\Types\ForceReply createForceReply(boolean $forceReply, boolean $selective = false)
 * @method \TelegramBot\Api\Types\InlineQueryResultArticle createInlineQueryResultArticle(string $id, string $title, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $url = null, boolean $hideUrl = false, string $description = null, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = null)
-* @method \TelegramBot\Api\Types\InlineQueryResultAudio createInlineQueryResultAudio(string $id, string $audioUrl, string $title = null, string $caption = null, string $performer = null, integer $audioDuration = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
+* @method \TelegramBot\Api\Types\InlineQueryResultAudio createInlineQueryResultAudio(string $id, string $title, string $audioUrl, string $caption = null, string $performer = null, integer $audioDuration = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
 * @method \TelegramBot\Api\Types\InlineQueryResultContact createInlineQueryResultContact(string $id, string $phoneNumber, string $firstName, string $lastName = null, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
-* @method \TelegramBot\Api\Types\InlineQueryResultGame createInlineQueryResultGame(string $id, string $documentUrl, string $title, string $type = null, string $caption = null, string $mimeType = null, string $description = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null)
-* @method \TelegramBot\Api\Types\InlineQueryResultDocument createInlineQueryResultDocument(string $id, string $gameShortName, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
+* @method \TelegramBot\Api\Types\InlineQueryResultGame createInlineQueryResultGame(string $id, string $documentUrl, string $title, string $caption = null, string $mimeType = null, string $description = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
+
+Notice: Undefined index: document_url in C:\Users\Amirhossein Matini\Documents\Workspace\Projects\Libraries\php-telebot\generator.php on line 172
+* @method \TelegramBot\Api\Types\InlineQueryResultDocument createInlineQueryResultDocument(string $id, string $title, string $mimeType, $documentUrl, string $caption = null, string $description = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, InputMessageContent $inputMessageContent, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = null)
 * @method \TelegramBot\Api\Types\InlineQueryResultGif createInlineQueryResultGif(string $id, string $gifUrl, integer $gifWidth = null, integer $gifHeight = null, integer $gifDuration = null, string $thumbUrl = null, string $title = null, string $caption = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = null)
 * @method \TelegramBot\Api\Types\InlineQueryResultLocation createInlineQueryResultLocation(string $id, float $latitude, float $longitude, string $title, integer $livePeriod = null, string $thumbUrl = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = null)
 * @method \TelegramBot\Api\Types\InlineQueryResultMpeg4Gif createInlineQueryResultMpeg4Gif(string $id, string $mpeg4Url, integer $mpeg4Width = null, integer $mpeg4Height = null, integer $mpeg4Duration = null, string $thumbUrl = null, string $title = null, string $caption = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, string $type = null)
@@ -1568,7 +1570,6 @@ class MethodFunctions{
 				\TelegramBot\Api\Types\InlineQueryResultGame::class,
 			],
 			'paramsMap' => [
-				'type',
 				'id',
 				'title',
 				'caption',
@@ -1577,6 +1578,7 @@ class MethodFunctions{
 				'description',
 				'input_message_content',
 				'reply_markup',
+				'type',
 			],
 		],
 		'InlineQueryResultDocument' => [
@@ -1585,8 +1587,15 @@ class MethodFunctions{
 			],
 			'paramsMap' => [
 				'id',
-				'game_short_name',
+				'title',
+				'caption',
+				'mime_type',
+				'description',
 				'reply_markup',
+				'input_message_content',
+				'thumb_url',
+				'thumb_width',
+				'thumb_height',
 				'type',
 			],
 		],

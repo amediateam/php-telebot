@@ -24,6 +24,7 @@ class InlineQueryResultCachedVideo extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
 		'id',
+		'title',
 		'video_file_id'
 	];
 	static protected $map = [

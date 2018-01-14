@@ -26,6 +26,7 @@ class InlineQueryResultAudio extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
 		'id',
+		'title',
 		'audio_url'
 	];
 	static protected $map = [

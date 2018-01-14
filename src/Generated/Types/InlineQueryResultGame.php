@@ -3,8 +3,6 @@ namespace TelegramBot\Api\Generated\Types;
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\TypeInterface;
 /**
- * @method \TelegramBot\Api\Types\InlineQueryResultGame setType(string $type = 'game')
- * @method string getType()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setId(string $id)
  * @method string getId()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setTitle(string $title)
@@ -21,6 +19,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
+ * @method \TelegramBot\Api\Types\InlineQueryResultGame setType(string $type = 'game')
+ * @method string getType()
 */
 class InlineQueryResultGame extends BaseType implements TypeInterface
 {
@@ -30,7 +30,6 @@ class InlineQueryResultGame extends BaseType implements TypeInterface
 		'title'
 	];
 	static protected $map = [
-		'type' => 'string',
 		'id' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
@@ -44,6 +43,7 @@ class InlineQueryResultGame extends BaseType implements TypeInterface
 			\TelegramBot\Api\Types\InputContactMessageContent::class,
 		],
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
+		'type' => 'string',
 	];
 	static protected $defaultData = [
 		'type' => 'game'

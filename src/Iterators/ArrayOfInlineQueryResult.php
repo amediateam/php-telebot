@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Iterators;
 
+use TelegramBot\Api\BaseType;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\InvalidArgumentException;
 use TelegramBot\Api\Types\InlineQueryResultArticle;
@@ -19,6 +20,7 @@ use TelegramBot\Api\Types\InlineQueryResultDocument;
 use TelegramBot\Api\Types\InlineQueryResultGame;
 use TelegramBot\Api\Types\InlineQueryResultGif;
 use TelegramBot\Api\Types\InlineQueryResultLocation;
+use TelegramBot\Api\Types\InlineQueryResultMpeg4Gif;
 use TelegramBot\Api\Types\InlineQueryResultPhoto;
 use TelegramBot\Api\Types\InlineQueryResultVenue;
 use TelegramBot\Api\Types\InlineQueryResultVideo;
@@ -36,7 +38,7 @@ abstract class ArrayOfInlineQueryResult
             return true;
         } else if ($inlineQueryItem instanceof InlineQueryResultGame) {
             return true;
-        }  else if ($inlineQueryItem instanceof InlineQueryResultDocument) {
+        } else if ($inlineQueryItem instanceof InlineQueryResultDocument) {
             return true;
         } else if ($inlineQueryItem instanceof InlineQueryResultGif) {
             return true;
@@ -70,16 +72,103 @@ abstract class ArrayOfInlineQueryResult
         return false;
     }
 
-
+    /**
+     * @param BotApi $bot
+     * @param $data
+     * @return array
+     * @throws InvalidArgumentException
+     */
     public static function fromResponse(BotApi $bot, $data)
     {
         $arrayOfInlineQueryResult = [];
         foreach ($data as $inlineQueryItem) {
-            if (self::isInlineQueryResultType($inlineQueryItem)) {
+            if (self::processByType($inlineQueryItem)) {
                 $arrayOfInlineQueryResult[] = $inlineQueryItem;
+            } else {
+                $arrayOfInlineQueryResult[] = self::processByType($inlineQueryItem, false, $bot);
             }
         }
         return $arrayOfInlineQueryResult;
+    }
+
+
+    private static function processByType($inlineQueryItem, $validate = false, BotApi $bot = null)
+    {
+        if ($validate && self::isInlineQueryResultType($inlineQueryItem)) return true;
+        $class = null;
+        switch ($inlineQueryItem['type']) {
+            case 'article':
+                $class = InlineQueryResultArticle::class;
+                break;
+            case 'audio':
+                if (isset($data['audio_file_id'])) {
+                    $class = InlineQueryResultCachedAudio::class;
+                    break;
+                }
+                $class = InlineQueryResultAudio::class;
+                break;
+            case 'photo':
+                if (isset($data['photo_file_id'])) {
+                    $class = InlineQueryResultCachedPhoto::class;
+                    break;
+                }
+                $class = InlineQueryResultPhoto::class;
+                break;
+            case 'gif':
+                if (isset($data['gif_file_id'])) {
+                    $class = InlineQueryResultCachedGif::class;
+                    break;
+                }
+                $class = InlineQueryResultGif::class;
+                break;
+            case 'mpeg4_gif':
+                if (isset($data['mpeg4_file_id'])) {
+                    $class = InlineQueryResultCachedMpeg4Gif::class;
+                    break;
+                }
+                $class = InlineQueryResultMpeg4Gif::class;
+                break;
+            case 'voice':
+                if (isset($data['voice_file_id'])) {
+                    $class = InlineQueryResultCachedVoice::class;
+                    break;
+                }
+                $class = InlineQueryResultVoice::class;
+                break;
+            case 'sticker':
+                $class = InlineQueryResultCachedSticker::class;
+                break;
+            case 'video':
+                if (isset($data['video_file_id'])) {
+                    $class = InlineQueryResultCachedVideo::class;
+                    break;
+                }
+                $class = InlineQueryResultVideo::class;
+                break;
+            case 'document':
+                if (isset($data['document_file_id'])) {
+                    $class = InlineQueryResultCachedDocument::class;
+                    break;
+                }
+                $class = InlineQueryResultDocument::class;
+                break;
+            case 'location':
+                $class = InlineQueryResultLocation::class;
+                break;
+            case 'contact':
+                $class = InlineQueryResultContact::class;
+                break;
+            case 'game':
+                $class = InlineQueryResultGame::class;
+                break;
+            case 'venue':
+                $class = InlineQueryResultVenue::class;
+                break;
+        }
+        if (is_null($class)) {
+            return $validate ? false : $class::fromResponse($bot, $inlineQueryItem);
+        }
+        return $validate ? $class::validate($inlineQueryItem) : $class::fromResponse($bot, $inlineQueryItem);
     }
 
 
@@ -87,7 +176,11 @@ abstract class ArrayOfInlineQueryResult
     {
         foreach ($data as $item) {
             try {
-                $result = self::isInlineQueryResultType($item);
+                if ($item instanceof BaseType) {
+                    $result = self::isInlineQueryResultType($item);
+                } else {
+                    $result = self::processByType($item, true);
+                }
             } catch (InvalidArgumentException $e) {
                 $result = false;
             }

@@ -344,6 +344,13 @@ return [
                 'offset' => 'String',
             ],
         ],
+        'InlineQueryResult' => [
+            'requiredParams' => ['id', 'type'],
+            'map' => [
+                'id' => 'String',
+                'type' => 'String',
+            ],
+        ],
         'InlineQueryResultCachedAudio' => [
             'requiredParams' => ['id', 'audio_file_id'],
             'map' => [
@@ -364,7 +371,7 @@ return [
             ],
         ],
         'InlineQueryResultCachedDocument' => [
-            'requiredParams' => ['id', 'document_file_id'],
+            'requiredParams' => ['id', 'title', 'document_file_id'],
             'map' => [
                 'id' => 'String',
                 'title' => 'String',
@@ -465,7 +472,7 @@ return [
             ],
         ],
         'InlineQueryResultCachedVideo' => [
-            'requiredParams' => ['id', 'video_file_id'],
+            'requiredParams' => ['id', 'title', 'video_file_id'],
             'map' => [
                 'id' => 'String',
                 'video_file_id' => 'String',
@@ -486,7 +493,7 @@ return [
             ],
         ],
         'InlineQueryResultCachedVoice' => [
-            'requiredParams' => ['id', 'voice_file_id'],
+            'requiredParams' => ['id','title',  'voice_file_id'],
             'map' => [
                 'id' => 'String',
                 'voice_file_id' => 'String',
@@ -531,7 +538,7 @@ return [
             'creatable' => true,
         ],
         'InlineQueryResultAudio' => [
-            'requiredParams' => ['id', 'audio_url'],
+            'requiredParams' => ['id', 'title', 'audio_url'],
             'map' => [
                 'id' => 'String',
                 'audio_url' => 'String',
@@ -580,7 +587,6 @@ return [
         'InlineQueryResultGame' => [
             'requiredParams' => ['id', 'document_url', 'title'],
             'map' => [
-                'type' => 'String',
                 'id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
@@ -602,11 +608,18 @@ return [
             'creatable' => true,
         ],
         'InlineQueryResultDocument' => [
-            'requiredParams' => ['id', 'game_short_name'],
+            'requiredParams' => ['id', 'title', 'mime_type', 'document_url'],
             'map' => [
                 'id' => 'String',
-                'game_short_name' => 'String',
+                'title' => 'String',
+                'caption' => 'String',
+                'mime_type' => 'String',
+                'description' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
+                'input_message_content' => 'InputMessageContent',
+                'thumb_url' => 'String',
+                'thumb_width' => 'Integer',
+                'thumb_height' => 'Integer',
                 'type' => 'String',
             ],
             'defaultData' => [

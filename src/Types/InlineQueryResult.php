@@ -1,6 +1,9 @@
 <?php
 namespace TelegramBot\Api\Types;
-class InlineQueryResult
+use TelegramBot\Api\Generated\Types;
+class InlineQueryResult extends Types\InlineQueryResult
 {
+
+
 
 }

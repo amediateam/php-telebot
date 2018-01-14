@@ -22,6 +22,7 @@ class InlineQueryResultCachedVoice extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
 		'id',
+		'title',
 		'voice_file_id'
 	];
 	static protected $map = [

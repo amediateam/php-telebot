@@ -24,6 +24,7 @@ class InlineQueryResultCachedDocument extends BaseType implements TypeInterface
 {
 	static protected $requiredParams = [
 		'id',
+		'title',
 		'document_file_id'
 	];
 	static protected $map = [
