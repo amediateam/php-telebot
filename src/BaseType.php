@@ -37,6 +37,7 @@ abstract class BaseType extends KeyValuePairStore
 
     public function __construct(BotApi $bot)
     {
+        parent::__construct();
         $this->setBot($bot);
     }
 
