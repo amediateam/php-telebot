@@ -182,10 +182,11 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 }
                 $type = str_replace("'", null, $type);
                 $required = in_array($parameter, $declaration['requiredParams']);
+                $parameterOrig = $parameter;
                 $parameter = lcfirst(toCamelCase($parameter));
                 $defaultValue = '';
-                if (isset($declaration['defaultData'][$method])) {
-                    $defaultValue = $declaration['defaultData'][$method];
+                if (isset($declaration['defaultData'][$parameterOrig])) {
+                    $defaultValue = "'{$declaration['defaultData'][$parameterOrig]}'";
                 } else if (!$required && is_string($parameterType)) {
                     $typeLower = strtolower($parameterType);
                     if (in_array($typeLower, ['integer', 'string'])) {
