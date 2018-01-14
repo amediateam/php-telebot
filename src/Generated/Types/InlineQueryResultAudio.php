@@ -19,7 +19,7 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
- * @method \TelegramBot\Api\Types\InlineQueryResultAudio setType(string $type = 'mp3')
+ * @method \TelegramBot\Api\Types\InlineQueryResultAudio setType(string $type = 'audio')
  * @method string getType()
 */
 class InlineQueryResultAudio extends BaseType implements TypeInterface
@@ -45,6 +45,6 @@ class InlineQueryResultAudio extends BaseType implements TypeInterface
 		'type' => 'string',
 	];
 	static protected $defaultData = [
-		'type' => 'mp3'
+		'type' => 'audio'
 	];
 }

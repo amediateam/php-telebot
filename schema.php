@@ -549,7 +549,7 @@ return [
                 'type' => 'String',
             ],
             'defaultData' => [
-                'type' => 'mp3',
+                'type' => 'audio',
             ],
             'creatable' => true,
         ],
