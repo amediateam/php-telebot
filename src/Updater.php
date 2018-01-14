@@ -47,12 +47,12 @@ class Updater
     public function poll($offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
     {
         /** @var Update[] $updates */
-        $updates = $this->getDispatcher()->getBot()->getUpdates($offset+1, $limit, $timeout, $allowedUpdates);
+        $updates = $this->getDispatcher()->getBot()->getUpdates($offset + 1, $limit, $timeout, $allowedUpdates);
         foreach ($updates as $update) {
             $this->getDispatcher()->processUpdate($update);
         }
         $size = sizeof($updates);
-        if($size){
+        if ($size) {
             $offset = $updates[$size - 1]->getUpdateId();
         }
         return $offset;
@@ -70,8 +70,14 @@ class Updater
         }
         while ($loop) {
             $offset = $this->poll($offset, $limit, $timeout, $allowedUpdates);
-            if($sleepTime > 0) sleep($sleepTime);
+            if ($sleepTime > 0) sleep($sleepTime);
         }
+        $this->clean($offset);
         return $offset;
+    }
+
+    public function clean($offset)
+    {
+        $this->getDispatcher()->getBot()->getUpdates($offset + 1);
     }
 }
