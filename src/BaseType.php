@@ -35,10 +35,12 @@ abstract class BaseType extends KeyValuePairStore
     }
 
 
-    public function __construct(BotApi $bot)
+    public function __construct(BotApi $bot = null)
     {
         parent::__construct();
-        $this->setBot($bot);
+        if ($bot instanceof BotApi) {
+            $this->setBot($bot);
+        }
     }
 
 
@@ -96,9 +98,13 @@ abstract class BaseType extends KeyValuePairStore
 
     /**
      * @return BotApi
+     * @throws TelegramException
      */
     public function getBot()
     {
+        if(!($this->botApi instanceof BotApi)){
+            throw new TelegramException("No botApi was passed to this type.");
+        }
         return $this->botApi;
     }
 }

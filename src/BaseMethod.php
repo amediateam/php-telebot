@@ -42,8 +42,8 @@ abstract class BaseMethod extends KeyValuePairStore
 
     public function getBot()
     {
-        if (!($this->botApi instanceof BotApi)) {
-            throw new TelegramException("BotApi not defined!");
+        if(!($this->botApi instanceof BotApi)){
+            throw new TelegramException("No botApi was passed to this type.");
         }
         return $this->botApi;
     }
