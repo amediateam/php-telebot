@@ -5,18 +5,21 @@ namespace TelegramBot\Api\Handlers;
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Handlers\Abstracts\AbstractInlineQueryHandler;
+use TelegramBot\Api\State;
 use TelegramBot\Api\Types\Update;
 
 class InlineQueryHandler extends BaseHandler
 {
     protected $regex;
-    public function __construct(callable $callback, $regex = null)
+
+    public function __construct(AbstractInlineQueryHandler $callback, $regex = null)
     {
         $this->regex = $regex;
         parent::__construct($callback);
     }
 
-    public function checkUpdate(Update $update)
+    public function checkUpdate(Update $update, State $state = null)
     {
         if (!Filters::$inlineQuery::filter($update)) {
             return false;
@@ -27,12 +30,17 @@ class InlineQueryHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher)
+    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         $matches = [];
         if (!is_null($this->regex)) {
             preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
         }
-        return $this->invokeArgs([$dispatcher->getBot(), $update->getInlineQuery(), $matches]);
+        /** @var $instance AbstractInlineQueryHandler */
+        $instance = clone $this->callback;
+        $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery());
+        $result = $instance->handle($matches);
+        //TODO: destruct
+        return $result;
     }
 }

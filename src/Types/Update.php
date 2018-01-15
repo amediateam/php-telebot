@@ -61,4 +61,22 @@ class Update extends Types\Update
         }
         return $this->effectiveMessage = false;
     }
+
+    public function getUserId()
+    {
+        if ($this->getEffectiveMessage()) {
+            return $this->getEffectiveMessage()->getFrom()->getId();
+        } else if ($this->getInlineQuery()) {
+            return $this->getInlineQuery()->getFrom()->getId();
+        } else if ($this->getCallbackQuery()) {
+            return $this->getCallbackQuery()->getFrom()->getId();
+        } else if ($this->getPreCheckoutQuery()) {
+            return $this->getPreCheckoutQuery()->getFrom()->getId();
+        } else if ($this->getShippingQuery()) {
+            return $this->getShippingQuery()->getFrom()->getId();
+        } else if ($this->getChosenInlineResult()) {
+            return $this->getChosenInlineResult()->getFrom()->getId();
+        }
+        return false;
+    }
 }

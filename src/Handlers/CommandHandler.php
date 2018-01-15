@@ -5,6 +5,8 @@ namespace TelegramBot\Api\Handlers;
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Handlers\Abstracts\AbstractCommandHandler;
+use TelegramBot\Api\State;
 use TelegramBot\Api\Types\TextCommand;
 use TelegramBot\Api\Types\Update;
 
@@ -14,7 +16,7 @@ class CommandHandler extends BaseHandler
     protected $editedUpdates;
 
     public function __construct($command,
-                                callable $callback,
+                                AbstractCommandHandler $callback,
                                 $filters = null,
                                 $editedUpdates = false)
     {
@@ -23,7 +25,7 @@ class CommandHandler extends BaseHandler
         parent::__construct($callback);
     }
 
-    public function checkUpdate(Update $update)
+    public function checkUpdate(Update $update, State $state = null)
     {
         if (!Filters::$command::filter($update)) {
             return false;
@@ -37,9 +39,15 @@ class CommandHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher)
+    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
-        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command]);
+
+        /** @var $instance AbstractCommandHandler */
+        $instance = clone $this->callback;
+        $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
+        $result = $instance->handle($command);
+        //TODO: destruct
+        return $result;
     }
 }

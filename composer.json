@@ -1,6 +1,12 @@
 {
   "name": "matiniamirhossein/php-telebot",
   "description": "PHP Wrapper for Telegram Bot API",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/matiniamirhossein/StatedRouter"
+    }
+  ],
   "keywords": [
     "php",
     "telegram",
@@ -16,7 +22,8 @@
   ],
   "require": {
     "php": ">=5.5.0",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "matiniamirhossein/StatedRouter": "dev-master"
   },
   "require-dev": {
   },

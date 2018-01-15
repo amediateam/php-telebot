@@ -7,6 +7,8 @@ use function preg_match;
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Handlers\Abstracts\AbstractRegexHandler;
+use TelegramBot\Api\State;
 use TelegramBot\Api\Types\Update;
 
 class RegexHandler extends BaseHandler
@@ -17,7 +19,7 @@ class RegexHandler extends BaseHandler
     protected $channelPostUpdates;
     protected $editedUpdates;
 
-    public function __construct($regex, callable $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct($regex, AbstractRegexHandler $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->regex = $regex;
         $this->filters = $filters;
@@ -27,7 +29,7 @@ class RegexHandler extends BaseHandler
         parent::__construct($callback);
     }
 
-    public function checkUpdate(Update $update)
+    public function checkUpdate(Update $update, State $state = null)
     {
         if (!Filters::filter($update, $this->filters)) {
             return false;
@@ -48,9 +50,14 @@ class RegexHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher)
+    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
-        return $this->invokeArgs([$dispatcher->getBot(), $update, $update->getEffectiveMessage(), $matches]);
+        /** @var $instance AbstractRegexHandler */
+        $instance = clone $this->callback;
+        $instance->init($dispatcher->getBot(), $update, $update->getMessage());
+        $result = $instance->handle($matches);
+        //TODO: destruct
+        return $result;
     }
 }
