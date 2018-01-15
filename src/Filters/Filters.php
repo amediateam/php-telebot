@@ -109,18 +109,14 @@ class Filters
         return false;
     }
 
-    public static function filter($update, $flags = 0)
+    public static function filter($update, array $filters = null)
     {
-        if ($flags == 0 || $flags == null) {
+        if ($filters == null) {
             return true;
         }
-        $vars = array_keys(get_class_vars(self::class));
-        foreach ($vars as $key) {
-            $filter = self::${$key};
-            if ($flags & $filter) {
-                if (!$filter::filter($update)) {
-                    return false;
-                }
+        foreach ($filters as $filter) {
+            if (!$filter::filter($update)) {
+                return false;
             }
         }
         return true;
