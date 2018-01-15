@@ -31,6 +31,8 @@ class MessageHandler extends BaseHandler
     {
         if (!Filters::$message::filter($update, $this->filters)) {
             return false;
+        } else if (Filters::$statusUpdate::filter($update, $this->filters)) {
+            return false;
         } else if (!Filters::filter($update, $this->filters)) {
             return false;
         } else if (!$this->editedUpdates && $update->isEdited()) {
