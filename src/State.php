@@ -19,6 +19,16 @@ class State
         return $this->route;
     }
 
+    public function setRoute($route)
+    {
+        $this->route = $route;
+    }
+
+    public function redirect($route)
+    {
+        $this->setRoute($route);
+    }
+
     public function getParams()
     {
         return $this->params;
