@@ -23,10 +23,10 @@ class StatefulDispatcher extends Dispatcher
         try {
             $result = $this->dispatcher->dispatch($state->getRoute());
             if ($result->found()) {
-                /** @var $callback RouteHandlerCollector */
+                /** @var $callback HandlerCollector */
                 $callback = $result->getCallback();
-                if (!($callback instanceof RouteHandlerCollector)) {
-                    throw new InvalidCallbackException("Callback must be instance of " . RouteHandlerCollector::class);
+                if (!($callback instanceof HandlerCollector)) {
+                    throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
                 }
                 $state->setRouteVariables($result->getVariables());
                 foreach ($callback->getHandlers() as $handler) {

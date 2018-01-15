@@ -1,14 +1,11 @@
 <?php
-
 namespace TelegramBot\Api;
-class RouteHandlerCollector
+class HandlerCollector
 {
-    protected $route;
     protected $handlers;
 
-    public function __construct($route, $handlers = [])
+    public function __construct($handlers = [])
     {
-        $this->route = $route;
         $this->handlers = $handlers;
     }
 
