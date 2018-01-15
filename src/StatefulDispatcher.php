@@ -22,12 +22,6 @@ class StatefulDispatcher extends Dispatcher
     {
         $state = $this->stateDetector->getState($update);
         try {
-            foreach ($this->handlers as $handler) {
-                /** @var $handler BaseHandler */
-                if ($handler->checkUpdate($update)) {
-                    return $handler->handleUpdate($update, $this);
-                }
-            }
             $result = $this->dispatcher->dispatch($state->getRoute());
             if ($result->found()) {
                 /** @var $callback HandlerCollector */
@@ -40,6 +34,13 @@ class StatefulDispatcher extends Dispatcher
                     /** @var $handler BaseHandler */
                     if ($handler->checkUpdate($update, $state)) {
                         return $handler->handleUpdate($update, $this, $state);
+                    }
+                }
+            } else {
+                foreach ($this->handlers as $handler) {
+                    /** @var $handler BaseHandler */
+                    if ($handler->checkUpdate($update)) {
+                        return $handler->handleUpdate($update, $this);
                     }
                 }
             }
