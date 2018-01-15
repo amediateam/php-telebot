@@ -47,6 +47,7 @@ class MessageHandler extends BaseHandler
     {
         /** @var $instance AbstractMessageHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
         $result = $instance->handle();
         //TODO: destruct

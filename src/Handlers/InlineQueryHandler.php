@@ -38,6 +38,7 @@ class InlineQueryHandler extends BaseHandler
         }
         /** @var $instance AbstractInlineQueryHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery());
         $result = $instance->handle($matches);
         //TODO: destruct

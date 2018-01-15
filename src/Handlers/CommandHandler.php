@@ -45,6 +45,7 @@ class CommandHandler extends BaseHandler
 
         /** @var $instance AbstractCommandHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
         $result = $instance->handle($command);
         //TODO: destruct

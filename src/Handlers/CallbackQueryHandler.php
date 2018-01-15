@@ -39,6 +39,7 @@ class CallbackQueryHandler extends BaseHandler
         }
         /** @var $instance AbstractCallbackQueryHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getCallbackQuery());
         $result = $instance->handle($matches);
         //TODO: destruct

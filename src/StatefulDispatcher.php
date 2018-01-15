@@ -39,8 +39,8 @@ class StatefulDispatcher extends Dispatcher
             }
             foreach ($this->handlers as $handler) {
                 /** @var $handler BaseHandler */
-                if ($handler->checkUpdate($update)) {
-                    return $handler->handleUpdate($update, $this);
+                if ($handler->checkUpdate($update, $state)) {
+                    return $handler->handleUpdate($update, $this, $state);
                 }
             }
         } catch (Exception $e) {

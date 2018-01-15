@@ -27,6 +27,7 @@ class PreCheckoutQueryHandler extends BaseHandler
     {
         /** @var $instance AbstractPreCheckoutQueryHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getPreCheckoutQuery());
         $result = $instance->handle();
         //TODO: destruct

@@ -39,6 +39,7 @@ class ChosenInlineResultHandler extends BaseHandler
         }
         /** @var $instance AbstractChosenInlineResultHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getChosenInlineResult());
         $result = $instance->handle($matches);
         //TODO: destruct
