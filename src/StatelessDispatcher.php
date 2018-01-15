@@ -15,6 +15,12 @@ class StatelessDispatcher extends Dispatcher
     public function processUpdate(Update $update)
     {
         try {
+            foreach ($this->forceHandlers as $handler) {
+                /** @var $handler BaseHandler */
+                if ($handler->checkUpdate($update)) {
+                    return $handler->handleUpdate($update, $this);
+                }
+            }
             foreach ($this->handlers as $handler) {
                 /** @var $handler BaseHandler */
                 if ($handler->checkUpdate($update)) {
