@@ -15,13 +15,15 @@ class MessageHandler extends BaseHandler
     protected $messageUpdates;
     protected $channelPostUpdates;
     protected $editedUpdates;
+    protected $commands;
 
-    public function __construct(AbstractMessageHandler $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct(AbstractMessageHandler $callback, $filters = null, $commands = false, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->filters = $filters;
         $this->messageUpdates = $messageUpdates;
         $this->channelPostUpdates = $channelPostUpdates;
         $this->editedUpdates = $editedUpdates;
+        $this->commands = $commands;
         parent::__construct($callback);
     }
 
@@ -37,7 +39,7 @@ class MessageHandler extends BaseHandler
             return false;
         } else if (!$this->channelPostUpdates && $update->isChannelPost()) {
             return false;
-        } else if (Filters::$text::filter($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
+        } else if (!$this->commands && Filters::$text::filter($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
             return false;
         }
         return true;
