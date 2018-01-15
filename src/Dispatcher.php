@@ -2,68 +2,78 @@
 
 namespace TelegramBot\Api;
 
-use function array_push;
-use function array_search;
 use Exception;
-use function function_exists;
-use function pcntl_signal;
-use const SIGHUP;
-use const SIGKILL;
-use const STDIN;
-use function stream_get_contents;
 use TelegramBot\Api\Types\Update;
 
 class Dispatcher
 {
-    const DEFAULT_GROUP = 0;
-
     /** @var BotApi */
     protected $botApi;
     /**
      * @var array BaseHandler[]
      */
-    protected $handlerGroups = [];
+    protected $handlers = [];
+    /**
+     * @var array BaseHandler[][]
+     */
+    protected $globalHandlers = [];
 
     public function __construct($token)
     {
         $this->botApi = new BotApi($token);
     }
 
-
-    public function addHandler(BaseHandler $handler, $group = self::DEFAULT_GROUP)
+    public function addHandler(BaseHandler $handler, $section = null)
     {
-        if (!isset($this->handlerGroups[$group])) {
-            $this->handlerGroups[$group] = [];
-        }
-        array_push($this->handlerGroups[$group], $handler);
-    }
-
-    public function removeHandler(BaseHandler $handler, $group = self::DEFAULT_GROUP)
-    {
-        if (!isset($this->handlerGroups[$group])) {
-            $this->handlerGroups[$group] = [];
-        }
-        $search = array_search($handler, $this->handlerGroups[$group]);
-        if ($search !== false) {
-            unset($this->handlerGroups[$group][$search]);
-        }
-        if (!sizeof($this->handlerGroups[$group])) {
-            unset($this->handlerGroups[$group]);
+        if (is_null($section)) {
+            array_push($this->globalHandlers, $handler);
+        } else {
+            if (!isset($this->handlers[$section])) {
+                $this->handlers[$section] = [];
+            }
+            array_push($this->handlers[$section], $handler);
         }
     }
 
-    public function processUpdate(Update $update)
+    public function removeHandler(BaseHandler $handler, $section = null)
+    {
+        if (is_null($section)) {
+            $search = array_search($handler, $this->globalHandlers);
+            if ($search !== false) {
+                unset($this->globalHandlers[$search]);
+            }
+        } else {
+            if (!isset($this->handlers[$section])) {
+                $this->handlers[$section] = [];
+            }
+            $search = array_search($handler, $this->handlers[$section]);
+            if ($search !== false) {
+                unset($this->handlers[$section][$search]);
+            }
+            if (!sizeof($this->handlers[$section])) {
+                unset($this->handlers[$section]);
+            }
+        }
+    }
+
+    public function processUpdate(Update $update, $section = null)
     {
         try {
-            foreach ($this->handlerGroups as $handlerGroup) {
-                foreach ($handlerGroup as $handler) {
+            foreach ($this->globalHandlers as $handler) {
+                /** @var $handler BaseHandler */
+                if ($handler->checkUpdate($update)) {
+                    return $handler->handleUpdate($update, $this);
+                }
+            }
+            if (!is_null($section) && isset($this->handlers[$section]) && sizeof($this->handlers[$section])) {
+                foreach ($this->handlers[$section] as $handler) {
                     /** @var $handler BaseHandler */
                     if ($handler->checkUpdate($update)) {
                         return $handler->handleUpdate($update, $this);
                     }
                 }
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
             //TODO: log
         }
