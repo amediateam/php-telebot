@@ -4,7 +4,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/matiniamirhossein/StatedRouter"
+      "url": "https://github.com/matiniamirhossein/StatedRouter.git"
     }
   ],
   "keywords": [
