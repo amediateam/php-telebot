@@ -21,6 +21,7 @@ class Filters
     public static $contact = FilterContact::class;
     public static $venue = FilterVenue::class;
     public static $private = FilterChatPrivate::class;
+    public static $notPrivate = FilterChatNotPrivate::class;
     public static $group = FilterChatGroup::class;
     public static $location = FilterLocation::class;
     public static $newChatMembers = FilterNewChatMembers::class;
