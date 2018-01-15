@@ -11,23 +11,29 @@ abstract class Dispatcher
 
     protected $handlers = [];
 
-    public function addHandler(BaseHandler $handler)
+    protected $forceHandlers = [];
+
+    public function addHandler(BaseHandler $handler, $force = false)
     {
-        array_push($this->handlers, $handler);
+        array_push($force ? $this->forceHandlers : $this->handlers, $handler);
     }
 
-    public function addBatchHandler(array $handlers)
+    public function addBatchHandler(array $handlers, $force = false)
     {
         foreach ($handlers as $handler) {
-            array_push($this->handlers, $handler);
+            array_push($force ? $this->forceHandlers : $this->handlers, $handler);
         }
     }
 
-    public function removeHandler(BaseHandler $handler)
+    public function removeHandler(BaseHandler $handler, $force = false)
     {
         $search = array_search($handler, $this->handlers);
         if ($search !== false) {
-            unset($this->handlers[$search]);
+            if($force){
+                unset($this->forceHandlers[$search]);
+            } else {
+                unset($this->handlers[$search]);
+            }
         }
     }
 
