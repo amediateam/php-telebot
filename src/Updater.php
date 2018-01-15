@@ -9,7 +9,7 @@ class Updater
 {
     protected $dispatcher;
 
-    public function __construct($token, Dispatcher $dispatcher)
+    public function __construct(Dispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
     }
