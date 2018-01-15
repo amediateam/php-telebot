@@ -1,13 +1,7 @@
 <?php
 
 namespace TelegramBot\Api\Filters;
-
-use function array_keys;
-use Codeception\Coverage\Filter;
-use function get_class_vars;
-use function get_object_vars;
 use TelegramBot\Api\InvalidArgumentException;
-use TelegramBot\Api\Types\MessageEntity;
 use TelegramBot\Api\Types\Update;
 
 class Filters
@@ -22,6 +16,7 @@ class Filters
     public static $document = FilterDocument::class;
     public static $command = FilterCommand::class;
     public static $reply = FilterReply::class;
+    public static $notReply = FilterNotReply::class;
     public static $sticker = FilterSticker::class;
     public static $contact = FilterContact::class;
     public static $venue = FilterVenue::class;
@@ -39,6 +34,7 @@ class Filters
     public static $statusUpdate = FilterStatusUpdate::class;
     public static $notStatusUpdate = FilterNotStatusUpdate::class;
     public static $forwarded = FilterForwarded::class;
+    public static $notForwarded = FilterNotForwarded::class;
     public static $game = FilterGame::class;
     public static $successfulPayment = FilterSuccessfulPayment::class;
     public static $invoice = FilterInvoice::class;
@@ -46,7 +42,6 @@ class Filters
     public static $chosenInlineResult = FilterChosenInlineResult::class;
     public static $callbackQuery = FilterCallbackQuery::class;
     public static $preCheckoutQuery = FilterPreCheckoutQuery::class;
-
 
     public function entity(Update $update, $entity)
     {
@@ -115,8 +110,19 @@ class Filters
             return true;
         }
         foreach ($filters as $filter) {
-            if (!$filter::filter($update)) {
-                return false;
+            if (is_array($filter)) {
+                $result = false;
+                foreach ($filter as $subFilter) {
+                    if ($subFilter::filter($update)) {
+                        $result = true;
+                        break;
+                    }
+                }
+                if (!$result) return false;
+            } else {
+                if (!$filter::filter($update)) {
+                    return false;
+                }
             }
         }
         return true;
