@@ -10,7 +10,7 @@ class DispatcherResult
     protected $callback;
     protected $variables;
 
-    public function __construct($status, callable $callback = null, array $variables = [])
+    public function __construct($status, $callback = null, array $variables = [])
     {
         $this->status = $status;
         $this->callback = $callback;
@@ -29,7 +29,10 @@ class DispatcherResult
 
     public function callCallbackWithVariables()
     {
-        return call_user_func_array($this->callback, $this->variables);
+        if (is_callable($this->callback)) {
+            return call_user_func_array($this->callback, $this->variables);
+        }
+        return false;
     }
 
     public function found()
