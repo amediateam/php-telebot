@@ -35,6 +35,22 @@ class Dispatcher
         }
     }
 
+    public function addBatchHandler(array $handlers, $section = null)
+    {
+        if (is_null($section)) {
+            foreach($handlers as $handler){
+                array_push($this->globalHandlers, $handler);
+            }
+        } else {
+            if (!isset($this->handlers[$section])) {
+                $this->handlers[$section] = [];
+            }
+            foreach($handlers as $handler){
+                array_push($this->handlers[$section], $handler);
+            }
+        }
+    }
+
     public function removeHandler(BaseHandler $handler, $section = null)
     {
         if (is_null($section)) {
