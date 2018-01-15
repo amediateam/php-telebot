@@ -7,7 +7,7 @@ class State
     protected $params = [];
     protected $variables = [];
 
-    public function __construct($route = '/', array $params = null, $variables = [])
+    public function __construct($route = '/', array $params = [], $variables = [])
     {
         $this->route = $route;
         $this->params = $params;
@@ -20,6 +20,11 @@ class State
     }
 
     public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function &getParamsReference()
     {
         return $this->params;
     }

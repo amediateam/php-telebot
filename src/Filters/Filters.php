@@ -37,6 +37,7 @@ class Filters
     public static $migrate = FilterMigrate::class;
     public static $pinnedMessage = FilterPinnedMessage::class;
     public static $statusUpdate = FilterStatusUpdate::class;
+    public static $notStatusUpdate = FilterNotStatusUpdate::class;
     public static $forwarded = FilterForwarded::class;
     public static $game = FilterGame::class;
     public static $successfulPayment = FilterSuccessfulPayment::class;
