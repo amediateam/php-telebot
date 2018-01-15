@@ -55,6 +55,7 @@ class RegexHandler extends BaseHandler
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
         /** @var $instance AbstractRegexHandler */
         $instance = clone $this->callback;
+        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getMessage());
         $result = $instance->handle($matches);
         //TODO: destruct
