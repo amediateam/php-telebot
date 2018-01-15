@@ -7,7 +7,6 @@
     "bot",
     "bot api"
   ],
-  "license": "MIT",
   "authors": [
     {
       "name": "Amirhossein Matini",
@@ -18,8 +17,6 @@
     "php": ">=5.5.0",
     "guzzlehttp/guzzle": "^6.3"
   },
-  "require-dev": {
-  },
   "autoload": {
     "psr-4": {
       "TelegramBot\\Api\\": "src",
@@ -27,17 +24,7 @@
     },
     "files": ["StatedRouter/functions.php"]
   },
-  "autoload-dev": {
-    "psr-4": {
-      "TelegramBot\\Api\\Test\\": "tests"
-    }
-  },
   "scripts": {
-    "test": "phpunit"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0-dev"
-    }
+
   }
 }
