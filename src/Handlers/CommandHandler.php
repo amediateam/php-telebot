@@ -14,10 +14,11 @@ class CommandHandler extends BaseHandler
 {
     protected $command;
     protected $editedUpdates;
+    protected $filters;
 
     public function __construct($command,
                                 AbstractCommandHandler $callback,
-                                $filters = null,
+                                array $filters = [],
                                 $editedUpdates = false)
     {
         $this->command = $command;
@@ -29,7 +30,11 @@ class CommandHandler extends BaseHandler
     {
         if (!Filters::$command::filter($update)) {
             return false;
-        } else if (!$this->editedUpdates && $update->isEdited()) {
+        }
+        foreach ($this->filters as $filter) {
+            if (!$filter::filter($update)) return false;
+        }
+        if (!$this->editedUpdates && $update->isEdited()) {
             return false;
         }
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());

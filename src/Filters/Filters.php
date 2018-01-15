@@ -2,12 +2,7 @@
 
 namespace TelegramBot\Api\Filters;
 
-use function array_keys;
-use Codeception\Coverage\Filter;
-use function get_class_vars;
-use function get_object_vars;
 use TelegramBot\Api\InvalidArgumentException;
-use TelegramBot\Api\Types\MessageEntity;
 use TelegramBot\Api\Types\Update;
 
 class Filters
@@ -109,18 +104,11 @@ class Filters
         return false;
     }
 
-    public static function filter($update, $flags = 0)
+    public static function filter($update, array $filters = [])
     {
-        if ($flags == 0 || $flags == null) {
-            return true;
-        }
-        $vars = array_keys(get_class_vars(self::class));
-        foreach ($vars as $key) {
-            $filter = self::${$key};
-            if ($flags & $filter) {
-                if (!$filter::filter($update)) {
-                    return false;
-                }
+        foreach ($filters as $filter) {
+            if (!$filters::filter($update)) {
+                return false;
             }
         }
         return true;

@@ -1,6 +1,9 @@
 <?php
 
 namespace TelegramBot\Api;
+
+use TelegramBot\Api\Types\Update;
+
 class Dispatcher
 {
     /** @var BotApi */
@@ -40,4 +43,7 @@ class Dispatcher
     {
         return $this->botApi;
     }
+
+
+    abstract public function processUpdate(Update $update);
 }

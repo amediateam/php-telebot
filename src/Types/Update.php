@@ -62,8 +62,11 @@ class Update extends Types\Update
         return $this->effectiveMessage = false;
     }
 
-    public function getUserId()
+    public function getUserId($separatePrivateChats = true)
     {
+        if ($separatePrivateChats && $this->getEffectiveChat() && !$this->getEffectiveChat()->isPrivate()) {
+            return $this->getEffectiveChat()->getId();
+        }
         if ($this->getEffectiveMessage()) {
             return $this->getEffectiveMessage()->getFrom()->getId();
         } else if ($this->getInlineQuery()) {

@@ -24,11 +24,6 @@ class State
         return $this->params;
     }
 
-    public function &getParamsReference()
-    {
-        return $this->params;
-    }
-
     public function getRouteVariables()
     {
         return $this->variables;
@@ -42,6 +37,16 @@ class State
     public function setParams(array $params)
     {
         $this->params = $params;
+    }
+
+    public function mergeParams(array $params)
+    {
+        $this->setParams(array_merge($this->getParams(), $params));
+    }
+
+    public function &getParamsReference()
+    {
+        return $this->params;
     }
 
     /**
