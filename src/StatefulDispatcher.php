@@ -9,6 +9,7 @@ class StatefulDispatcher extends Dispatcher
 {
     protected $stateDetector;
     protected $dispatcher;
+    protected $handlers = [];
 
     public function __construct($token, StateDetectorAbstract $stateDetector, \StatedRouter\Dispatcher $dispatcher)
     {
@@ -21,6 +22,12 @@ class StatefulDispatcher extends Dispatcher
     {
         $state = $this->stateDetector->getState($update);
         try {
+            foreach ($this->handlers as $handler) {
+                /** @var $handler BaseHandler */
+                if ($handler->checkUpdate($update)) {
+                    return $handler->handleUpdate($update, $this);
+                }
+            }
             $result = $this->dispatcher->dispatch($state->getRoute());
             if ($result->found()) {
                 /** @var $callback HandlerCollector */
