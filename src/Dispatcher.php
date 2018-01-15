@@ -4,7 +4,7 @@ namespace TelegramBot\Api;
 
 use TelegramBot\Api\Types\Update;
 
-class Dispatcher
+abstract class Dispatcher
 {
     /** @var BotApi */
     protected $botApi;

@@ -19,7 +19,7 @@ class RegexHandler extends BaseHandler
     protected $channelPostUpdates;
     protected $editedUpdates;
 
-    public function __construct($regex, AbstractRegexHandler $callback, array $filters = [], $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct($regex, AbstractRegexHandler $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->regex = $regex;
         $this->filters = $filters;
@@ -31,10 +31,11 @@ class RegexHandler extends BaseHandler
 
     public function checkUpdate(Update $update, State $state = null)
     {
-        foreach ($this->filters as $filter) {
-            if (!$filter::filter($update)) return false;
-        }
-        if ((bool)$update->getMessage()->getText() !== false &&
+        if (!Filters::filter($update, $this->filters)) {
+            return false;
+        } else if (!Filters::$text::filter($update)) {
+            return false;
+        } else if ((bool)$update->getMessage()->getText() !== false &&
             substr($update->getMessage()->getText(), 0, 1) == '/') {
             return false;
         } else if (!$this->editedUpdates && $update->isEdited()) {
@@ -54,7 +55,6 @@ class RegexHandler extends BaseHandler
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
         /** @var $instance AbstractRegexHandler */
         $instance = clone $this->callback;
-        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getMessage());
         $result = $instance->handle($matches);
         //TODO: destruct

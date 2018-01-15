@@ -14,7 +14,7 @@ class MessageHandler extends BaseHandler
 {
     protected $filters;
 
-    public function __construct(AbstractMessageHandler $callback, array $filters = [])
+    public function __construct(AbstractMessageHandler $callback, $filters = null)
     {
         $this->filters = $filters;
         parent::__construct($callback);
@@ -24,9 +24,8 @@ class MessageHandler extends BaseHandler
     {
         if (!Filters::$statusUpdate::filter($update, $this->filters)) {
             return false;
-        }
-        foreach ($this->filters as $filter) {
-            if (!$filter::filter($update)) return false;
+        } else if (!Filters::filter($update, $this->filters)) {
+            return false;
         }
         return true;
     }

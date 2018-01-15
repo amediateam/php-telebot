@@ -34,12 +34,12 @@ class InlineQueryHandler extends BaseHandler
     {
         $matches = [];
         if (!is_null($this->regex)) {
-            preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
+            preg_match($this->regex, $update->getInlineQuery()->getQuery(), $matches);
         }
         /** @var $instance AbstractInlineQueryHandler */
         $instance = clone $this->callback;
-        $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery());
+        $instance->setState($state);
         $result = $instance->handle($matches);
         //TODO: destruct
         return $result;

@@ -16,7 +16,7 @@ class MessageHandler extends BaseHandler
     protected $channelPostUpdates;
     protected $editedUpdates;
 
-    public function __construct(AbstractMessageHandler $callback, array $filters = [], $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct(AbstractMessageHandler $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->filters = $filters;
         $this->messageUpdates = $messageUpdates;
@@ -29,11 +29,9 @@ class MessageHandler extends BaseHandler
     {
         if (!Filters::$message::filter($update, $this->filters)) {
             return false;
-        }
-        foreach ($this->filters as $filter) {
-            if (!$filter::filter($update)) return false;
-        }
-        if (!$this->editedUpdates && $update->isEdited()) {
+        } else if (!Filters::filter($update, $this->filters)) {
+            return false;
+        } else if (!$this->editedUpdates && $update->isEdited()) {
             return false;
         } else if (!$this->messageUpdates && ($update->getMessage() || $update->getEditedMessage())) {
             return false;
@@ -49,7 +47,8 @@ class MessageHandler extends BaseHandler
     {
         /** @var $instance AbstractMessageHandler */
         $instance = clone $this->callback;
-        $instance->setState($state);
+
+
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
         $result = $instance->handle();
         //TODO: destruct
