@@ -28,6 +28,9 @@ abstract class BaseType extends KeyValuePairStore
      */
     public static function validate($data)
     {
+        if (sizeof(static::$requiredParams)) {
+            if (!is_array($data)) return false;
+        }
         if (count(array_intersect_key(array_flip(static::$requiredParams), $data)) === count(static::$requiredParams)) {
             return true;
         }
@@ -102,7 +105,7 @@ abstract class BaseType extends KeyValuePairStore
      */
     public function getBot()
     {
-        if(!($this->botApi instanceof BotApi)){
+        if (!($this->botApi instanceof BotApi)) {
             throw new TelegramException("No botApi was passed to this type.");
         }
         return $this->botApi;

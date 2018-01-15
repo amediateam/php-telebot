@@ -20,20 +20,29 @@ class StatefulDispatcher extends Dispatcher
 
     public function processUpdate(Update $update)
     {
+        /** @var $state State */
         $state = $this->stateDetector->getState($update);
         try {
             $result = $this->dispatcher->dispatch($state->getRoute());
             if ($result->found()) {
-                /** @var $callback HandlerCollector */
-                $callback = $result->getCallback();
-                if (!($callback instanceof HandlerCollector)) {
-                    throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
-                }
-                $state->setRouteVariables($result->getVariables());
-                foreach ($callback->getHandlers() as $handler) {
-                    /** @var $handler BaseHandler */
-                    if ($handler->checkUpdate($update, $state)) {
-                        return $handler->handleUpdate($update, $this, $state);
+                if (is_callable($result->getCallback())) {
+                    return call_user_func_array($result->getCallback(), [
+                        $this->getBot(),
+                        $update,
+                        $result->getVariables()
+                    ]);
+                } else {
+                    /** @var $callback HandlerCollector */
+                    $callback = $result->getCallback();
+                    if (!($callback instanceof HandlerCollector)) {
+                        throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
+                    }
+                    $state->setRouteVariables($result->getVariables());
+                    foreach ($callback->getHandlers() as $handler) {
+                        /** @var $handler BaseHandler */
+                        if ($handler->checkUpdate($update, $state)) {
+                            return $handler->handleUpdate($update, $this, $state);
+                        }
                     }
                 }
             }
