@@ -3,15 +3,16 @@
 namespace TelegramBot\Api\Handlers\Abstracts;
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Types\InlineQuery;
 use TelegramBot\Api\Types\Message;
-use TelegramBot\Api\Types\PreCheckoutQuery;
 use TelegramBot\Api\Types\Update;
 
 abstract class AbstractRegexHandler extends BaseAbstract
 {
+    /** @var Update */
     protected $update;
+    /** @var Message */
     protected $message;
+    /** @var BotApi */
     protected $bot;
 
     public function init(BotApi $bot, Update $update, Message $message)

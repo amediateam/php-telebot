@@ -8,8 +8,11 @@ use TelegramBot\Api\Types\Update;
 
 abstract class AbstractCallbackQueryHandler extends BaseAbstract
 {
+    /** @var Update */
     protected $update;
+    /** @var CallbackQuery */
     protected $callbackQuery;
+    /** @var BotApi */
     protected $bot;
 
     public function init(BotApi $bot, Update $update, CallbackQuery $callbackQuery)

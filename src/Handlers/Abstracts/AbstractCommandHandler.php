@@ -9,8 +9,11 @@ use TelegramBot\Api\Types\Update;
 
 abstract class AbstractCommandHandler extends BaseAbstract
 {
+    /** @var Update */
     protected $update;
+    /** @var Message */
     protected $message;
+    /** @var BotApi */
     protected $bot;
 
     public function init(BotApi $bot, Update $update, Message $message)

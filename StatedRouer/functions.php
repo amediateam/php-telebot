@@ -1,5 +1,4 @@
 <?php
-
 namespace StatedRouter;
 
 if (!function_exists('StatedRouter\simpleDispatcher')) {
