@@ -25,7 +25,7 @@
       "TelegramBot\\Api\\": "src",
       "StatedRouter\\": "StatedRouter/"
     },
-    "files": ["src/functions.php"]
+    "files": ["StatedRouter/functions.php"]
   },
   "autoload-dev": {
     "psr-4": {
