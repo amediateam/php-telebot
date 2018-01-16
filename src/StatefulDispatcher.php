@@ -38,18 +38,18 @@ class StatefulDispatcher extends Dispatcher
                 }
             }
             if (!is_null($state)) {
-                $result = $this->dispatcher->dispatch($state->route->getPath());
-                if ($result->found()) {
-                    $state->route->variables->overwrite($result->getVariables());
-                    if (is_callable($result->getCallback())) {
-                        return call_user_func_array($result->getCallback(), [
+                $routeInfo = $this->dispatcher->dispatch($state->route->getPath());
+                if ($routeInfo->found()) {
+                    $state->route->variables->overwrite($routeInfo->getVariables());
+                    if (is_callable($routeInfo->getCallback())) {
+                        return call_user_func_array($routeInfo->getCallback(), [
                             $this->getBot(),
                             $update,
                             $state
                         ]);
                     } else {
                         /** @var $callback HandlerCollector */
-                        $callback = $result->getCallback();
+                        $callback = $routeInfo->getCallback();
                         if (!($callback instanceof HandlerCollector)) {
                             throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
                         }
@@ -64,12 +64,11 @@ class StatefulDispatcher extends Dispatcher
             }
             foreach ($this->handlers as $handler) {
                 /** @var $handler BaseHandler */
-                if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                if (($result = $this->checkAndRun($handler, $update, $state)) !== -1) {
                     return $result;
                 }
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
             //TODO: log
         }
         return false;

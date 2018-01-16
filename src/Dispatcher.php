@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api;
 
+use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 abstract class Dispatcher
@@ -70,8 +71,9 @@ abstract class Dispatcher
         return $this->botApi;
     }
 
-    protected function checkAndRun(BaseHandler $handler, Update $update, $state = null)
+    protected function checkAndRun(BaseHandler $handler, Update $update, State $state = null)
     {
+        var_dump($state instanceof State);
         /** @var $handler BaseHandler */
         if ($handler->checkUpdate($update, $state)) {
             return $handler->handleUpdate($update, $this, $state);

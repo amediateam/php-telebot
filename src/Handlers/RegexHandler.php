@@ -29,7 +29,7 @@ class RegexHandler extends MessageHandler
         if (!parent::checkUpdate($update, $state)) {
             return false;
         }
-        return preg_match($this->regex, $update->getEffectiveMessage()->getText());
+        return is_null($this->regex) || preg_match($this->regex, $update->getEffectiveMessage()->getText());
     }
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)

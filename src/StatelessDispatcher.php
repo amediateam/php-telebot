@@ -32,7 +32,6 @@ class StatelessDispatcher extends Dispatcher
                 }
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
             //TODO: log
         }
         return false;
