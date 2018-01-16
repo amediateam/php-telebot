@@ -23,6 +23,9 @@ class HandlerCallback
         }
         $this->callback = $callback;
         $this->methodToCall = $methodToCall;
+        if (method_exists($this->callback, 'populateSettings')) {
+            $this->callback->populateSettings();
+        }
     }
 
     /**

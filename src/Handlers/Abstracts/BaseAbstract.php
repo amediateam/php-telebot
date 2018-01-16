@@ -17,4 +17,9 @@ abstract class BaseAbstract
     {
         return $this->state instanceof State;
     }
+
+    public function populateProperties()
+    {
+        
+    }
 }
