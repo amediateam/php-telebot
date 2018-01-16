@@ -7,7 +7,7 @@ use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractChosenInlineResultHandler;
 use TelegramBot\Api\Handlers\Abstracts\BaseAbstract;
-use TelegramBot\Api\State;
+use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class ChosenInlineResultHandler extends BaseHandler

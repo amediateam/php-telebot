@@ -1,5 +1,5 @@
 <?php
-namespace TelegramBot\Api;
+namespace TelegramBot\Api\State;
 use TelegramBot\Api\Types\Update;
 abstract class StateDetectorAbstract
 {

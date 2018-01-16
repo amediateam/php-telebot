@@ -3,7 +3,8 @@
 namespace TelegramBot\Api;
 
 use Exception;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\State\State;
+use TelegramBot\Api\State\StateDetectorAbstract;
 use TelegramBot\Api\Types\Update;
 
 class StatefulDispatcher extends Dispatcher
@@ -21,23 +22,23 @@ class StatefulDispatcher extends Dispatcher
     public function processUpdate(Update $update)
     {
         if (is_callable($this->callback) &&
-            !call_user_func_array($this->callback, [$this, $this->botApi, $update])) {
+            !call_user_func_array($this->callback, [$this->botApi, $update, $this])) {
             return false; //bypass process
         }
         $state = null;
-        if (!Filters::$statusUpdate::filter($update)) { //they are stateless
+        if (!$update->isStateAware()) { //they are stateless
             /** @var $state State */
             $state = $this->stateDetector->getState($update);
         }
         try {
             foreach ($this->forceHandlers as $handler) {
                 /** @var $handler BaseHandler */
-                if ($handler->checkUpdate($update, $state)) {
-                    return $handler->handleUpdate($update, $this, $state);
+                if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                    return $result;
                 }
             }
             if (!is_null($state)) {
-                $result = $this->dispatcher->dispatch($state->getRoute());
+                $result = $this->dispatcher->dispatch($state->route->getPath());
                 if ($result->found()) {
                     if (is_callable($result->getCallback())) {
                         return call_user_func_array($result->getCallback(), [
@@ -51,11 +52,11 @@ class StatefulDispatcher extends Dispatcher
                         if (!($callback instanceof HandlerCollector)) {
                             throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
                         }
-                        $state->setRouteVariables($result->getVariables());
+                        $state->route->variables->overwrite($result->getVariables());
                         foreach ($callback->getHandlers() as $handler) {
                             /** @var $handler BaseHandler */
-                            if ($handler->checkUpdate($update, $state)) {
-                                return $handler->handleUpdate($update, $this, $state);
+                            if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                                return $result;
                             }
                         }
                     }
@@ -63,8 +64,8 @@ class StatefulDispatcher extends Dispatcher
             }
             foreach ($this->handlers as $handler) {
                 /** @var $handler BaseHandler */
-                if ($handler->checkUpdate($update, $state)) {
-                    return $handler->handleUpdate($update, $this, $state);
+                if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                    return $result;
                 }
             }
         } catch (Exception $e) {

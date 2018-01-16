@@ -2,7 +2,7 @@
 
 namespace TelegramBot\Api\Handlers\Abstracts;
 
-use TelegramBot\Api\State;
+use TelegramBot\Api\State\State;
 
 abstract class BaseAbstract
 {

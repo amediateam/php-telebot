@@ -5,7 +5,7 @@ use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractPreCheckoutQueryHandler;
-use TelegramBot\Api\State;
+use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class PreCheckoutQueryHandler extends BaseHandler

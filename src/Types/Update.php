@@ -2,14 +2,15 @@
 
 namespace TelegramBot\Api\Types;
 
+use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Generated\Types;
 
 class Update extends Types\Update
 {
     /** @var Message */
-    private $effectiveMessage;
+    private $effectiveMessage = null;
     /** @var Chat */
-    private $effectiveChat;
+    private $effectiveChat = null;
     /** @var boolean */
     private $isEdited = null;
     /** @var boolean */
@@ -17,7 +18,7 @@ class Update extends Types\Update
 
     public function getEffectiveChat()
     {
-        if ($this->effectiveChat) {
+        if ($this->effectiveChat !== null) {
             return $this->effectiveChat;
         }
         if ($this->getEffectiveMessage()) {
@@ -44,7 +45,7 @@ class Update extends Types\Update
 
     public function getEffectiveMessage()
     {
-        if ($this->effectiveMessage) {
+        if ($this->effectiveMessage != null) {
             return $this->effectiveMessage;
         }
         $arr = [
@@ -81,5 +82,10 @@ class Update extends Types\Update
             return $this->getChosenInlineResult()->getFrom()->getId();
         }
         return false;
+    }
+
+    public function isStateAware()
+    {
+        return !Filters::$statusUpdate::filter($this);
     }
 }
