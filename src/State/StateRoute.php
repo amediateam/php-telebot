@@ -12,6 +12,7 @@ class StateRoute
     public function __construct($path = '/', array $variables = [])
     {
         $this->path = $this->pathCopy = $path;
+        $this->variables = new StateDataArray($variables);
     }
 
     public function &getPath()
