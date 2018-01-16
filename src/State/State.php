@@ -44,10 +44,12 @@ class State
         return $this->route->pathChanged() || $this->data->dataChanged();
     }
 
-    protected function resetStateChangeStatus()
+    protected function resetStateChangeStatus($includeRouteVars = false)
     {
         $this->route->resetPathCopy();
-        $this->route->variables->resetDataCopy();
+        if ($includeRouteVars) {
+            $this->route->variables->resetDataCopy();
+        }
 
         $this->data->resetDataCopy();
     }
