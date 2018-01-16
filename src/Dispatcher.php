@@ -73,7 +73,6 @@ abstract class Dispatcher
 
     protected function checkAndRun(BaseHandler $handler, Update $update, State $state = null)
     {
-        var_dump($state instanceof State);
         /** @var $handler BaseHandler */
         if ($handler->checkUpdate($update, $state)) {
             return $handler->handleUpdate($update, $this, $state);
