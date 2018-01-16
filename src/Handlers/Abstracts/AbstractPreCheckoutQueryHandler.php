@@ -21,6 +21,4 @@ abstract class AbstractPreCheckoutQueryHandler extends BaseAbstract
         $this->update = $update;
         $this->preCheckoutQuery = $preCheckoutQuery;
     }
-
-    abstract public function handle();
 }

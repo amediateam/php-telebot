@@ -14,7 +14,7 @@ class CallbackQueryHandler extends BaseHandler
 {
     protected $regex;
 
-    public function __construct(AbstractCallbackQueryHandler $callback, $regex = null)
+    public function __construct(HandlerCallback $callback, $regex = null)
     {
         $this->regex = $regex;
         parent::__construct($callback);
@@ -38,10 +38,11 @@ class CallbackQueryHandler extends BaseHandler
             preg_match($this->regex, $update->getCallbackQuery()->getData(), $matches);
         }
         /** @var $instance AbstractCallbackQueryHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->setState($state);
-        $instance->init($dispatcher->getBot(), $update, $update->getCallbackQuery());
-        $result = $instance->handle($matches);
+        $instance->init($dispatcher->getBot(), $update, $update->getCallbackQuery(), $matches);
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

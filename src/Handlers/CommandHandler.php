@@ -16,7 +16,7 @@ class CommandHandler extends BaseHandler
     protected $editedUpdates;
 
     public function __construct($command,
-                                AbstractCommandHandler $callback,
+                                HandlerCallback $callback,
                                 $filters = null,
                                 $editedUpdates = false)
     {
@@ -44,11 +44,12 @@ class CommandHandler extends BaseHandler
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
 
         /** @var $instance AbstractCommandHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->setState($state);
 
-        $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
-        $result = $instance->handle($command);
+        $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command);
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

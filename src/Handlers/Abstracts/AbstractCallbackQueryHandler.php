@@ -14,13 +14,14 @@ abstract class AbstractCallbackQueryHandler extends BaseAbstract
     protected $callbackQuery;
     /** @var BotApi */
     protected $bot;
+    /** @var array */
+    protected $matches;
 
-    public function init(BotApi $bot, Update $update, CallbackQuery $callbackQuery)
+    public function init(BotApi $bot, Update $update, CallbackQuery $callbackQuery, array $matches = [])
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->callbackQuery = $callbackQuery;
+        $this->matches = $matches;
     }
-
-    abstract public function handle(array $matches = []);
 }

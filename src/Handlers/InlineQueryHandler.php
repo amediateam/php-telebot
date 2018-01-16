@@ -13,7 +13,7 @@ class InlineQueryHandler extends BaseHandler
 {
     protected $regex;
 
-    public function __construct(AbstractInlineQueryHandler $callback, $regex = null)
+    public function __construct(HandlerCallback $callback, $regex = null)
     {
         $this->regex = $regex;
         parent::__construct($callback);
@@ -37,10 +37,11 @@ class InlineQueryHandler extends BaseHandler
             preg_match($this->regex, $update->getInlineQuery()->getQuery(), $matches);
         }
         /** @var $instance AbstractInlineQueryHandler */
-        $instance = clone $this->callback;
-        $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery());
+        $instance = $this->callback->getCallback();
+        $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery(), $matches);
         $instance->setState($state);
-        $result = $instance->handle($matches);
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

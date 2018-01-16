@@ -14,13 +14,14 @@ abstract class AbstractInlineQueryHandler extends BaseAbstract
     protected $inlineQuery;
     /** @var BotApi */
     protected $bot;
+    /** @var array */
+    protected $matches;
 
-    public function init(BotApi $bot, Update $update, InlineQuery $inlineQuery)
+    public function init(BotApi $bot, Update $update, InlineQuery $inlineQuery, array $matches = [])
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->inlineQuery = $inlineQuery;
+        $this->matches = $matches;
     }
-
-    abstract public function handle(array $matches = []);
 }

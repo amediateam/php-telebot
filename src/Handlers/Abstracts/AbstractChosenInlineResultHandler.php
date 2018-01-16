@@ -14,13 +14,13 @@ abstract class AbstractChosenInlineResultHandler extends BaseAbstract
     protected $chosenInlineResult;
     /** @var BotApi */
     protected $bot;
+    /** @var array */
+    protected $matches;
 
-    public function init(BotApi $bot, Update $update, ChosenInlineResult $chosenInlineResult)
+    public function init(BotApi $bot, Update $update, ChosenInlineResult $chosenInlineResult, array $matches = [])
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->chosenInlineResult = $chosenInlineResult;
     }
-
-    abstract public function handle(array $matches = []);
 }

@@ -14,13 +14,14 @@ abstract class AbstractRegexHandler extends BaseAbstract
     protected $message;
     /** @var BotApi */
     protected $bot;
+    /** @var array */
+    protected $matches;
 
-    public function init(BotApi $bot, Update $update, Message $message)
+    public function init(BotApi $bot, Update $update, Message $message, array $matches = [])
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->message = $message;
+        $this->matches = $matches;
     }
-
-    abstract public function handle(array $matches = []);
 }

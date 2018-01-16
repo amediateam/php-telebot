@@ -15,13 +15,14 @@ abstract class AbstractCommandHandler extends BaseAbstract
     protected $message;
     /** @var BotApi */
     protected $bot;
+    /** @var TextCommand */
+    protected $command;
 
-    public function init(BotApi $bot, Update $update, Message $message)
+    public function init(BotApi $bot, Update $update, Message $message, TextCommand $command)
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->message = $message;
+        $this->command = $command;
     }
-
-    abstract public function handle(TextCommand $command);
 }

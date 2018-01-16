@@ -19,7 +19,7 @@ class RegexHandler extends BaseHandler
     protected $channelPostUpdates;
     protected $editedUpdates;
 
-    public function __construct($regex, AbstractRegexHandler $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct($regex, HandlerCallback $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->regex = $regex;
         $this->filters = $filters;
@@ -54,10 +54,11 @@ class RegexHandler extends BaseHandler
     {
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
         /** @var $instance AbstractRegexHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->setState($state);
-        $instance->init($dispatcher->getBot(), $update, $update->getMessage());
-        $result = $instance->handle($matches);
+        $instance->init($dispatcher->getBot(), $update, $update->getMessage(), $matches);
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

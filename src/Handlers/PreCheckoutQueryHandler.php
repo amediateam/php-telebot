@@ -10,7 +10,7 @@ use TelegramBot\Api\Types\Update;
 
 class PreCheckoutQueryHandler extends BaseHandler
 {
-    public function __construct(AbstractPreCheckoutQueryHandler $callback)
+    public function __construct(HandlerCallback $callback)
     {
         parent::__construct($callback);
     }
@@ -26,10 +26,11 @@ class PreCheckoutQueryHandler extends BaseHandler
     public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         /** @var $instance AbstractPreCheckoutQueryHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getPreCheckoutQuery());
-        $result = $instance->handle();
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

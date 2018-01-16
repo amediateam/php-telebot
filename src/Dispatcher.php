@@ -13,6 +13,8 @@ abstract class Dispatcher
 
     protected $forceHandlers = [];
 
+    protected $callback = null;
+
     public function addHandler(BaseHandler $handler, $force = false)
     {
         $this->addBatchHandler([$handler], $force);
@@ -45,6 +47,16 @@ abstract class Dispatcher
         }
     }
 
+    /**
+     * On every update, the callback is called, when it returns false your process will not be handled anymore!
+     * @param callable $callback
+     */
+
+    public function setCallback(callable $callback)
+    {
+        $this->callback = $callback;
+    }
+
     public function __construct($token)
     {
         $this->botApi = new BotApi($token);
@@ -58,6 +70,14 @@ abstract class Dispatcher
         return $this->botApi;
     }
 
+    protected function checkAndRun(BaseHandler $handler, Update $update)
+    {
+        /** @var $handler BaseHandler */
+        if ($handler->checkUpdate($update)) {
+            return $handler->handleUpdate($update, $this);
+        }
+        return -1;
+    }
 
     abstract public function processUpdate(Update $update);
 }

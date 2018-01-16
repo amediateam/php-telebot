@@ -14,7 +14,7 @@ class ChosenInlineResultHandler extends BaseHandler
 {
     protected $regex;
 
-    public function __construct(AbstractChosenInlineResultHandler $callback, $regex = null)
+    public function __construct(HandlerCallback $callback, $regex = null)
     {
         $this->regex = $regex;
         parent::__construct($callback);
@@ -38,10 +38,11 @@ class ChosenInlineResultHandler extends BaseHandler
             preg_match($this->regex, $update->getChosenInlineResult()->getQuery(), $matches);
         }
         /** @var $instance AbstractChosenInlineResultHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->setState($state);
-        $instance->init($dispatcher->getBot(), $update, $update->getChosenInlineResult());
-        $result = $instance->handle($matches);
+        $instance->init($dispatcher->getBot(), $update, $update->getChosenInlineResult(), $matches);
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }

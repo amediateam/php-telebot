@@ -21,6 +21,4 @@ abstract class AbstractStatusUpdateHandler extends BaseAbstract
         $this->update = $update;
         $this->message = $message;
     }
-
-    abstract public function handle();
 }

@@ -17,7 +17,7 @@ class MessageHandler extends BaseHandler
     protected $editedUpdates;
     protected $commands;
 
-    public function __construct(AbstractMessageHandler $callback, $filters = null, $commands = false, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct(HandlerCallback $callback, $filters = null, $commands = false, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
     {
         $this->filters = $filters;
         $this->messageUpdates = $messageUpdates;
@@ -50,10 +50,11 @@ class MessageHandler extends BaseHandler
     public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         /** @var $instance AbstractMessageHandler */
-        $instance = clone $this->callback;
+        $instance = $this->callback->getCallback();
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
         $instance->setState($state);
-        $result = $instance->handle();
+        $method = $this->callback->getMethodToCall();
+        $result = $instance->$method();
         //TODO: destruct
         return $result;
     }
