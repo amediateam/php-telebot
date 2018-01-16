@@ -26,7 +26,7 @@ class StatefulDispatcher extends Dispatcher
             return false; //bypass process
         }
         $state = null;
-        if (!$update->isStateAware()) { //they are stateless
+        if ($update->isStateAware()) { //they are stateless
             /** @var $state State */
             $state = $this->stateDetector->getState($update);
         }
