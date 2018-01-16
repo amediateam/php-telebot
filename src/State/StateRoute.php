@@ -1,4 +1,5 @@
 <?php
+
 namespace TelegramBot\Api\State;
 class StateRoute
 {
@@ -31,5 +32,10 @@ class StateRoute
     public function pathChanged()
     {
         return $this->path != $this->pathCopy;
+    }
+
+    public function resetPathCopy()
+    {
+        $this->pathCopy = $this->path;
     }
 }

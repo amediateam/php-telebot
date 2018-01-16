@@ -44,6 +44,14 @@ class State
         return $this->route->pathChanged() || $this->data->dataChanged();
     }
 
+    protected function resetStateChangeStatus()
+    {
+        $this->route->resetPathCopy();
+        $this->route->variables->resetDataCopy();
+
+        $this->data->resetDataCopy();
+    }
+
     public static function restoreArray(array $stateAsArray)
     {
         return new static(self::getRouteFromArray($stateAsArray), self::getDataFromArray($stateAsArray));

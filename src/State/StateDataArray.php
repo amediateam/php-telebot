@@ -47,4 +47,10 @@ class StateDataArray
     {
         return $this->dataChanged || !($this->data === $this->dataCopy);
     }
+
+    public function resetDataCopy()
+    {
+        $this->dataChanged = false;
+        $this->dataCopy = $this->data;
+    }
 }
