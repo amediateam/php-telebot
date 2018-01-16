@@ -23,7 +23,7 @@ class StateDataArray
 
     public function getKey($key, $default = null)
     {
-        return array_key_exists($key, $this->data) ? $this->dataChanged[$key] : $default;
+        return array_key_exists($key, $this->data) ? $this->data[$key] : $default;
     }
 
     public function setKey($key, $value)
@@ -32,9 +32,9 @@ class StateDataArray
         $this->dataChanged = true;
     }
 
-    public function merge(array $params)
+    public function merge(array $data)
     {
-        $this->overwrite(array_merge($this->getData(), $params));
+        $this->overwrite(array_merge($this->getData(), $data));
     }
 
     public function overwrite(array $data)
