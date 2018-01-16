@@ -14,11 +14,18 @@ abstract class AbstractStatusUpdateHandler extends BaseAbstract
     protected $message;
     /** @var BotApi */
     protected $bot;
+    /** @var array|null */
+    protected $filters = null;
 
     public function init(BotApi $bot, Update $update, Message $message)
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->message = $message;
+    }
+
+    public function getFilters()
+    {
+        return $this->filters;
     }
 }

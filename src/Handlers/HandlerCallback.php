@@ -28,8 +28,11 @@ class HandlerCallback
     /**
      * @return BaseAbstract
      */
-    public function getCallback()
+    public function getCallback($clone = true)
     {
+        if (!$clone) {
+            return $this->callback;
+        }
         return clone $this->callback;
     }
 

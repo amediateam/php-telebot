@@ -70,11 +70,11 @@ abstract class Dispatcher
         return $this->botApi;
     }
 
-    protected function checkAndRun(BaseHandler $handler, Update $update)
+    protected function checkAndRun(BaseHandler $handler, Update $update, $state = null)
     {
         /** @var $handler BaseHandler */
-        if ($handler->checkUpdate($update)) {
-            return $handler->handleUpdate($update, $this);
+        if ($handler->checkUpdate($update, $state)) {
+            return $handler->handleUpdate($update, $this, $state);
         }
         return -1;
     }

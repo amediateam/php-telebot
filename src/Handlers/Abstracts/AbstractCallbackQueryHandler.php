@@ -16,6 +16,8 @@ abstract class AbstractCallbackQueryHandler extends BaseAbstract
     protected $bot;
     /** @var array */
     protected $matches;
+    /** @var string|null */
+    protected $regex = null;
 
     public function init(BotApi $bot, Update $update, CallbackQuery $callbackQuery, array $matches = [])
     {
@@ -23,5 +25,10 @@ abstract class AbstractCallbackQueryHandler extends BaseAbstract
         $this->update = $update;
         $this->callbackQuery = $callbackQuery;
         $this->matches = $matches;
+    }
+
+    public function getRegex()
+    {
+        return $this->regex;
     }
 }

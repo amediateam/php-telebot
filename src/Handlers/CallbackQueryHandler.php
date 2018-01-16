@@ -13,10 +13,12 @@ class CallbackQueryHandler extends BaseHandler
 {
     protected $regex;
 
-    public function __construct(HandlerCallback $callback, $regex = null)
+    public function __construct(HandlerCallback $callback)
     {
-        $this->regex = $regex;
         parent::__construct($callback);
+        $handler = $callback->getCallback(false);
+        /** @var $handler AbstractCallbackQueryHandler */
+        $this->regex = $handler->getRegex();
     }
 
     public function checkUpdate(Update $update, State $state = null)

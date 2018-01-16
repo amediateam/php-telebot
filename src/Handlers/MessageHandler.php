@@ -15,16 +15,18 @@ class MessageHandler extends BaseHandler
     protected $messageUpdates;
     protected $channelPostUpdates;
     protected $editedUpdates;
-    protected $commands;
+    protected $commandUpdates;
 
-    public function __construct(HandlerCallback $callback, $filters = null, $commands = false, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct(HandlerCallback $callback)
     {
-        $this->filters = $filters;
-        $this->messageUpdates = $messageUpdates;
-        $this->channelPostUpdates = $channelPostUpdates;
-        $this->editedUpdates = $editedUpdates;
-        $this->commands = $commands;
         parent::__construct($callback);
+        $handler = $callback->getCallback(false);
+        /** @var $handler AbstractMessageHandler */
+        $this->filters = $handler->getFilters();
+        $this->messageUpdates = $handler->shouldMessageUpdatesBeHandled();
+        $this->editedUpdates = $handler->shouldEditedUpdatesBeHandled();
+        $this->channelPostUpdates = $handler->shouldChannelPostUpdatesBeHandled();
+        $this->commandUpdates = $handler->shouldCommandUpdatesBeHandled();
     }
 
     public function checkUpdate(Update $update, State $state = null)
@@ -41,7 +43,7 @@ class MessageHandler extends BaseHandler
             return false;
         } else if (!$this->channelPostUpdates && $update->isChannelPost()) {
             return false;
-        } else if (!$this->commands && Filters::$text::filter($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
+        } else if (!$this->commandUpdates && Filters::$text::filter($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
             return false;
         }
         return true;

@@ -1,4 +1,5 @@
 <?php
+
 namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
@@ -12,10 +13,12 @@ class StatusUpdateHandler extends BaseHandler
 {
     protected $filters;
 
-    public function __construct(HandlerCallback $callback, $filters = null)
+    public function __construct(HandlerCallback $callback)
     {
-        $this->filters = $filters;
         parent::__construct($callback);
+        $handler = $callback->getCallback(false);
+        /** @var $handler AbstractStatusUpdateHandler */
+        $this->filters = $handler->getFilters();
     }
 
     public function checkUpdate(Update $update, State $state = null)

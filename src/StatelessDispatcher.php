@@ -21,15 +21,7 @@ class StatelessDispatcher extends Dispatcher
         try {
             foreach ($this->forceHandlers as $handler) {
                 /** @var $handler BaseHandler */
-                if (is_array($handler)) {
-                    //when passing an array you want to call a specific method of
-
-                    if (($result = $this->checkAndRun($handler, $update)) !== -1) {
-                        return $result;
-                    }
-
-
-                } else if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                if (($result = $this->checkAndRun($handler, $update)) !== -1) {
                     return $result;
                 }
             }

@@ -16,11 +16,19 @@ abstract class AbstractChosenInlineResultHandler extends BaseAbstract
     protected $bot;
     /** @var array */
     protected $matches;
+    /** @var string|null */
+    protected $regex = null;
 
     public function init(BotApi $bot, Update $update, ChosenInlineResult $chosenInlineResult, array $matches = [])
     {
         $this->bot = $bot;
         $this->update = $update;
         $this->chosenInlineResult = $chosenInlineResult;
+        $this->matches = $matches;
+    }
+
+    public function getRegex()
+    {
+        return $this->regex;
     }
 }

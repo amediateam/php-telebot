@@ -9,45 +9,27 @@ use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractRegexHandler;
 use TelegramBot\Api\State\State;
+use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
 
-class RegexHandler extends BaseHandler
+class RegexHandler extends MessageHandler
 {
-    protected $regex;
-    protected $filters;
-    protected $messageUpdates;
-    protected $channelPostUpdates;
-    protected $editedUpdates;
+    private $regex;
 
-    public function __construct($regex, HandlerCallback $callback, $filters = null, $messageUpdates = true, $channelPostUpdates = true, $editedUpdates = false)
+    public function __construct(HandlerCallback $callback)
     {
-        $this->regex = $regex;
-        $this->filters = $filters;
-        $this->messageUpdates = $messageUpdates;
-        $this->channelPostUpdates = $channelPostUpdates;
-        $this->editedUpdates = $editedUpdates;
         parent::__construct($callback);
+        /** @var $handler AbstractRegexHandler */
+        $handler = $callback->getCallback(false);
+        $this->regex = $handler->getRegex();
     }
 
     public function checkUpdate(Update $update, State $state = null)
     {
-        if (!Filters::filter($update, $this->filters)) {
-            return false;
-        } else if (!Filters::$text::filter($update)) {
-            return false;
-        } else if ((bool)$update->getMessage()->getText() !== false &&
-            substr($update->getMessage()->getText(), 0, 1) == '/') {
-            return false;
-        } else if (!$this->editedUpdates && $update->isEdited()) {
-            return false;
-        } else if (!$this->messageUpdates && ($update->getMessage() || $update->getEditedMessage())) {
-            return false;
-        } else if (!$this->channelPostUpdates && $update->isChannelPost()) {
-            return false;
-        } else if (false === (bool)preg_match($this->regex, $update->getEffectiveMessage()->getText())) {
+        if (!parent::checkUpdate($update, $state)) {
             return false;
         }
-        return true;
+        return preg_match($this->regex, $update->getEffectiveMessage()->getText());
     }
 
     public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)

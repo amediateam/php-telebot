@@ -21,30 +21,31 @@ class StatefulDispatcher extends Dispatcher
 
     public function processUpdate(Update $update)
     {
-        if (is_callable($this->callback) &&
-            !call_user_func_array($this->callback, [$this->botApi, $update, $this])) {
-            return false; //bypass process
-        }
         $state = null;
         if ($update->isStateAware()) { //they are stateless
             /** @var $state State */
             $state = $this->stateDetector->getState($update);
         }
+        if (is_callable($this->callback) &&
+            !call_user_func_array($this->callback, [$this->botApi, $update, $state, $this])) {
+            return false; //bypass process
+        }
         try {
             foreach ($this->forceHandlers as $handler) {
                 /** @var $handler BaseHandler */
-                if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                if (($result = $this->checkAndRun($handler, $update, $state)) !== -1) {
                     return $result;
                 }
             }
             if (!is_null($state)) {
                 $result = $this->dispatcher->dispatch($state->route->getPath());
                 if ($result->found()) {
+                    $state->route->variables->overwrite($result->getVariables());
                     if (is_callable($result->getCallback())) {
                         return call_user_func_array($result->getCallback(), [
                             $this->getBot(),
                             $update,
-                            $result->getVariables()
+                            $state
                         ]);
                     } else {
                         /** @var $callback HandlerCollector */
@@ -52,10 +53,9 @@ class StatefulDispatcher extends Dispatcher
                         if (!($callback instanceof HandlerCollector)) {
                             throw new InvalidCallbackException("Callback must be instance of " . HandlerCollector::class);
                         }
-                        $state->route->variables->overwrite($result->getVariables());
                         foreach ($callback->getHandlers() as $handler) {
                             /** @var $handler BaseHandler */
-                            if (($result = $this->checkAndRun($handler, $update)) !== -1) {
+                            if (($result = $this->checkAndRun($handler, $update, $state)) !== -1) {
                                 return $result;
                             }
                         }

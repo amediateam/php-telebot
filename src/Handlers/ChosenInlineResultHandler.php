@@ -16,8 +16,10 @@ class ChosenInlineResultHandler extends BaseHandler
 
     public function __construct(HandlerCallback $callback, $regex = null)
     {
-        $this->regex = $regex;
         parent::__construct($callback);
+        $handler = $callback->getCallback(false);
+        /** @var $handler AbstractChosenInlineResultHandler */
+        $this->regex = $handler->getRegex();
     }
 
     public function checkUpdate(Update $update, State $state = null)

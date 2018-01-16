@@ -3,30 +3,41 @@
 namespace TelegramBot\Api\Handlers\Abstracts;
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Handlers\CommandHandler;
+use TelegramBot\Api\InvalidCallbackException;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\TextCommand;
 use TelegramBot\Api\Types\Update;
 
-abstract class AbstractCommandHandler extends BaseAbstract
+abstract class AbstractCommandHandler extends AbstractMessageHandler
 {
-    /** @var Update */
-    protected $update;
-    /** @var Message */
-    protected $message;
-    /** @var BotApi */
-    protected $bot;
     /** @var TextCommand */
     protected $command;
+    /** @var string */
+    protected $commandText;
+    /** @var bool */
+    protected $commandUpdates = true;
 
+    /**
+     * @param BotApi $bot
+     * @param Update $update
+     * @param Message $message
+     * @param TextCommand|null $command
+     * @throws InvalidCallbackException
+     */
     public function init(BotApi $bot, Update $update, Message $message, TextCommand $command = null)
     {
-        $this->bot = $bot;
-        $this->update = $update;
-        $this->message = $message;
-        if($command === null){
+        if (empty($this->commandText)) {
+            throw new InvalidCallbackException("Command text is empty!");
+        }
+        if ($command === null) {
             $command = new TextCommand(null, [], null);
         }
         $this->command = $command;
+        parent::init($bot, $update, $message);
+    }
+
+    public function getCommandText()
+    {
+        return $this->commandText;
     }
 }

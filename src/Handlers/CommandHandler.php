@@ -10,26 +10,23 @@ use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\TextCommand;
 use TelegramBot\Api\Types\Update;
 
-class CommandHandler extends BaseHandler
+class CommandHandler extends MessageHandler
 {
     protected $command;
-    protected $editedUpdates;
-
-    public function __construct($command,
-                                HandlerCallback $callback,
-                                $filters = null,
-                                $editedUpdates = false)
+    public function __construct(HandlerCallback $callback)
     {
-        $this->command = $command;
-        $this->editedUpdates = $editedUpdates;
         parent::__construct($callback);
+        $handler = $callback->getCallback(false);
+        /** @var $handler AbstractCommandHandler */
+        $this->command = $handler->getCommandText();
     }
 
     public function checkUpdate(Update $update, State $state = null)
     {
-        if (!Filters::$command::filter($update)) {
+        if (!parent::checkUpdate($update, $state)) {
             return false;
-        } else if (!$this->editedUpdates && $update->isEdited()) {
+        }
+        if (!Filters::$command::filter($update)) {
             return false;
         }
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
@@ -38,7 +35,13 @@ class CommandHandler extends BaseHandler
         }
         return true;
     }
-
+    /**
+     * @param Update $update
+     * @param Dispatcher $dispatcher
+     * @param State|null $state
+     * @return mixed
+     * @throws \TelegramBot\Api\InvalidCallbackException
+     */
     public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
     {
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
