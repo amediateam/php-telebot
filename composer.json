@@ -19,10 +19,8 @@
   },
   "autoload": {
     "psr-4": {
-      "TelegramBot\\Api\\": "src",
-      "StatedRouter\\": "StatedRouter"
-    },
-    "files": ["StatedRouter/functions.php"]
+      "TelegramBot\\Api\\": "src"
+    }
   },
   "scripts": {
 

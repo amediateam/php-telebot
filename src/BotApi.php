@@ -257,6 +257,11 @@ class BotApi extends MethodFunctions
     }
 
 
+    public function clearUpdates($lastOffset)
+    {
+        $this->getUpdates($lastOffset + 1);
+    }
+
     /**
      * @param $method
      * @param array $args
@@ -417,5 +422,54 @@ class BotApi extends MethodFunctions
 
         }
         return $response;
+    }
+
+    public function handleWebhookUpdate(callable $callback, $data)
+    {
+        if (!is_array($data)) {
+            try {
+                $data = \GuzzleHttp\json_decode($data, true);
+            } catch (\InvalidArgumentException $e) {
+                return false;
+            }
+        }
+        try {
+            $callback(Update::fromResponse($this, $data));
+        } catch (InvalidArgumentException $e) {
+            return false;
+        }
+        return false;
+    }
+
+    public function poll(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
+    {
+        /** @var Update[] $updates */
+        $updates = $this->getUpdates($offset + 1, $limit, $timeout, $allowedUpdates);
+        foreach ($updates as $update) {
+            $callback($this, $update);
+        }
+        $size = sizeof($updates);
+        if ($size) {
+            $offset = $updates[$size - 1]->getUpdateId();
+        }
+        return $offset;
+    }
+
+    public function start_polling(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [], $sleepTime = 0)
+    {
+        $loop = true;
+        if (function_exists("pcntl_signal")) {
+            $signalHandler = function ($signal) use ($loop) {
+                $loop = false;
+            };
+            pcntl_signal(SIGTERM, $signalHandler);
+            pcntl_signal(SIGHUP, $signalHandler);
+        }
+        while ($loop) {
+            $offset = $this->poll($callback, $offset, $limit, $timeout, $allowedUpdates);
+            if ($sleepTime > 0) sleep($sleepTime);
+        }
+        $this->clearUpdates($offset);
+        return $offset;
     }
 }

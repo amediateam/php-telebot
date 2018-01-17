@@ -1,12 +1,9 @@
 <?php
-
 namespace TelegramBot\Api\Handlers;
-
 use TelegramBot\Api\BaseHandler;
-use TelegramBot\Api\Dispatcher;
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractInlineQueryHandler;
-use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class InlineQueryHandler extends BaseHandler
@@ -21,7 +18,7 @@ class InlineQueryHandler extends BaseHandler
         $this->regex = $handler->getRegex();
     }
 
-    public function checkUpdate(Update $update, State $state = null)
+    public function checkUpdate(Update $update)
     {
         if (!Filters::$inlineQuery::filter($update)) {
             return false;
@@ -32,7 +29,7 @@ class InlineQueryHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
+    public function handleUpdate(BotApi $botApi, Update $update)
     {
         $matches = [];
         if (!is_null($this->regex)) {
@@ -40,8 +37,7 @@ class InlineQueryHandler extends BaseHandler
         }
         /** @var $instance AbstractInlineQueryHandler */
         $instance = $this->callback->getCallback();
-        $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery(), $matches);
-        $instance->setState($state);
+        $instance->init($botApi, $update, $update->getInlineQuery(), $matches);
         $method = $this->callback->getMethodToCall();
         $result = $instance->callMethod($method);
         //TODO: destruct

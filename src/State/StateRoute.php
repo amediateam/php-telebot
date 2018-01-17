@@ -1,18 +1,14 @@
 <?php
-
 namespace TelegramBot\Api\State;
 class StateRoute
 {
     private $pathCopy;
 
     public $path = '/';
-    /** @var StateDataArray */
-    public $variables;
 
-    public function __construct($path = '/', array $variables = [])
+    public function __construct($path = '/')
     {
         $this->path = $this->pathCopy = $path;
-        $this->variables = new StateDataArray($variables);
     }
 
     public function &getPath()

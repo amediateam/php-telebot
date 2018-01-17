@@ -2,10 +2,9 @@
 namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
-use TelegramBot\Api\Dispatcher;
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractPreCheckoutQueryHandler;
-use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class PreCheckoutQueryHandler extends BaseHandler
@@ -15,7 +14,7 @@ class PreCheckoutQueryHandler extends BaseHandler
         parent::__construct($callback);
     }
 
-    public function checkUpdate(Update $update, State $state = null)
+    public function checkUpdate(Update $update)
     {
         if (!Filters::$preCheckoutQuery::filter($update)) {
             return false;
@@ -23,12 +22,11 @@ class PreCheckoutQueryHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
+    public function handleUpdate(BotApi $botApi, Update $update)
     {
         /** @var $instance AbstractPreCheckoutQueryHandler */
         $instance = $this->callback->getCallback();
-        $instance->setState($state);
-        $instance->init($dispatcher->getBot(), $update, $update->getPreCheckoutQuery());
+        $instance->init($botApi, $update, $update->getPreCheckoutQuery());
         $method = $this->callback->getMethodToCall();
         $result = $instance->callMethod($method);
         //TODO: destruct

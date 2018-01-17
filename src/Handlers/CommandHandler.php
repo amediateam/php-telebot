@@ -1,9 +1,7 @@
 <?php
 
 namespace TelegramBot\Api\Handlers;
-
-use TelegramBot\Api\BaseHandler;
-use TelegramBot\Api\Dispatcher;
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractCommandHandler;
 use TelegramBot\Api\State\State;
@@ -21,9 +19,9 @@ class CommandHandler extends MessageHandler
         $this->command = $handler->getCommandText();
     }
 
-    public function checkUpdate(Update $update, State $state = null)
+    public function checkUpdate(Update $update)
     {
-        if (!parent::checkUpdate($update, $state)) {
+        if (!parent::checkUpdate($update)) {
             return false;
         }
         if (!Filters::$command::filter($update)) {
@@ -36,21 +34,18 @@ class CommandHandler extends MessageHandler
         return true;
     }
     /**
+     * @param BotApi $botApi
      * @param Update $update
-     * @param Dispatcher $dispatcher
      * @param State|null $state
      * @return mixed
      * @throws \TelegramBot\Api\InvalidCallbackException
      */
-    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
+    public function handleUpdate(BotApi $botApi, Update $update)
     {
         $command = TextCommand::parse($update->getEffectiveMessage()->getText());
-
         /** @var $instance AbstractCommandHandler */
         $instance = $this->callback->getCallback();
-        $instance->setState($state);
-
-        $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command);
+        $instance->init($botApi, $update, $update->getEffectiveMessage(), $command);
         $method = $this->callback->getMethodToCall();
         $result = $instance->callMethod($method);
         //TODO: destruct

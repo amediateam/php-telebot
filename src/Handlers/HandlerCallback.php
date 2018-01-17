@@ -1,7 +1,5 @@
 <?php
-
 namespace TelegramBot\Api\Handlers;
-
 use function method_exists;
 use TelegramBot\Api\Handlers\Abstracts\BaseAbstract;
 use TelegramBot\Api\InvalidArgumentException;

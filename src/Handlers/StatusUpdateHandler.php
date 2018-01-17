@@ -3,10 +3,9 @@
 namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
-use TelegramBot\Api\Dispatcher;
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractStatusUpdateHandler;
-use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class StatusUpdateHandler extends BaseHandler
@@ -21,7 +20,7 @@ class StatusUpdateHandler extends BaseHandler
         $this->filters = $handler->getFilters();
     }
 
-    public function checkUpdate(Update $update, State $state = null)
+    public function checkUpdate(Update $update)
     {
         if (!Filters::$statusUpdate::filter($update, $this->filters)) {
             return false;
@@ -31,11 +30,11 @@ class StatusUpdateHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
+    public function handleUpdate(BotApi $botApi, Update $update)
     {
         /** @var $instance AbstractStatusUpdateHandler */
         $instance = $this->callback->getCallback();
-        $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
+        $instance->init($botApi, $update, $update->getEffectiveMessage());
         $method = $this->callback->getMethodToCall();
         $result = $instance->callMethod($method);
         //TODO: destruct

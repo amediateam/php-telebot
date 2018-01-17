@@ -13,7 +13,7 @@ abstract class BaseHandler
         $this->callback = $callback; //function or class method
     }
 
-    abstract public function checkUpdate(Update $update, State $state = null);
+    abstract public function checkUpdate(Update $update);
 
-    abstract public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null);
+    abstract public function handleUpdate(BotApi $botApi, Update $update);
 }

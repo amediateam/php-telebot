@@ -10,14 +10,13 @@ abstract class Dispatcher
 {
     /** @var BotApi */
     protected $botApi;
-
     protected $handlers = [];
-
-    protected $forceHandlers = [];
-
-    protected $callback = null;
-
     protected $errorHandlers = [];
+
+    public function __construct(BotApi $botApi)
+    {
+        $this->botApi = $botApi;
+    }
 
     public function addErrorHandler(callable $callback)
     {
@@ -36,71 +35,36 @@ abstract class Dispatcher
     public function removeErrorHandler(callable $callback)
     {
         $search = array_search($callback, $this->errorHandlers);
-        unset($this->forceHandlers[$search]);
+        unset($this->errorHandlers[$search]);
     }
 
-    public function addHandler(BaseHandler $handler, $force = false)
+    public function addHandler(BaseHandler $handler)
     {
-        $this->addBatchHandler([$handler], $force);
+        $this->addBatchHandler([$handler]);
     }
 
-    public function addBatchHandler(array $handlers, $force = false)
+    public function addBatchHandler(array $handlers)
     {
         foreach ($handlers as $handler) {
             if ($handler instanceof BaseHandler) {
-                if ($force) {
-                    array_push($this->forceHandlers, $handler);
-                } else {
-                    array_push($this->handlers, $handler);
-                }
+                array_push($this->handlers, $handler);
             }
         }
     }
 
-    public function removeHandler(BaseHandler $handler, $force = false)
+    public function removeHandler(BaseHandler $handler)
     {
-        if ($force) {
-            $search = array_search($handler, $this->forceHandlers);
-        } else {
-            $search = array_search($handler, $this->handlers);
-        }
+        $search = array_search($handler, $this->handlers);
         if ($search !== false) {
-            if ($force) {
-                unset($this->forceHandlers[$search]);
-            } else {
-                unset($this->handlers[$search]);
-            }
+            unset($this->handlers[$search]);
         }
     }
 
-    /**
-     * On every update, the callback is called, when it returns false your process will not be handled anymore!
-     * @param callable $callback
-     */
-
-    public function setCallback(callable $callback)
-    {
-        $this->callback = $callback;
-    }
-
-    public function __construct($token)
-    {
-        $this->botApi = new BotApi($token);
-    }
-
-    /**
-     * @return BotApi
-     */
-    public function getBot()
-    {
-        return $this->botApi;
-    }
-
-    protected function checkAndRun(BaseHandler $handler, Update $update, State $state = null)
+    protected function checkAndRun(BaseHandler $handler, Update $update)
     {
         /** @var $handler BaseHandler */
-        if ($handler->checkUpdate($update, $state)) {
-            return $handler->handleUpdate($update, $this, $state);
+        if ($handler->checkUpdate($update)) {
+            return $handler->handleUpdate($this->botApi, $update);
         }
         return -1;
     }

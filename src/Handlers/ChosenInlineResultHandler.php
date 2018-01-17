@@ -3,11 +3,9 @@
 namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
-use TelegramBot\Api\Dispatcher;
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
 use TelegramBot\Api\Handlers\Abstracts\AbstractChosenInlineResultHandler;
-use TelegramBot\Api\Handlers\Abstracts\BaseAbstract;
-use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
 class ChosenInlineResultHandler extends BaseHandler
@@ -22,7 +20,7 @@ class ChosenInlineResultHandler extends BaseHandler
         $this->regex = $handler->getRegex();
     }
 
-    public function checkUpdate(Update $update, State $state = null)
+    public function checkUpdate(Update $update)
     {
         if (!Filters::$chosenInlineResult::filter($update)) {
             return false;
@@ -33,7 +31,7 @@ class ChosenInlineResultHandler extends BaseHandler
         return true;
     }
 
-    public function handleUpdate(Update $update, Dispatcher $dispatcher, State $state = null)
+    public function handleUpdate(BotApi $botApi, Update $update)
     {
         $matches = [];
         if (!is_null($this->regex)) {
@@ -41,8 +39,7 @@ class ChosenInlineResultHandler extends BaseHandler
         }
         /** @var $instance AbstractChosenInlineResultHandler */
         $instance = $this->callback->getCallback();
-        $instance->setState($state);
-        $instance->init($dispatcher->getBot(), $update, $update->getChosenInlineResult(), $matches);
+        $instance->init($botApi, $update, $update->getChosenInlineResult(), $matches);
         $method = $this->callback->getMethodToCall();
         $result = $instance->callMethod($method);
         //TODO: destruct

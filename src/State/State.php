@@ -19,10 +19,7 @@ class State
         if (!array_key_exists('path', $route)) {
             $route['path'] = $this->defaultPath;
         }
-        if (!array_key_exists('variables', $route)) {
-            $route['variables'] = [];
-        }
-        $this->setRoute($route['path'], $route['variables']);
+        $this->setRoute($route['path']);
     }
 
     public function setData(array $data)
@@ -30,27 +27,19 @@ class State
         $this->data = new StateDataArray($data);
     }
 
-    public function setRoute($path, $routeVars = [])
+    public function setRoute($path)
     {
         $this->route = new StateRoute($path);
-        $this->route->variables->overwrite($routeVars);
     }
 
-    protected function stateChanged($checkRouteVars = false)
+    protected function stateChanged()
     {
-        if ($checkRouteVars && $this->route->variables->dataChanged()) {
-            return true;
-        }
         return $this->route->pathChanged() || $this->data->dataChanged();
     }
 
-    protected function resetStateChangeStatus($includeRouteVars = false)
+    protected function resetStateChangeStatus()
     {
         $this->route->resetPathCopy();
-        if ($includeRouteVars) {
-            $this->route->variables->resetDataCopy();
-        }
-
         $this->data->resetDataCopy();
     }
 
@@ -69,7 +58,7 @@ class State
         return array_key_exists($key, $stateAsArray) && is_array($stateAsArray[$key]) ? $stateAsArray[$key] : $default;
     }
 
-    public function toArray($includeRouteVars = false)
+    public function toArray()
     {
         $result = [
             'route' => [
@@ -78,9 +67,6 @@ class State
             ],
             'data' => $this->data->getDataCopy()
         ];
-        if ($includeRouteVars) {
-            $result['route']['variables'] = $this->route->variables->getDataCopy();
-        }
         return $result;
     }
 }
