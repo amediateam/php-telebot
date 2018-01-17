@@ -19,7 +19,7 @@ abstract class BaseHandler
 
     abstract public function handleUpdate(BotApi $botApi, Update $update);
 
-    abstract public function getCallbackParameters(BotApi $botApi, Update $update);
+    abstract public function getCallArguments(BotApi $botApi, Update $update);
 
     public function getCallback()
     {
