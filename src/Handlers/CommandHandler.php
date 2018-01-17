@@ -52,7 +52,7 @@ class CommandHandler extends MessageHandler
 
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage(), $command);
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

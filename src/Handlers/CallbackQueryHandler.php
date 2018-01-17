@@ -43,7 +43,7 @@ class CallbackQueryHandler extends BaseHandler
         $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getCallbackQuery(), $matches);
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

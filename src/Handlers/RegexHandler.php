@@ -40,7 +40,7 @@ class RegexHandler extends MessageHandler
         $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getMessage(), $matches);
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

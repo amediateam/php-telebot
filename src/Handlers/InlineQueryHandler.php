@@ -43,7 +43,7 @@ class InlineQueryHandler extends BaseHandler
         $instance->init($dispatcher->getBot(), $update, $update->getInlineQuery(), $matches);
         $instance->setState($state);
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

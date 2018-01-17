@@ -30,7 +30,7 @@ class PreCheckoutQueryHandler extends BaseHandler
         $instance->setState($state);
         $instance->init($dispatcher->getBot(), $update, $update->getPreCheckoutQuery());
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

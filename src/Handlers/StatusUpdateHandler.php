@@ -37,7 +37,7 @@ class StatusUpdateHandler extends BaseHandler
         $instance = $this->callback->getCallback();
         $instance->init($dispatcher->getBot(), $update, $update->getEffectiveMessage());
         $method = $this->callback->getMethodToCall();
-        $result = $instance->$method();
+        $result = $instance->callMethod($method);
         //TODO: destruct
         return $result;
     }

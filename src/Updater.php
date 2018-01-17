@@ -80,4 +80,9 @@ class Updater
     {
         $this->getDispatcher()->getBot()->getUpdates($offset + 1);
     }
+
+    public function isWebhookIPTrusted($ip)
+    {
+        return $this->dispatcher->getBot()->isWebhookIPTrusted($ip);
+    }
 }

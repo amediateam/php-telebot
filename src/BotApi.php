@@ -1,5 +1,7 @@
 <?php
+
 namespace TelegramBot\Api;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use ReflectionException;
@@ -7,6 +9,7 @@ use TelegramBot\Api\Extension\KeyboardBuilder;
 use TelegramBot\Api\Types\File;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
+
 /**
  * Class BotApi
  *
@@ -187,6 +190,20 @@ class BotApi extends MethodFunctions
         }
     }
 
+    public function isWebhookIPTrusted($ip)
+    {
+        // https://core.telegram.org/bots/webhooks#the-short-version
+        $telegram_ip_lower = '149.154.167.197';
+        $telegram_ip_upper = '149.154.167.233';
+
+        $lower_dec = (float)sprintf("%u", ip2long($telegram_ip_lower));
+        $upper_dec = (float)sprintf("%u", ip2long($telegram_ip_upper));
+        $ip_dec = (float)sprintf("%u", ip2long($ip));
+        if ($ip_dec < $lower_dec || $ip_dec > $upper_dec) {
+            return false;
+        }
+        return true;
+    }
 
     private function createMultipart(BaseMethod $method)
     {
@@ -230,7 +247,7 @@ class BotApi extends MethodFunctions
                 throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
             }
             $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-            if (array_keys($body, 'ok') && false === (bool) $body['ok']) {
+            if (array_keys($body, 'ok') && false === (bool)$body['ok']) {
                 throw new TelegramException($body['description'], $body['error_code']);
             }
             return $body['result'];
@@ -372,7 +389,7 @@ class BotApi extends MethodFunctions
         $method = "\\TelegramBot\\Api\\Methods\\$method";
         $method = new $method($this);
         /* @var $method BaseMethod */
-        if(isset($arguments['keyValuePair'])){
+        if (isset($arguments['keyValuePair'])) {
             $params = $arguments;
         } else {
             $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
