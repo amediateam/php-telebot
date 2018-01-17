@@ -4,11 +4,9 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Dispatcher;
 use TelegramBot\Api\Filters\Filters;
-use TelegramBot\Api\Handlers\Abstracts\AbstractMessageHandler;
-use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
+use function call_user_func_array;
 
 class MessageHandler extends BaseHandler
 {
@@ -18,16 +16,19 @@ class MessageHandler extends BaseHandler
     protected $editedUpdates;
     protected $commandUpdates;
 
-    public function __construct(HandlerCallback $callback)
+    public function __construct(callable $callback,
+                                array $filters = null,
+                                $commandUpdates = false,
+                                $messageUpdates = true,
+                                $editedUpdates = false,
+                                $channelPostUpdates = true)
     {
         parent::__construct($callback);
-        $handler = $callback->getCallback(false);
-        /** @var $handler AbstractMessageHandler */
-        $this->filters = $handler->getFilters();
-        $this->messageUpdates = $handler->shouldMessageUpdatesBeHandled();
-        $this->editedUpdates = $handler->shouldEditedUpdatesBeHandled();
-        $this->channelPostUpdates = $handler->shouldChannelPostUpdatesBeHandled();
-        $this->commandUpdates = $handler->shouldCommandUpdatesBeHandled();
+        $this->filters = $filters;
+        $this->messageUpdates = $messageUpdates;
+        $this->editedUpdates = $editedUpdates;
+        $this->channelPostUpdates = $channelPostUpdates;
+        $this->commandUpdates = $commandUpdates;
     }
 
     public function checkUpdate(Update $update)
@@ -52,12 +53,6 @@ class MessageHandler extends BaseHandler
 
     public function handleUpdate(BotApi $botApi, Update $update)
     {
-        /** @var $instance AbstractMessageHandler */
-        $instance = $this->callback->getCallback();
-        $instance->init($botApi, $update, $update->getEffectiveMessage());
-        $method = $this->callback->getMethodToCall();
-        $result = $instance->callMethod($method);
-        //TODO: destruct
-        return $result;
+        return call_user_func_array($this->callback, [$botApi, $update, $update->getEffectiveMessage()]);
     }
 }

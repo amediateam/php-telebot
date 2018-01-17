@@ -8,7 +8,7 @@ use TelegramBot\Api\Types\Update;
 abstract class BaseHandler
 {
     protected $callback;
-    public function __construct(HandlerCallback $callback)
+    public function __construct(callable $callback)
     {
         $this->callback = $callback; //function or class method
     }

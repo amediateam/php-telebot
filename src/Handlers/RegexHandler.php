@@ -11,12 +11,18 @@ class RegexHandler extends MessageHandler
 {
     private $regex;
 
-    public function __construct(HandlerCallback $callback)
+    public function __construct(
+        callable $callback,
+        $regex,
+        array $filters = null,
+        bool $commandUpdates = true,
+        bool $messageUpdates = true,
+        bool $editedUpdates = false,
+        bool $channelPostUpdates = true
+    )
     {
-        parent::__construct($callback);
-        /** @var $handler AbstractRegexHandler */
-        $handler = $callback->getCallback(false);
-        $this->regex = $handler->getRegex();
+        $this->regex = $regex;
+        parent::__construct($callback, $filters, $commandUpdates, $messageUpdates, $editedUpdates, $channelPostUpdates);
     }
 
     public function checkUpdate(Update $update)
@@ -30,12 +36,6 @@ class RegexHandler extends MessageHandler
     public function handleUpdate(BotApi $botApi, Update $update)
     {
         preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
-        /** @var $instance AbstractRegexHandler */
-        $instance = $this->callback->getCallback();
-        $instance->init($botApi, $update, $update->getMessage(), $matches);
-        $method = $this->callback->getMethodToCall();
-        $result = $instance->callMethod($method);
-        //TODO: destruct
-        return $result;
+        return call_user_func_array($this->callback, [$botApi, $update, $update->getEffectiveMessage(), $matches]);
     }
 }
