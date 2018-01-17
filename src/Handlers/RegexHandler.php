@@ -10,6 +10,7 @@ use function preg_match;
 class RegexHandler extends MessageHandler
 {
     private $regex;
+    private $matches = [];
 
     public function __construct(
         callable $callback,
@@ -30,12 +31,16 @@ class RegexHandler extends MessageHandler
         if (!parent::checkUpdate($update)) {
             return false;
         }
-        return is_null($this->regex) || preg_match($this->regex, $update->getEffectiveMessage()->getText());
+        return is_null($this->regex) || preg_match($this->regex, $update->getEffectiveMessage()->getText(), $this->matches);
     }
 
     public function handleUpdate(BotApi $botApi, Update $update)
     {
-        preg_match($this->regex, $update->getEffectiveMessage()->getText(), $matches);
-        return call_user_func_array($this->callback, [$botApi, $update, $update->getEffectiveMessage(), $matches]);
+        return call_user_func_array($this->callback, $this->getCallArguments($botApi, $update));
+    }
+
+    public function getCallArguments(BotApi $botApi, Update $update)
+    {
+        return [$botApi, $update, $update->getEffectiveMessage(), $this->matches];
     }
 }

@@ -53,6 +53,11 @@ class MessageHandler extends BaseHandler
 
     public function handleUpdate(BotApi $botApi, Update $update)
     {
-        return call_user_func_array($this->callback, [$botApi, $update, $update->getEffectiveMessage()]);
+        return call_user_func_array($this->callback, $this->getCallArguments($botApi, $update));
+    }
+
+    public function getCallArguments(BotApi $botApi, Update $update)
+    {
+        return [$botApi, $update, $update->getEffectiveMessage()];
     }
 }

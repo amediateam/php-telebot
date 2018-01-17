@@ -1,5 +1,7 @@
 <?php
+
 namespace TelegramBot\Api\Handlers;
+
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters\Filters;
@@ -29,10 +31,15 @@ class InlineQueryHandler extends BaseHandler
 
     public function handleUpdate(BotApi $botApi, Update $update)
     {
+        return call_user_func_array($this->callback, $this->getCallArguments($botApi, $update));
+    }
+
+    public function getCallArguments(BotApi $botApi, Update $update)
+    {
         $matches = [];
         if (!is_null($this->regex)) {
             preg_match($this->regex, $update->getInlineQuery()->getQuery(), $matches);
         }
-        return call_user_func_array($this->callback, [$botApi, $update, $update->getInlineQuery(), $matches]);
+        return [$botApi, $update, $update->getInlineQuery(), $matches];
     }
 }
