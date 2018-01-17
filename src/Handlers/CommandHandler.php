@@ -9,12 +9,13 @@ class CommandHandler extends MessageHandler
 {
     protected $command;
 
-    public function __construct(callable $callback,
+    public function __construct($command, callable $callback,
                                 $filters = null,
                                 bool $messageUpdates = true,
                                 bool $editedUpdates = false,
                                 bool $channelPostUpdates = true)
     {
+        $this->command = $command;
         parent::__construct($callback, $filters, true, $messageUpdates, $editedUpdates, $channelPostUpdates);
     }
 
