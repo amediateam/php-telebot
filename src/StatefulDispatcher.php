@@ -2,7 +2,6 @@
 
 namespace TelegramBot\Api;
 
-use Exception;
 use TelegramBot\Api\State\State;
 use TelegramBot\Api\State\StateDetectorAbstract;
 use TelegramBot\Api\Types\Update;
@@ -68,8 +67,11 @@ class StatefulDispatcher extends Dispatcher
                     return $result;
                 }
             }
-        } catch (Exception $e) {
-            //TODO: log
+        } catch (\Exception $e) {
+            foreach ($this->errorHandlers as $callback) {
+                /** @var $callback callable */
+                call_user_func_array($callback, [$this->botApi, $update, $e]);
+            }
         }
         return false;
     }

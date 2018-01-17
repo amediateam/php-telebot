@@ -1,8 +1,6 @@
 <?php
-
 namespace TelegramBot\Api;
-
-use Exception;
+use function call_user_func_array;
 use TelegramBot\Api\Types\Update;
 
 class StatelessDispatcher extends Dispatcher
@@ -31,8 +29,11 @@ class StatelessDispatcher extends Dispatcher
                     return $handler->handleUpdate($update, $this);
                 }
             }
-        } catch (Exception $e) {
-            //TODO: log
+        } catch (\Exception $e) {
+            foreach($this->errorHandlers as $callback){
+                /** @var $callback callable */
+                call_user_func_array($callback, [$this->botApi, $update, $e]);
+            }
         }
         return false;
     }

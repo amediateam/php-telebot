@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api;
 
+use function is_callable;
 use TelegramBot\Api\State\State;
 use TelegramBot\Api\Types\Update;
 
@@ -16,6 +17,28 @@ abstract class Dispatcher
 
     protected $callback = null;
 
+    protected $errorHandlers = [];
+
+    public function addErrorHandler(callable $callback)
+    {
+        $this->errorHandlers[] = $callback;
+    }
+
+    public function addBatchErrorHandler($callbacks = [])
+    {
+        foreach ($callbacks as $callback) {
+            if (is_callable($callbacks)) {
+                $this->addBatchHandler($callback);
+            }
+        }
+    }
+
+    public function removeErrorHandler(callable $callback)
+    {
+        $search = array_search($callback, $this->errorHandlers);
+        unset($this->forceHandlers[$search]);
+    }
+
     public function addHandler(BaseHandler $handler, $force = false)
     {
         $this->addBatchHandler([$handler], $force);
@@ -24,10 +47,12 @@ abstract class Dispatcher
     public function addBatchHandler(array $handlers, $force = false)
     {
         foreach ($handlers as $handler) {
-            if ($force) {
-                array_push($this->forceHandlers, $handler);
-            } else {
-                array_push($this->handlers, $handler);
+            if ($handler instanceof BaseHandler) {
+                if ($force) {
+                    array_push($this->forceHandlers, $handler);
+                } else {
+                    array_push($this->handlers, $handler);
+                }
             }
         }
     }
