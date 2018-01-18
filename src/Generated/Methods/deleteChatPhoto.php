@@ -7,7 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class deleteChatPhoto extends BaseMethod
 {
-	protected $method = 'deleteChatPhoto';
+	public static $method = 'deleteChatPhoto';
 	static protected $requiredParams = [
 		'chat_id'
 	];

@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class uploadStickerFile extends BaseMethod
 {
-	protected $method = 'uploadStickerFile';
+	public static $method = 'uploadStickerFile';
 	static protected $requiredParams = [
 		'user_id',
 		'png_sticker'

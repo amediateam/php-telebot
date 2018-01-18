@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class setStickerPositionInSet extends BaseMethod
 {
-	protected $method = 'setStickerPositionInSet';
+	public static $method = 'setStickerPositionInSet';
 	static protected $requiredParams = [
 		'sticker',
 		'position'

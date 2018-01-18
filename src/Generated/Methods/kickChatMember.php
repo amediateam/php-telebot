@@ -11,7 +11,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class kickChatMember extends BaseMethod
 {
-	protected $method = 'kickChatMember';
+	public static $method = 'kickChatMember';
 	static protected $requiredParams = [
 		'chat_id',
 		'user_id'

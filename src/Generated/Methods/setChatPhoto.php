@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class setChatPhoto extends BaseMethod
 {
-	protected $method = 'setChatPhoto';
+	public static $method = 'setChatPhoto';
 	static protected $requiredParams = [
 		'chat_id',
 		'photo'

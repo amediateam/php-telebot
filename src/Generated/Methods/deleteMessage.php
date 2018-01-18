@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class deleteMessage extends BaseMethod
 {
-	protected $method = 'deleteMessage';
+	public static $method = 'deleteMessage';
 	static protected $requiredParams = [
 		'chat_id',
 		'message_id'

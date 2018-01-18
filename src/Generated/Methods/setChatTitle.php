@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class setChatTitle extends BaseMethod
 {
-	protected $method = 'setChatTitle';
+	public static $method = 'setChatTitle';
 	static protected $requiredParams = [
 		'chat_id',
 		'title'

@@ -23,7 +23,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendVenue extends BaseMethod
 {
-	protected $method = 'sendVenue';
+	public static $method = 'sendVenue';
 	static protected $requiredParams = [
 		'chat_id',
 		'latitude',

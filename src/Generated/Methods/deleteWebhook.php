@@ -5,7 +5,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class deleteWebhook extends BaseMethod
 {
-	protected $method = 'deleteWebhook';
+	public static $method = 'deleteWebhook';
 	static protected $requiredParams = [
 		
 	];

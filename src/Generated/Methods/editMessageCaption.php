@@ -15,7 +15,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class editMessageCaption extends BaseMethod
 {
-	protected $method = 'editMessageCaption';
+	public static $method = 'editMessageCaption';
 	static protected $requiredParams = [
 		'chat_id',
 		'message_id',

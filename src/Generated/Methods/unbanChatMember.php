@@ -9,7 +9,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class unbanChatMember extends BaseMethod
 {
-	protected $method = 'unbanChatMember';
+	public static $method = 'unbanChatMember';
 	static protected $requiredParams = [
 		'chat_id',
 		'user_id'

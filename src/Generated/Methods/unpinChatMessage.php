@@ -7,7 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class unpinChatMessage extends BaseMethod
 {
-	protected $method = 'unpinChatMessage';
+	public static $method = 'unpinChatMessage';
 	static protected $requiredParams = [
 		'chat_id'
 	];

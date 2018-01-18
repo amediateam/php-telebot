@@ -19,7 +19,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class restrictChatMember extends BaseMethod
 {
-	protected $method = 'restrictChatMember';
+	public static $method = 'restrictChatMember';
 	static protected $requiredParams = [
 		'chat_id',
 		'user_id'

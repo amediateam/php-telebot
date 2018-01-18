@@ -7,7 +7,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getStickerSet extends BaseMethod
 {
-	protected $method = 'getStickerSet';
+	public static $method = 'getStickerSet';
 	static protected $requiredParams = [
 		'name'
 	];

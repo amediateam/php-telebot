@@ -13,7 +13,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class editMessageReplyMarkup extends BaseMethod
 {
-	protected $method = 'editMessageReplyMarkup';
+	public static $method = 'editMessageReplyMarkup';
 	static protected $requiredParams = [
 		'chat_id',
 		'message_id',

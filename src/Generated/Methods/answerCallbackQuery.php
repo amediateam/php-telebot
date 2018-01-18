@@ -15,7 +15,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class answerCallbackQuery extends BaseMethod
 {
-	protected $method = 'answerCallbackQuery';
+	public static $method = 'answerCallbackQuery';
 	static protected $requiredParams = [
 		'callback_query_id'
 	];

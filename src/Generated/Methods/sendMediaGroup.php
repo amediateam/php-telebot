@@ -17,7 +17,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendMediaGroup extends BaseMethod
 {
-	protected $method = 'sendMediaGroup';
+	public static $method = 'sendMediaGroup';
 	static protected $requiredParams = [
 		'chat_id',
 		'media'

@@ -11,7 +11,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class pinChatMessage extends BaseMethod
 {
-	protected $method = 'pinChatMessage';
+	public static $method = 'pinChatMessage';
 	static protected $requiredParams = [
 		'chat_id',
 		'message_id'

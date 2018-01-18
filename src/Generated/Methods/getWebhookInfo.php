@@ -5,7 +5,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getWebhookInfo extends BaseMethod
 {
-	protected $method = 'getWebhookInfo';
+	public static $method = 'getWebhookInfo';
 	static protected $requiredParams = [
 		
 	];

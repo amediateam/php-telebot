@@ -19,7 +19,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class answerInlineQuery extends BaseMethod
 {
-	protected $method = 'answerInlineQuery';
+	public static $method = 'answerInlineQuery';
 	static protected $requiredParams = [
 		'inline_query_id',
 		'results'

@@ -27,7 +27,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class promoteChatMember extends BaseMethod
 {
-	protected $method = 'promoteChatMember';
+	public static $method = 'promoteChatMember';
 	static protected $requiredParams = [
 		'chat_id',
 		'user_id'

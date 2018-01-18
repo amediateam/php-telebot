@@ -13,7 +13,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class getUpdates extends BaseMethod
 {
-	protected $method = 'getUpdates';
+	public static $method = 'getUpdates';
 	static protected $requiredParams = [
 		
 	];

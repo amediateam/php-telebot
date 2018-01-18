@@ -15,7 +15,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class addStickerToSet extends BaseMethod
 {
-	protected $method = 'addStickerToSet';
+	public static $method = 'addStickerToSet';
 	static protected $requiredParams = [
 		'user_id',
 		'name',
