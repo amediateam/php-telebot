@@ -41,7 +41,7 @@ class CommandHandler extends MessageHandler
      * @param BotApi $botApi
      * @param Update $update
      * @return mixed
-     * @throws \TelegramBot\Api\InvalidCallbackException
+     * @throws \TelegramBot\Api\Exceptions\InvalidCallbackException
      */
     public function handleUpdate(BotApi $botApi, Update $update)
     {

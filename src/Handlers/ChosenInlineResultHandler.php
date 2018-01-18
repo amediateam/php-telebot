@@ -12,9 +12,12 @@ class ChosenInlineResultHandler extends BaseHandler
     protected $regex;
     protected $matches = [];
 
-    public function __construct(callable $callback, $regex = null)
+    public function __construct(callable $callback, $regex = [])
     {
         parent::__construct($callback);
+        if(!is_array($regex)){
+            $regex = [$regex];
+        }
         $this->regex = $regex;
     }
 
@@ -23,7 +26,11 @@ class ChosenInlineResultHandler extends BaseHandler
         if (!Filters::$chosenInlineResult::filter($update)) {
             return false;
         }
-        if (!is_null($this->regex) && !preg_match($this->regex, $update->getChosenInlineResult()->getQuery(), $this->matches)) {
+        if (!is_null($this->regex)) {
+            foreach ($this->regex as $regex) {
+                if (preg_match($regex, $update->getChosenInlineResult()->getQuery(), $this->matches))
+                    return true;
+            }
             return false;
         }
         return true;

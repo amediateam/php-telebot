@@ -14,7 +14,7 @@ class RegexHandler extends MessageHandler
 
     public function __construct(
         callable $callback,
-        $regex,
+        $regex = [],
         array $filters = null,
         bool $commandUpdates = true,
         bool $messageUpdates = true,
@@ -22,6 +22,9 @@ class RegexHandler extends MessageHandler
         bool $channelPostUpdates = true
     )
     {
+        if (!is_array($regex)) {
+            $regex = [$regex];
+        }
         $this->regex = $regex;
         parent::__construct($callback, $filters, $commandUpdates, $messageUpdates, $editedUpdates, $channelPostUpdates);
     }
@@ -31,7 +34,14 @@ class RegexHandler extends MessageHandler
         if (!parent::checkUpdate($update)) {
             return false;
         }
-        return is_null($this->regex) || preg_match($this->regex, $update->getEffectiveMessage()->getText(), $this->matches);
+        if (!is_null($this->regex)) {
+            foreach ($this->regex as $regex) {
+                if (preg_match($regex, $update->getEffectiveMessage()->getText(), $this->matches))
+                    return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     public function handleUpdate(BotApi $botApi, Update $update)

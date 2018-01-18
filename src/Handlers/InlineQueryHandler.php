@@ -11,10 +11,14 @@ use TelegramBot\Api\Types\Update;
 class InlineQueryHandler extends BaseHandler
 {
     protected $regex;
+    protected $matches = [];
 
-    public function __construct(callable $callback, $regex = null)
+    public function __construct(callable $callback, $regex = [])
     {
         parent::__construct($callback);
+        if(!is_array($regex)){
+            $regex = [$regex];
+        }
         $this->regex = $regex;
     }
 
@@ -23,7 +27,11 @@ class InlineQueryHandler extends BaseHandler
         if (!Filters::$inlineQuery::filter($update)) {
             return false;
         }
-        if (!is_null($this->regex) && !preg_match($this->regex, $update->getInlineQuery()->getQuery())) {
+        if (!is_null($this->regex)) {
+            foreach ($this->regex as $regex) {
+                if (preg_match($regex, $update->getInlineQuery()->getQuery(), $this->matches))
+                    return true;
+            }
             return false;
         }
         return true;
@@ -36,10 +44,6 @@ class InlineQueryHandler extends BaseHandler
 
     public function getCallArguments(BotApi $botApi, Update $update)
     {
-        $matches = [];
-        if (!is_null($this->regex)) {
-            preg_match($this->regex, $update->getInlineQuery()->getQuery(), $matches);
-        }
-        return [$botApi, $update, $update->getInlineQuery(), $matches];
+        return [$botApi, $update, $update->getInlineQuery(), $this->matches];
     }
 }
