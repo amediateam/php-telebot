@@ -2,7 +2,7 @@
 
 namespace TelegramBot\Api\Types;
 
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Generated\Types;
 
 class Update extends Types\Update
@@ -86,6 +86,6 @@ class Update extends Types\Update
 
     public function isStateAware()
     {
-        return !Filters::$statusUpdate::filter($this);
+        return Filters::statusUpdate(false)($this);
     }
 }
