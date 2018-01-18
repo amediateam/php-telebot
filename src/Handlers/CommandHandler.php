@@ -12,12 +12,24 @@ class CommandHandler extends MessageHandler
     protected $command;
     protected $parsedCommand;
 
-    public function __construct($command, callable $callback,
+    /**
+     * CommandHandler constructor.
+     * @param null|array $command
+     * @param callable $callback
+     * @param null|array $filters
+     * @param bool $messageUpdates
+     * @param bool $editedUpdates
+     * @param bool $channelPostUpdates
+     */
+    public function __construct($command = null, callable $callback,
                                 $filters = null,
                                 bool $messageUpdates = true,
                                 bool $editedUpdates = false,
                                 bool $channelPostUpdates = true)
     {
+        if (!is_array($command)) {
+            $command = [$command];
+        }
         $this->command = $command;
         parent::__construct($callback, $filters, true, $messageUpdates, $editedUpdates, $channelPostUpdates);
     }
@@ -31,10 +43,12 @@ class CommandHandler extends MessageHandler
             return false;
         }
         $this->parsedCommand = TextCommand::parse($update->getEffectiveMessage()->getText());
-        if (!(strcmp(strtolower($this->parsedCommand->getName()), strtolower($this->command)) === 0)) {
-            return false;
+        foreach ($this->command as $cmd) {
+            if (strcmp(strtolower($this->parsedCommand->getName()), strtolower($cmd)) === 0) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     /**
