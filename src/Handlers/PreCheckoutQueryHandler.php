@@ -4,7 +4,7 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
 
 class PreCheckoutQueryHandler extends BaseHandler
@@ -16,7 +16,7 @@ class PreCheckoutQueryHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$preCheckoutQuery::filter($update)) {
+        if (!Filters::preCheckoutQuery()($update)) {
             return false;
         }
         return true;

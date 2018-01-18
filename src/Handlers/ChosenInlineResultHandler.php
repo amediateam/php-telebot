@@ -4,7 +4,7 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
 
 class ChosenInlineResultHandler extends BaseHandler
@@ -15,7 +15,7 @@ class ChosenInlineResultHandler extends BaseHandler
     public function __construct(callable $callback, $regex = [])
     {
         parent::__construct($callback);
-        if(!is_array($regex)){
+        if (!is_array($regex)) {
             $regex = [$regex];
         }
         $this->regex = $regex;
@@ -23,7 +23,7 @@ class ChosenInlineResultHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$chosenInlineResult::filter($update)) {
+        if (!Filters::chosenInlineResult()($update)) {
             return false;
         }
         if (!is_null($this->regex)) {

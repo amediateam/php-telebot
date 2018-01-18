@@ -3,7 +3,7 @@
 namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\TextCommand;
 use TelegramBot\Api\Types\Update;
 
@@ -39,7 +39,7 @@ class CommandHandler extends MessageHandler
         if (!parent::checkUpdate($update)) {
             return false;
         }
-        if (!Filters::$command::filter($update)) {
+        if (!Filters::command()($update)) {
             return false;
         }
         $this->parsedCommand = TextCommand::parse($update->getEffectiveMessage()->getText());

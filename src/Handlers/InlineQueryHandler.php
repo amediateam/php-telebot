@@ -4,8 +4,7 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
-use TelegramBot\Api\Handlers\Abstracts\AbstractInlineQueryHandler;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
 
 class InlineQueryHandler extends BaseHandler
@@ -24,7 +23,7 @@ class InlineQueryHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$inlineQuery::filter($update)) {
+        if (!Filters::inlineQuery()($update)) {
             return false;
         }
         if (!is_null($this->regex)) {

@@ -4,7 +4,7 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
 use function call_user_func_array;
 
@@ -33,9 +33,9 @@ class MessageHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$message::filter($update, $this->filters)) {
+        if (!Filters::message()($update)) {
             return false;
-        } else if (Filters::$statusUpdate::filter($update, $this->filters)) {
+        } else if (Filters::statusUpdate()($update)) {
             return false;
         } else if (!Filters::filter($update, $this->filters)) {
             return false;
@@ -45,7 +45,7 @@ class MessageHandler extends BaseHandler
             return false;
         } else if (!$this->channelPostUpdates && $update->isChannelPost()) {
             return false;
-        } else if (!$this->commandUpdates && Filters::$text::filter($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
+        } else if (!$this->commandUpdates && Filters::text()($update) && substr($update->getMessage()->getText(), 0, 1) == '/') {
             return false;
         }
         return true;

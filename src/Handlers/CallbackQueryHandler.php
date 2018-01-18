@@ -4,7 +4,7 @@ namespace TelegramBot\Api\Handlers;
 
 use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Filters\Filters;
+use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
 use function call_user_func_array;
 
@@ -24,7 +24,7 @@ class CallbackQueryHandler extends BaseHandler
 
     public function checkUpdate(Update $update)
     {
-        if (!Filters::$callbackQuery::filter($update)) {
+        if (!Filters::callbackQuery()($update)) {
             return false;
         }
         if (!is_null($this->regex)) {
