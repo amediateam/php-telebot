@@ -613,6 +613,7 @@ return [
                 'id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'document_url' => 'String',
                 'mime_type' => 'String',
                 'description' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',

@@ -5,6 +5,8 @@ namespace TelegramBot\Api;
 use function is_numeric;
 use function lcfirst;
 use const PHP_EOL;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\MissingParameterException;
 use TelegramBot\Api\Extension\InputFile;
 
 class KeyValuePairStore

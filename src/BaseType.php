@@ -1,6 +1,7 @@
 <?php
-
 namespace TelegramBot\Api;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\TelegramException;
 
 /**
  * Class BaseType

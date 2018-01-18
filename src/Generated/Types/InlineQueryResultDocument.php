@@ -9,6 +9,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultDocument setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultDocument setDocumentUrl(string $documentUrl)
+ * @method string getDocumentUrl()
  * @method \TelegramBot\Api\Types\InlineQueryResultDocument setMimeType(string $mimeType)
  * @method string getMimeType()
  * @method \TelegramBot\Api\Types\InlineQueryResultDocument setDescription(string $description)
@@ -39,6 +41,7 @@ public static $name = 'InlineQueryResultDocument';
 		'id' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'document_url' => 'string',
 		'mime_type' => 'string',
 		'description' => 'string',
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,

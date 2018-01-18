@@ -1,6 +1,5 @@
 <?php
-
-namespace TelegramBot\Api;
+namespace TelegramBot\Api\Exceptions;
 
 /**
  * Class MissingParameterException
@@ -8,7 +7,7 @@ namespace TelegramBot\Api;
  * @codeCoverageIgnore
  * @package TelegramBot\Api
  */
-class MissingParameterException extends \Exception
+class MissingParameterException extends TelegramException
 {
 
 }

@@ -1,201 +1,5 @@
 <?php
 namespace TelegramBot\Api;
-/**
-* @method \TelegramBot\Api\Types\Update[] getUpdates(integer $offset = null, integer $limit = null, integer $timeout = null, array $allowedUpdates = [])
-* @method \GuzzleHttp\Promise\PromiseInterface getUpdatesAsync(integer $offset = null, integer $limit = null, integer $timeout = null, array $allowedUpdates = [])
-* @method \TelegramBot\Api\Methods\getUpdates initGetUpdates(integer $offset = null, integer $limit = null, integer $timeout = null, array $allowedUpdates = [])
-* @method boolean setWebhook(string $url, \TelegramBot\Api\Extension\InputFile $certificate, integer $maxConnections = null, array $allowedUpdates = [])
-* @method \GuzzleHttp\Promise\PromiseInterface setWebhookAsync(string $url, \TelegramBot\Api\Extension\InputFile $certificate, integer $maxConnections = null, array $allowedUpdates = [])
-* @method \TelegramBot\Api\Methods\setWebhook initSetWebhook(string $url, \TelegramBot\Api\Extension\InputFile $certificate, integer $maxConnections = null, array $allowedUpdates = [])
-* @method boolean deleteWebhook()
-* @method \GuzzleHttp\Promise\PromiseInterface deleteWebhookAsync()
-* @method \TelegramBot\Api\Methods\deleteWebhook initDeleteWebhook()
-* @method boolean getWebhookInfo()
-* @method \GuzzleHttp\Promise\PromiseInterface getWebhookInfoAsync()
-* @method \TelegramBot\Api\Methods\getWebhookInfo initGetWebhookInfo()
-* @method \TelegramBot\Api\Types\User getMe()
-* @method \GuzzleHttp\Promise\PromiseInterface getMeAsync()
-* @method \TelegramBot\Api\Methods\getMe initGetMe()
-* @method \TelegramBot\Api\Types\Message sendMessage(integer|string $chatId, string $text, string $parseMode = null, boolean $disableWebPagePreview = false, boolean $disableNotification = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null, integer $replyToMessageId = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendMessageAsync(integer|string $chatId, string $text, string $parseMode = null, boolean $disableWebPagePreview = false, boolean $disableNotification = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null, integer $replyToMessageId = null)
-* @method \TelegramBot\Api\Methods\sendMessage initSendMessage(integer|string $chatId, string $text, string $parseMode = null, boolean $disableWebPagePreview = false, boolean $disableNotification = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null, integer $replyToMessageId = null)
-* @method \TelegramBot\Api\Types\Message forwardMessage(integer $chatId, integer $fromChatId, integer $messageId, boolean $disableNotification = false)
-* @method \GuzzleHttp\Promise\PromiseInterface forwardMessageAsync(integer $chatId, integer $fromChatId, integer $messageId, boolean $disableNotification = false)
-* @method \TelegramBot\Api\Methods\forwardMessage initForwardMessage(integer $chatId, integer $fromChatId, integer $messageId, boolean $disableNotification = false)
-* @method \TelegramBot\Api\Types\Message sendPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $photo, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendPhotoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $photo, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendPhoto initSendPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $photo, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendAudio(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $audio, integer $duration = null, string $performer = null, string $title = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendAudioAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $audio, integer $duration = null, string $performer = null, string $title = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendAudio initSendAudio(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $audio, integer $duration = null, string $performer = null, string $title = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendDocument(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $document, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendDocumentAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $document, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendDocument initSendDocument(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $document, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendVideo(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $video, integer $duration = null, integer $width = null, integer $height = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendVideoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $video, integer $duration = null, integer $width = null, integer $height = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendVideo initSendVideo(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $video, integer $duration = null, integer $width = null, integer $height = null, string $caption = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendVoice(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $voice, string $caption = null, integer $duration = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendVoiceAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $voice, string $caption = null, integer $duration = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendVoice initSendVoice(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $voice, string $caption = null, integer $duration = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendVideoNote(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $videoNote, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendVideoNoteAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $videoNote, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendVideoNote initSendVideoNote(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $videoNote, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message[] sendMediaGroup(integer|string $chatId, array $media, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendMediaGroupAsync(integer|string $chatId, array $media, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null)
-* @method \TelegramBot\Api\Methods\sendMediaGroup initSendMediaGroup(integer|string $chatId, array $media, integer $duration = null, integer $length = null, boolean $disableNotification = false, integer $replyToMessageId = null)
-* @method \TelegramBot\Api\Types\Message sendLocation(integer $chatId, float $latitude, float $longitude, integer $livePeriod = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendLocationAsync(integer $chatId, float $latitude, float $longitude, integer $livePeriod = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendLocation initSendLocation(integer $chatId, float $latitude, float $longitude, integer $livePeriod = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message|boolean editMessageLiveLocation(float $latitude, float $longitude, integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface editMessageLiveLocationAsync(float $latitude, float $longitude, integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\editMessageLiveLocation initEditMessageLiveLocation(float $latitude, float $longitude, integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message|boolean stopMessageLiveLocation(integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface stopMessageLiveLocationAsync(integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\stopMessageLiveLocation initStopMessageLiveLocation(integer|string $chatId = null, integer $messageId = null, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendVenue(integer $chatId, float $latitude, float $longitude, string $title, string $address, string $foursquareId = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendVenueAsync(integer $chatId, float $latitude, float $longitude, string $title, string $address, string $foursquareId = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendVenue initSendVenue(integer $chatId, float $latitude, float $longitude, string $title, string $address, string $foursquareId = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message sendContact(integer $chatId, string $phoneNumber, string $firstName, string $lastName = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendContactAsync(integer $chatId, string $phoneNumber, string $firstName, string $lastName = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendContact initSendContact(integer $chatId, string $phoneNumber, string $firstName, string $lastName = null, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method boolean sendChatAction(integer $chatId, string $action)
-* @method \GuzzleHttp\Promise\PromiseInterface sendChatActionAsync(integer $chatId, string $action)
-* @method \TelegramBot\Api\Methods\sendChatAction initSendChatAction(integer $chatId, string $action)
-* @method \TelegramBot\Api\Types\UserProfilePhotos getUserProfilePhotos(integer $userId, integer $offset = null, integer $limit = null)
-* @method \GuzzleHttp\Promise\PromiseInterface getUserProfilePhotosAsync(integer $userId, integer $offset = null, integer $limit = null)
-* @method \TelegramBot\Api\Methods\getUserProfilePhotos initGetUserProfilePhotos(integer $userId, integer $offset = null, integer $limit = null)
-* @method \TelegramBot\Api\Types\File getFile(string $fileId)
-* @method \GuzzleHttp\Promise\PromiseInterface getFileAsync(string $fileId)
-* @method \TelegramBot\Api\Methods\getFile initGetFile(string $fileId)
-* @method boolean kickChatMember(integer $chatId, integer|string $userId, integer $untilDate = null)
-* @method \GuzzleHttp\Promise\PromiseInterface kickChatMemberAsync(integer $chatId, integer|string $userId, integer $untilDate = null)
-* @method \TelegramBot\Api\Methods\kickChatMember initKickChatMember(integer $chatId, integer|string $userId, integer $untilDate = null)
-* @method boolean unbanChatMember(integer $chatId, integer|string $userId)
-* @method \GuzzleHttp\Promise\PromiseInterface unbanChatMemberAsync(integer $chatId, integer|string $userId)
-* @method \TelegramBot\Api\Methods\unbanChatMember initUnbanChatMember(integer $chatId, integer|string $userId)
-* @method boolean restrictChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canSendMessages = false, boolean $canSendMediaMessages = false, boolean $canSendOtherMessages = false, boolean $canAddWebPagePreviews = false)
-* @method \GuzzleHttp\Promise\PromiseInterface restrictChatMemberAsync(integer $chatId, integer $userId, integer $untilDate = null, boolean $canSendMessages = false, boolean $canSendMediaMessages = false, boolean $canSendOtherMessages = false, boolean $canAddWebPagePreviews = false)
-* @method \TelegramBot\Api\Methods\restrictChatMember initRestrictChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canSendMessages = false, boolean $canSendMediaMessages = false, boolean $canSendOtherMessages = false, boolean $canAddWebPagePreviews = false)
-* @method boolean promoteChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canChangeInfo = false, boolean $canPostMessages = false, boolean $canEditMessages = false, boolean $canDeleteMessages = false, boolean $canInviteUsers = false, boolean $canRestrictMembers = false, boolean $canPinMessages = false, boolean $canPromoteMembers = false)
-* @method \GuzzleHttp\Promise\PromiseInterface promoteChatMemberAsync(integer $chatId, integer $userId, integer $untilDate = null, boolean $canChangeInfo = false, boolean $canPostMessages = false, boolean $canEditMessages = false, boolean $canDeleteMessages = false, boolean $canInviteUsers = false, boolean $canRestrictMembers = false, boolean $canPinMessages = false, boolean $canPromoteMembers = false)
-* @method \TelegramBot\Api\Methods\promoteChatMember initPromoteChatMember(integer $chatId, integer $userId, integer $untilDate = null, boolean $canChangeInfo = false, boolean $canPostMessages = false, boolean $canEditMessages = false, boolean $canDeleteMessages = false, boolean $canInviteUsers = false, boolean $canRestrictMembers = false, boolean $canPinMessages = false, boolean $canPromoteMembers = false)
-* @method string exportChatInviteLink(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface exportChatInviteLinkAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\exportChatInviteLink initExportChatInviteLink(integer|string $chatId)
-* @method boolean setChatPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile $photo)
-* @method \GuzzleHttp\Promise\PromiseInterface setChatPhotoAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile $photo)
-* @method \TelegramBot\Api\Methods\setChatPhoto initSetChatPhoto(integer|string $chatId, \TelegramBot\Api\Extension\InputFile $photo)
-* @method boolean deleteChatPhoto(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface deleteChatPhotoAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\deleteChatPhoto initDeleteChatPhoto(integer|string $chatId)
-* @method boolean setChatTitle(integer|string $chatId, string $title)
-* @method \GuzzleHttp\Promise\PromiseInterface setChatTitleAsync(integer|string $chatId, string $title)
-* @method \TelegramBot\Api\Methods\setChatTitle initSetChatTitle(integer|string $chatId, string $title)
-* @method boolean setChatDescription(integer|string $chatId, string $description = null)
-* @method \GuzzleHttp\Promise\PromiseInterface setChatDescriptionAsync(integer|string $chatId, string $description = null)
-* @method \TelegramBot\Api\Methods\setChatDescription initSetChatDescription(integer|string $chatId, string $description = null)
-* @method boolean pinChatMessage(integer|string $chatId, integer $messageId, boolean $disableNotification = false)
-* @method \GuzzleHttp\Promise\PromiseInterface pinChatMessageAsync(integer|string $chatId, integer $messageId, boolean $disableNotification = false)
-* @method \TelegramBot\Api\Methods\pinChatMessage initPinChatMessage(integer|string $chatId, integer $messageId, boolean $disableNotification = false)
-* @method boolean unpinChatMessage(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface unpinChatMessageAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\unpinChatMessage initUnpinChatMessage(integer|string $chatId)
-* @method boolean leaveChat(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface leaveChatAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\leaveChat initLeaveChat(integer|string $chatId)
-* @method \TelegramBot\Api\Types\Chat getChat(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface getChatAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\getChat initGetChat(integer|string $chatId)
-* @method \TelegramBot\Api\Types\ChatMember[] getChatAdministrators(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface getChatAdministratorsAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\getChatAdministrators initGetChatAdministrators(integer|string $chatId)
-* @method integer getChatMembersCount(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface getChatMembersCountAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\getChatMembersCount initGetChatMembersCount(integer|string $chatId)
-* @method \TelegramBot\Api\Types\ChatMember getChatMember(integer $chatId, integer|string $userId)
-* @method \GuzzleHttp\Promise\PromiseInterface getChatMemberAsync(integer $chatId, integer|string $userId)
-* @method \TelegramBot\Api\Methods\getChatMember initGetChatMember(integer $chatId, integer|string $userId)
-* @method boolean setChatStickerSet(integer|string $chatId, string $stickerSetName)
-* @method \GuzzleHttp\Promise\PromiseInterface setChatStickerSetAsync(integer|string $chatId, string $stickerSetName)
-* @method \TelegramBot\Api\Methods\setChatStickerSet initSetChatStickerSet(integer|string $chatId, string $stickerSetName)
-* @method boolean deleteChatStickerSet(integer|string $chatId)
-* @method \GuzzleHttp\Promise\PromiseInterface deleteChatStickerSetAsync(integer|string $chatId)
-* @method \TelegramBot\Api\Methods\deleteChatStickerSet initDeleteChatStickerSet(integer|string $chatId)
-* @method boolean answerCallbackQuery(string $callbackQueryId, string $text = null, boolean $showAlert = false, string $url = null, integer $cacheTime = null)
-* @method \GuzzleHttp\Promise\PromiseInterface answerCallbackQueryAsync(string $callbackQueryId, string $text = null, boolean $showAlert = false, string $url = null, integer $cacheTime = null)
-* @method \TelegramBot\Api\Methods\answerCallbackQuery initAnswerCallbackQuery(string $callbackQueryId, string $text = null, boolean $showAlert = false, string $url = null, integer $cacheTime = null)
-* @method \TelegramBot\Api\Types\Message|boolean editMessageText(integer|string $chatId, integer $messageId, string $text, string $inlineMessageId = null, string $parseMode = null, boolean $disableWebPagePreview = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface editMessageTextAsync(integer|string $chatId, integer $messageId, string $text, string $inlineMessageId = null, string $parseMode = null, boolean $disableWebPagePreview = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\editMessageText initEditMessageText(integer|string $chatId, integer $messageId, string $text, string $inlineMessageId = null, string $parseMode = null, boolean $disableWebPagePreview = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message|boolean editMessageCaption(integer|string $chatId, integer $messageId, string $caption, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface editMessageCaptionAsync(integer|string $chatId, integer $messageId, string $caption, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\editMessageCaption initEditMessageCaption(integer|string $chatId, integer $messageId, string $caption, string $inlineMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\Message|boolean editMessageReplyMarkup(integer|string $chatId, integer $messageId, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup, string $inlineMessageId = null)
-* @method \GuzzleHttp\Promise\PromiseInterface editMessageReplyMarkupAsync(integer|string $chatId, integer $messageId, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup, string $inlineMessageId = null)
-* @method \TelegramBot\Api\Methods\editMessageReplyMarkup initEditMessageReplyMarkup(integer|string $chatId, integer $messageId, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup, string $inlineMessageId = null)
-* @method boolean deleteMessage(integer|string $chatId, integer $messageId)
-* @method \GuzzleHttp\Promise\PromiseInterface deleteMessageAsync(integer|string $chatId, integer $messageId)
-* @method \TelegramBot\Api\Methods\deleteMessage initDeleteMessage(integer|string $chatId, integer $messageId)
-* @method \TelegramBot\Api\Types\Message sendSticker(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $sticker, boolean $disableNotification = false, boolean $replyToMessageId = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendStickerAsync(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $sticker, boolean $disableNotification = false, boolean $replyToMessageId = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendSticker initSendSticker(integer|string $chatId, \TelegramBot\Api\Extension\InputFile|string $sticker, boolean $disableNotification = false, boolean $replyToMessageId = false, \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup = null)
-* @method \TelegramBot\Api\Types\StickerSet getStickerSet(string $name)
-* @method \GuzzleHttp\Promise\PromiseInterface getStickerSetAsync(string $name)
-* @method \TelegramBot\Api\Methods\getStickerSet initGetStickerSet(string $name)
-* @method \TelegramBot\Api\Types\File uploadStickerFile(integer $userId, \TelegramBot\Api\Extension\InputFile $pngSticker)
-* @method \GuzzleHttp\Promise\PromiseInterface uploadStickerFileAsync(integer $userId, \TelegramBot\Api\Extension\InputFile $pngSticker)
-* @method \TelegramBot\Api\Methods\uploadStickerFile initUploadStickerFile(integer $userId, \TelegramBot\Api\Extension\InputFile $pngSticker)
-* @method boolean createNewStickerSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, boolean $containsMasks = false, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method \GuzzleHttp\Promise\PromiseInterface createNewStickerSetAsync(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, boolean $containsMasks = false, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method \TelegramBot\Api\Methods\createNewStickerSet initCreateNewStickerSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, boolean $containsMasks = false, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method boolean addStickerToSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method \GuzzleHttp\Promise\PromiseInterface addStickerToSetAsync(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method \TelegramBot\Api\Methods\addStickerToSet initAddStickerToSet(integer $userId, string $name, \TelegramBot\Api\Extension\InputFile|string $pngSticker, string $emojis, \TelegramBot\Api\Types\MaskPosition $maskPosition = null)
-* @method boolean setStickerPositionInSet(string $sticker, integer $position)
-* @method \GuzzleHttp\Promise\PromiseInterface setStickerPositionInSetAsync(string $sticker, integer $position)
-* @method \TelegramBot\Api\Methods\setStickerPositionInSet initSetStickerPositionInSet(string $sticker, integer $position)
-* @method boolean deleteStickerFromSet(string $sticker)
-* @method \GuzzleHttp\Promise\PromiseInterface deleteStickerFromSetAsync(string $sticker)
-* @method \TelegramBot\Api\Methods\deleteStickerFromSet initDeleteStickerFromSet(string $sticker)
-* @method boolean answerInlineQuery(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
-* @method \GuzzleHttp\Promise\PromiseInterface answerInlineQueryAsync(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
-* @method \TelegramBot\Api\Methods\answerInlineQuery initAnswerInlineQuery(string $inlineQueryId, array $results, integer $cacheTime = null, boolean $isPersonal = false, string $nextOffset = null, string $switchPmText = null, string $switchPmParameter = null)
-* @method \TelegramBot\Api\Types\Message sendInvoice(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null)
-* @method \GuzzleHttp\Promise\PromiseInterface sendInvoiceAsync(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null)
-* @method \TelegramBot\Api\Methods\sendInvoice initSendInvoice(integer|string $chatId, string $title, string $description, string $payload, string $providerToken, string $startParameter, string $currency, array $prices, string $providerData = null, string $photoUrl = null, integer $photoSize = null, integer $photoWidth = null, integer $photoHeight = null, boolean $needName = false, boolean $needPhoneNumber = false, boolean $needEmail = false, boolean $needShippingAddress = false, boolean $isFlexible = false, boolean $disableNotification = false, integer $replyToMessageId = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null)
-* @method boolean answerShippingQuery(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
-* @method \GuzzleHttp\Promise\PromiseInterface answerShippingQueryAsync(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
-* @method \TelegramBot\Api\Methods\answerShippingQuery initAnswerShippingQuery(string $shippingQueryId, boolean $ok, array $shippingOptions = [], string $errorMessage = null)
-* @method boolean answerPreCheckoutQuery(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
-* @method \GuzzleHttp\Promise\PromiseInterface answerPreCheckoutQueryAsync(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
-* @method \TelegramBot\Api\Methods\answerPreCheckoutQuery initAnswerPreCheckoutQuery(string $preCheckoutQueryId, boolean $ok, string $errorMessage = null)
-* @method \TelegramBot\Api\Types\ReplyKeyboardMarkup createReplyKeyboardMarkup(array $keyboard, boolean $resizeKeyboard = false, boolean $oneTimeKeyboard = false, boolean $selective = false)
-* @method \TelegramBot\Api\Types\KeyboardButton createKeyboardButton(string $text, boolean $requestContact = false, boolean $requestLocation = false)
-* @method \TelegramBot\Api\Types\ReplyKeyboardRemove createReplyKeyboardRemove(boolean $removeKeyboard, boolean $selective = false)
-* @method \TelegramBot\Api\Types\InlineKeyboardMarkup createInlineKeyboardMarkup(array $inlineKeyboard)
-* @method \TelegramBot\Api\Types\InlineKeyboardButton createInlineKeyboardButton(string $text, string $url = null, string $callbackData = null, string $switchInlineQuery = null, string $switchInlineQueryCurrentChat = null, \TelegramBot\Api\Types\CallbackGame $callbackGame = null, boolean $pay = false)
-* @method \TelegramBot\Api\Types\ForceReply createForceReply(boolean $forceReply, boolean $selective = false)
-* @method \TelegramBot\Api\Types\InlineQueryResultArticle createInlineQueryResultArticle(string $id, string $title, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $url = null, boolean $hideUrl = false, string $description = null, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = 'article')
-* @method \TelegramBot\Api\Types\InlineQueryResultAudio createInlineQueryResultAudio(string $id, string $title, string $audioUrl, string $caption = null, string $performer = null, integer $audioDuration = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'audio')
-* @method \TelegramBot\Api\Types\InlineQueryResultContact createInlineQueryResultContact(string $id, string $phoneNumber, string $firstName, string $lastName = null, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'contact')
-* @method \TelegramBot\Api\Types\InlineQueryResultGame createInlineQueryResultGame(string $id, string $documentUrl, string $title, string $caption = null, string $mimeType = null, string $description = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'game')
-
-Notice: Undefined index: document_url in C:\Users\Amirhossein Matini\Documents\Workspace\Projects\Libraries\php-telebot\generator.php on line 172
-* @method \TelegramBot\Api\Types\InlineQueryResultDocument createInlineQueryResultDocument(string $id, string $title, string $mimeType, $documentUrl, string $caption = null, string $description = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, InputMessageContent $inputMessageContent, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = 'document')
-* @method \TelegramBot\Api\Types\InlineQueryResultGif createInlineQueryResultGif(string $id, string $gifUrl, integer $gifWidth = null, integer $gifHeight = null, integer $gifDuration = null, string $thumbUrl = null, string $title = null, string $caption = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'gif')
-* @method \TelegramBot\Api\Types\InlineQueryResultLocation createInlineQueryResultLocation(string $id, float $latitude, float $longitude, string $title, integer $livePeriod = null, string $thumbUrl = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = 'location')
-* @method \TelegramBot\Api\Types\InlineQueryResultMpeg4Gif createInlineQueryResultMpeg4Gif(string $id, string $mpeg4Url, integer $mpeg4Width = null, integer $mpeg4Height = null, integer $mpeg4Duration = null, string $thumbUrl = null, string $title = null, string $caption = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, string $type = 'mpeg4_gif')
-* @method \TelegramBot\Api\Types\InlineQueryResultPhoto createInlineQueryResultPhoto(string $id, string $photoUrl, string $thumbUrl = null, integer $photoWidth = null, integer $photoHeight = null, string $title = null, string $caption = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, string $type = 'photo')
-* @method \TelegramBot\Api\Types\InlineQueryResultVenue createInlineQueryResultVenue(string $id, float $latitude, float $longitude, string $title, integer $address, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $thumbUrl = null, integer $thumbWidth = null, integer $thumbHeight = null, string $type = 'venue')
-* @method \TelegramBot\Api\Types\InlineQueryResultVideo createInlineQueryResultVideo(string $id, string $videoUrl, string $mimeType, string $thumbUrl = null, string $title = null, string $caption = null, integer $videoWidth = null, integer $videoHeight = null, integer $videoDuration = null, string $description = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'video')
-* @method \TelegramBot\Api\Types\InlineQueryResultVoice createInlineQueryResultVoice(string $id, string $voiceUrl, string $title, string $caption = null, integer $voiceDuration = null, \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent = null, \TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup = null, string $type = 'voice')
-* @method \TelegramBot\Api\Types\InputTextMessageContent createInputTextMessageContent(string $messageText, string $parseMode = null, boolean $disableWebPagePreview = false)
-* @method \TelegramBot\Api\Types\InputLocationMessageContent createInputLocationMessageContent(float $latitude, float $longitude, integer $livePeriod = null)
-* @method \TelegramBot\Api\Types\InputVenueMessageContent createInputVenueMessageContent(float $latitude, float $longitude, string $title, string $address, string $foursquareId = null)
-* @method \TelegramBot\Api\Types\InputContactMessageContent createInputContactMessageContent(string $phoneNumber, string $firstName, string $lastName = null)
-* @method \TelegramBot\Api\Types\InputMediaPhoto createInputMediaPhoto(string $type, string $media, string $caption = null)
-* @method \TelegramBot\Api\Types\InputMediaVideo createInputMediaVideo(string $type, string $media, string $caption = null, integer $width = null, integer $height = null, integer $duration = null)
-*/
 class MethodFunctions{
 	protected $methodMap = [
 		'getUpdates' => [
@@ -1453,7 +1257,7 @@ class MethodFunctions{
 		],
 	];
 	protected $typeMap = [
-		'ReplyKeyboardMarkup' => [
+		'createReplyKeyboardMarkup' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ReplyKeyboardMarkup::class,
 			],
@@ -1464,7 +1268,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'KeyboardButton' => [
+		'createKeyboardButton' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\KeyboardButton::class,
 			],
@@ -1474,7 +1278,7 @@ class MethodFunctions{
 				'request_location',
 			],
 		],
-		'ReplyKeyboardRemove' => [
+		'createReplyKeyboardRemove' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ReplyKeyboardRemove::class,
 			],
@@ -1483,7 +1287,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'InlineKeyboardMarkup' => [
+		'createInlineKeyboardMarkup' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 			],
@@ -1491,7 +1295,7 @@ class MethodFunctions{
 				'inline_keyboard',
 			],
 		],
-		'InlineKeyboardButton' => [
+		'createInlineKeyboardButton' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineKeyboardButton::class,
 			],
@@ -1505,7 +1309,7 @@ class MethodFunctions{
 				'pay',
 			],
 		],
-		'ForceReply' => [
+		'createForceReply' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ForceReply::class,
 			],
@@ -1514,7 +1318,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'InlineQueryResultArticle' => [
+		'createInlineQueryResultArticle' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultArticle::class,
 			],
@@ -1532,7 +1336,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultAudio' => [
+		'createInlineQueryResultAudio' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultAudio::class,
 			],
@@ -1548,7 +1352,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultContact' => [
+		'createInlineQueryResultContact' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultContact::class,
 			],
@@ -1565,7 +1369,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultGame' => [
+		'createInlineQueryResultGame' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultGame::class,
 			],
@@ -1581,7 +1385,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultDocument' => [
+		'createInlineQueryResultDocument' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultDocument::class,
 			],
@@ -1589,6 +1393,7 @@ class MethodFunctions{
 				'id',
 				'title',
 				'caption',
+				'document_url',
 				'mime_type',
 				'description',
 				'reply_markup',
@@ -1599,7 +1404,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultGif' => [
+		'createInlineQueryResultGif' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultGif::class,
 			],
@@ -1617,7 +1422,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultLocation' => [
+		'createInlineQueryResultLocation' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultLocation::class,
 			],
@@ -1635,7 +1440,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultMpeg4Gif' => [
+		'createInlineQueryResultMpeg4Gif' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultMpeg4Gif::class,
 			],
@@ -1653,7 +1458,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultPhoto' => [
+		'createInlineQueryResultPhoto' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultPhoto::class,
 			],
@@ -1670,7 +1475,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultVenue' => [
+		'createInlineQueryResultVenue' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVenue::class,
 			],
@@ -1688,7 +1493,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultVideo' => [
+		'createInlineQueryResultVideo' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVideo::class,
 			],
@@ -1708,7 +1513,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InlineQueryResultVoice' => [
+		'createInlineQueryResultVoice' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVoice::class,
 			],
@@ -1723,7 +1528,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'InputTextMessageContent' => [
+		'createInputTextMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputTextMessageContent::class,
 			],
@@ -1733,7 +1538,7 @@ class MethodFunctions{
 				'disable_web_page_preview',
 			],
 		],
-		'InputLocationMessageContent' => [
+		'createInputLocationMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputLocationMessageContent::class,
 			],
@@ -1743,7 +1548,7 @@ class MethodFunctions{
 				'live_period',
 			],
 		],
-		'InputVenueMessageContent' => [
+		'createInputVenueMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			],
@@ -1755,7 +1560,7 @@ class MethodFunctions{
 				'foursquare_id',
 			],
 		],
-		'InputContactMessageContent' => [
+		'createInputContactMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputContactMessageContent::class,
 			],
@@ -1765,7 +1570,7 @@ class MethodFunctions{
 				'last_name',
 			],
 		],
-		'InputMediaPhoto' => [
+		'createInputMediaPhoto' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputMediaPhoto::class,
 			],
@@ -1775,7 +1580,7 @@ class MethodFunctions{
 				'caption',
 			],
 		],
-		'InputMediaVideo' => [
+		'createInputMediaVideo' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputMediaVideo::class,
 			],
@@ -1789,4 +1594,2622 @@ class MethodFunctions{
 			],
 		],
 	];
+		/**
+		 * @param $keyboard array
+		 * @param $resizeKeyboard boolean
+		 * @param $oneTimeKeyboard boolean
+		 * @param $selective boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\ReplyKeyboardMarkup
+		*/
+		public function createReplyKeyboardMarkup(
+			$keyboard,
+			$resizeKeyboard = false,
+			$oneTimeKeyboard = false,
+			$selective = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createReplyKeyboardMarkup', func_get_args());
+			}
+		}
+		/**
+		 * @param $text string
+		 * @param $requestContact boolean
+		 * @param $requestLocation boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\KeyboardButton
+		*/
+		public function createKeyboardButton(
+			$text,
+			$requestContact = false,
+			$requestLocation = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createKeyboardButton', func_get_args());
+			}
+		}
+		/**
+		 * @param $removeKeyboard boolean
+		 * @param $selective boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\ReplyKeyboardRemove
+		*/
+		public function createReplyKeyboardRemove(
+			$removeKeyboard,
+			$selective = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createReplyKeyboardRemove', func_get_args());
+			}
+		}
+		/**
+		 * @param $inlineKeyboard array
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineKeyboardMarkup
+		*/
+		public function createInlineKeyboardMarkup(
+			$inlineKeyboard
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineKeyboardMarkup', func_get_args());
+			}
+		}
+		/**
+		 * @param $text string
+		 * @param $url string
+		 * @param $callbackData string
+		 * @param $switchInlineQuery string
+		 * @param $switchInlineQueryCurrentChat string
+		 * @param $callbackGame \TelegramBot\Api\Types\CallbackGame
+		 * @param $pay boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineKeyboardButton
+		*/
+		public function createInlineKeyboardButton(
+			$text,
+			$url = null,
+			$callbackData = null,
+			$switchInlineQuery = null,
+			$switchInlineQueryCurrentChat = null,
+			$callbackGame = null,
+			$pay = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineKeyboardButton', func_get_args());
+			}
+		}
+		/**
+		 * @param $forceReply boolean
+		 * @param $selective boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\ForceReply
+		*/
+		public function createForceReply(
+			$forceReply,
+			$selective = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createForceReply', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $title string
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $url string
+		 * @param $hideUrl boolean
+		 * @param $description string
+		 * @param $thumbUrl string
+		 * @param $thumbWidth integer
+		 * @param $thumbHeight integer
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultArticle
+		*/
+		public function createInlineQueryResultArticle(
+			$id,
+			$title,
+			$inputMessageContent,
+			$replyMarkup = null,
+			$url = null,
+			$hideUrl = false,
+			$description = null,
+			$thumbUrl = null,
+			$thumbWidth = null,
+			$thumbHeight = null,
+			$type = 'article'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultArticle', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $title string
+		 * @param $audioUrl string
+		 * @param $caption string
+		 * @param $performer string
+		 * @param $audioDuration integer
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultAudio
+		*/
+		public function createInlineQueryResultAudio(
+			$id,
+			$title,
+			$audioUrl,
+			$caption = null,
+			$performer = null,
+			$audioDuration = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'audio'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultAudio', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $phoneNumber string
+		 * @param $firstName string
+		 * @param $lastName string
+		 * @param $thumbUrl string
+		 * @param $thumbWidth integer
+		 * @param $thumbHeight integer
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultContact
+		*/
+		public function createInlineQueryResultContact(
+			$id,
+			$phoneNumber,
+			$firstName,
+			$lastName = null,
+			$thumbUrl = null,
+			$thumbWidth = null,
+			$thumbHeight = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'contact'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultContact', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $documentUrl string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $mimeType string
+		 * @param $description string
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultGame
+		*/
+		public function createInlineQueryResultGame(
+			$id,
+			$documentUrl,
+			$title,
+			$caption = null,
+			$mimeType = null,
+			$description = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'game'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultGame', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $title string
+		 * @param $mimeType string
+		 * @param $documentUrl string
+		 * @param $caption string
+		 * @param $description string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $inputMessageContent InputMessageContent
+		 * @param $thumbUrl string
+		 * @param $thumbWidth integer
+		 * @param $thumbHeight integer
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultDocument
+		*/
+		public function createInlineQueryResultDocument(
+			$id,
+			$title,
+			$mimeType,
+			$documentUrl,
+			$caption = null,
+			$description = null,
+			$replyMarkup = null,
+			$inputMessageContent,
+			$thumbUrl = null,
+			$thumbWidth = null,
+			$thumbHeight = null,
+			$type = 'document'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultDocument', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $gifUrl string
+		 * @param $gifWidth integer
+		 * @param $gifHeight integer
+		 * @param $gifDuration integer
+		 * @param $thumbUrl string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultGif
+		*/
+		public function createInlineQueryResultGif(
+			$id,
+			$gifUrl,
+			$gifWidth = null,
+			$gifHeight = null,
+			$gifDuration = null,
+			$thumbUrl = null,
+			$title = null,
+			$caption = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'gif'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultGif', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $title string
+		 * @param $livePeriod integer
+		 * @param $thumbUrl string
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $thumbWidth integer
+		 * @param $thumbHeight integer
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultLocation
+		*/
+		public function createInlineQueryResultLocation(
+			$id,
+			$latitude,
+			$longitude,
+			$title,
+			$livePeriod = null,
+			$thumbUrl = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$thumbWidth = null,
+			$thumbHeight = null,
+			$type = 'location'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultLocation', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $mpeg4Url string
+		 * @param $mpeg4Width integer
+		 * @param $mpeg4Height integer
+		 * @param $mpeg4Duration integer
+		 * @param $thumbUrl string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultMpeg4Gif
+		*/
+		public function createInlineQueryResultMpeg4Gif(
+			$id,
+			$mpeg4Url,
+			$mpeg4Width = null,
+			$mpeg4Height = null,
+			$mpeg4Duration = null,
+			$thumbUrl = null,
+			$title = null,
+			$caption = null,
+			$replyMarkup = null,
+			$inputMessageContent = null,
+			$type = 'mpeg4_gif'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultMpeg4Gif', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $photoUrl string
+		 * @param $thumbUrl string
+		 * @param $photoWidth integer
+		 * @param $photoHeight integer
+		 * @param $title string
+		 * @param $caption string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultPhoto
+		*/
+		public function createInlineQueryResultPhoto(
+			$id,
+			$photoUrl,
+			$thumbUrl = null,
+			$photoWidth = null,
+			$photoHeight = null,
+			$title = null,
+			$caption = null,
+			$replyMarkup = null,
+			$inputMessageContent = null,
+			$type = 'photo'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultPhoto', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $title string
+		 * @param $address integer
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $thumbUrl string
+		 * @param $thumbWidth integer
+		 * @param $thumbHeight integer
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultVenue
+		*/
+		public function createInlineQueryResultVenue(
+			$id,
+			$latitude,
+			$longitude,
+			$title,
+			$address,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$thumbUrl = null,
+			$thumbWidth = null,
+			$thumbHeight = null,
+			$type = 'venue'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultVenue', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $videoUrl string
+		 * @param $mimeType string
+		 * @param $thumbUrl string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $videoWidth integer
+		 * @param $videoHeight integer
+		 * @param $videoDuration integer
+		 * @param $description string
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultVideo
+		*/
+		public function createInlineQueryResultVideo(
+			$id,
+			$videoUrl,
+			$mimeType,
+			$thumbUrl = null,
+			$title = null,
+			$caption = null,
+			$videoWidth = null,
+			$videoHeight = null,
+			$videoDuration = null,
+			$description = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'video'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultVideo', func_get_args());
+			}
+		}
+		/**
+		 * @param $id string
+		 * @param $voiceUrl string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $voiceDuration integer
+		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @param $type string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InlineQueryResultVoice
+		*/
+		public function createInlineQueryResultVoice(
+			$id,
+			$voiceUrl,
+			$title,
+			$caption = null,
+			$voiceDuration = null,
+			$inputMessageContent = null,
+			$replyMarkup = null,
+			$type = 'voice'
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInlineQueryResultVoice', func_get_args());
+			}
+		}
+		/**
+		 * @param $messageText string
+		 * @param $parseMode string
+		 * @param $disableWebPagePreview boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputTextMessageContent
+		*/
+		public function createInputTextMessageContent(
+			$messageText,
+			$parseMode = null,
+			$disableWebPagePreview = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputTextMessageContent', func_get_args());
+			}
+		}
+		/**
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $livePeriod integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputLocationMessageContent
+		*/
+		public function createInputLocationMessageContent(
+			$latitude,
+			$longitude,
+			$livePeriod = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputLocationMessageContent', func_get_args());
+			}
+		}
+		/**
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $title string
+		 * @param $address string
+		 * @param $foursquareId string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputVenueMessageContent
+		*/
+		public function createInputVenueMessageContent(
+			$latitude,
+			$longitude,
+			$title,
+			$address,
+			$foursquareId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputVenueMessageContent', func_get_args());
+			}
+		}
+		/**
+		 * @param $phoneNumber string
+		 * @param $firstName string
+		 * @param $lastName string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputContactMessageContent
+		*/
+		public function createInputContactMessageContent(
+			$phoneNumber,
+			$firstName,
+			$lastName = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputContactMessageContent', func_get_args());
+			}
+		}
+		/**
+		 * @param $type string
+		 * @param $media string
+		 * @param $caption string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputMediaPhoto
+		*/
+		public function createInputMediaPhoto(
+			$type,
+			$media,
+			$caption = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputMediaPhoto', func_get_args());
+			}
+		}
+		/**
+		 * @param $type string
+		 * @param $media string
+		 * @param $caption string
+		 * @param $width integer
+		 * @param $height integer
+		 * @param $duration integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\InputMediaVideo
+		*/
+		public function createInputMediaVideo(
+			$type,
+			$media,
+			$caption = null,
+			$width = null,
+			$height = null,
+			$duration = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createInputMediaVideo', func_get_args());
+			}
+		}
+		/**
+		 * @param $offset integer
+		 * @param $limit integer
+		 * @param $timeout integer
+		 * @param $allowedUpdates array
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Iterators\ArrayOfUpdate
+		*/
+		public function getUpdates(
+			$offset = null,
+			$limit = null,
+			$timeout = null,
+			$allowedUpdates = []
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getUpdates', func_get_args());
+			}
+		}
+		/**
+		 * @param $offset integer
+		 * @param $limit integer
+		 * @param $timeout integer
+		 * @param $allowedUpdates array
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getUpdatesAsync(
+			$offset = null,
+			$limit = null,
+			$timeout = null,
+			$allowedUpdates = []
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getUpdatesAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $url string
+		 * @param $certificate \TelegramBot\Api\Extension\InputFile
+		 * @param $maxConnections integer
+		 * @param $allowedUpdates array
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setWebhook(
+			$url,
+			$certificate,
+			$maxConnections = null,
+			$allowedUpdates = []
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setWebhook', func_get_args());
+			}
+		}
+		/**
+		 * @param $url string
+		 * @param $certificate \TelegramBot\Api\Extension\InputFile
+		 * @param $maxConnections integer
+		 * @param $allowedUpdates array
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setWebhookAsync(
+			$url,
+			$certificate,
+			$maxConnections = null,
+			$allowedUpdates = []
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setWebhookAsync', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function deleteWebhook(){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteWebhook', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function deleteWebhookAsync(){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteWebhookAsync', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function getWebhookInfo(){
+			if(method_exists($this, '__call')){
+				return $this->__call('getWebhookInfo', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getWebhookInfoAsync(){
+			if(method_exists($this, '__call')){
+				return $this->__call('getWebhookInfoAsync', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\User
+		*/
+		public function getMe(){
+			if(method_exists($this, '__call')){
+				return $this->__call('getMe', func_get_args());
+			}
+		}
+		/**
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getMeAsync(){
+			if(method_exists($this, '__call')){
+				return $this->__call('getMeAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $text string
+		 * @param $parseMode string
+		 * @param $disableWebPagePreview boolean
+		 * @param $disableNotification boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @param $replyToMessageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendMessage(
+			$chatId,
+			$text,
+			$parseMode = null,
+			$disableWebPagePreview = false,
+			$disableNotification = false,
+			$replyMarkup = null,
+			$replyToMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendMessage', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $text string
+		 * @param $parseMode string
+		 * @param $disableWebPagePreview boolean
+		 * @param $disableNotification boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @param $replyToMessageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendMessageAsync(
+			$chatId,
+			$text,
+			$parseMode = null,
+			$disableWebPagePreview = false,
+			$disableNotification = false,
+			$replyMarkup = null,
+			$replyToMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendMessageAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $fromChatId integer
+		 * @param $messageId integer
+		 * @param $disableNotification boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function forwardMessage(
+			$chatId,
+			$fromChatId,
+			$messageId,
+			$disableNotification = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('forwardMessage', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $fromChatId integer
+		 * @param $messageId integer
+		 * @param $disableNotification boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function forwardMessageAsync(
+			$chatId,
+			$fromChatId,
+			$messageId,
+			$disableNotification = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('forwardMessageAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $photo \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendPhoto(
+			$chatId,
+			$photo,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendPhoto', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $photo \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendPhotoAsync(
+			$chatId,
+			$photo,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendPhotoAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $audio \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $performer string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendAudio(
+			$chatId,
+			$audio,
+			$duration = null,
+			$performer = null,
+			$title = null,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendAudio', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $audio \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $performer string
+		 * @param $title string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendAudioAsync(
+			$chatId,
+			$audio,
+			$duration = null,
+			$performer = null,
+			$title = null,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendAudioAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $document \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendDocument(
+			$chatId,
+			$document,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendDocument', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $document \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendDocumentAsync(
+			$chatId,
+			$document,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendDocumentAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $video \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $width integer
+		 * @param $height integer
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendVideo(
+			$chatId,
+			$video,
+			$duration = null,
+			$width = null,
+			$height = null,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVideo', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $video \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $width integer
+		 * @param $height integer
+		 * @param $caption string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendVideoAsync(
+			$chatId,
+			$video,
+			$duration = null,
+			$width = null,
+			$height = null,
+			$caption = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVideoAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $voice \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $duration integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendVoice(
+			$chatId,
+			$voice,
+			$caption = null,
+			$duration = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVoice', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $voice \TelegramBot\Api\Extension\InputFile|string
+		 * @param $caption string
+		 * @param $duration integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendVoiceAsync(
+			$chatId,
+			$voice,
+			$caption = null,
+			$duration = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVoiceAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $videoNote \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $length integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendVideoNote(
+			$chatId,
+			$videoNote,
+			$duration = null,
+			$length = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVideoNote', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $videoNote \TelegramBot\Api\Extension\InputFile|string
+		 * @param $duration integer
+		 * @param $length integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendVideoNoteAsync(
+			$chatId,
+			$videoNote,
+			$duration = null,
+			$length = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVideoNoteAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $media array
+		 * @param $duration integer
+		 * @param $length integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Iterators\ArrayOfMessage
+		*/
+		public function sendMediaGroup(
+			$chatId,
+			$media,
+			$duration = null,
+			$length = null,
+			$disableNotification = false,
+			$replyToMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendMediaGroup', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $media array
+		 * @param $duration integer
+		 * @param $length integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendMediaGroupAsync(
+			$chatId,
+			$media,
+			$duration = null,
+			$length = null,
+			$disableNotification = false,
+			$replyToMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendMediaGroupAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $livePeriod integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendLocation(
+			$chatId,
+			$latitude,
+			$longitude,
+			$livePeriod = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendLocation', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $livePeriod integer
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendLocationAsync(
+			$chatId,
+			$latitude,
+			$longitude,
+			$livePeriod = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendLocationAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message|boolean
+		*/
+		public function editMessageLiveLocation(
+			$latitude,
+			$longitude,
+			$chatId = null,
+			$messageId = null,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageLiveLocation', func_get_args());
+			}
+		}
+		/**
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function editMessageLiveLocationAsync(
+			$latitude,
+			$longitude,
+			$chatId = null,
+			$messageId = null,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageLiveLocationAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message|boolean
+		*/
+		public function stopMessageLiveLocation(
+			$chatId = null,
+			$messageId = null,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('stopMessageLiveLocation', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function stopMessageLiveLocationAsync(
+			$chatId = null,
+			$messageId = null,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('stopMessageLiveLocationAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $title string
+		 * @param $address string
+		 * @param $foursquareId string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendVenue(
+			$chatId,
+			$latitude,
+			$longitude,
+			$title,
+			$address,
+			$foursquareId = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVenue', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $latitude float
+		 * @param $longitude float
+		 * @param $title string
+		 * @param $address string
+		 * @param $foursquareId string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendVenueAsync(
+			$chatId,
+			$latitude,
+			$longitude,
+			$title,
+			$address,
+			$foursquareId = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendVenueAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $phoneNumber string
+		 * @param $firstName string
+		 * @param $lastName string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendContact(
+			$chatId,
+			$phoneNumber,
+			$firstName,
+			$lastName = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendContact', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $phoneNumber string
+		 * @param $firstName string
+		 * @param $lastName string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendContactAsync(
+			$chatId,
+			$phoneNumber,
+			$firstName,
+			$lastName = null,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendContactAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $action string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function sendChatAction(
+			$chatId,
+			$action
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendChatAction', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $action string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendChatActionAsync(
+			$chatId,
+			$action
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendChatActionAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $offset integer
+		 * @param $limit integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\UserProfilePhotos
+		*/
+		public function getUserProfilePhotos(
+			$userId,
+			$offset = null,
+			$limit = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getUserProfilePhotos', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $offset integer
+		 * @param $limit integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getUserProfilePhotosAsync(
+			$userId,
+			$offset = null,
+			$limit = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getUserProfilePhotosAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $fileId string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\File
+		*/
+		public function getFile(
+			$fileId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getFile', func_get_args());
+			}
+		}
+		/**
+		 * @param $fileId string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getFileAsync(
+			$fileId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getFileAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @param $untilDate integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function kickChatMember(
+			$chatId,
+			$userId,
+			$untilDate = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('kickChatMember', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @param $untilDate integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function kickChatMemberAsync(
+			$chatId,
+			$userId,
+			$untilDate = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('kickChatMemberAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function unbanChatMember(
+			$chatId,
+			$userId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('unbanChatMember', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function unbanChatMemberAsync(
+			$chatId,
+			$userId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('unbanChatMemberAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer
+		 * @param $untilDate integer
+		 * @param $canSendMessages boolean
+		 * @param $canSendMediaMessages boolean
+		 * @param $canSendOtherMessages boolean
+		 * @param $canAddWebPagePreviews boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function restrictChatMember(
+			$chatId,
+			$userId,
+			$untilDate = null,
+			$canSendMessages = false,
+			$canSendMediaMessages = false,
+			$canSendOtherMessages = false,
+			$canAddWebPagePreviews = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('restrictChatMember', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer
+		 * @param $untilDate integer
+		 * @param $canSendMessages boolean
+		 * @param $canSendMediaMessages boolean
+		 * @param $canSendOtherMessages boolean
+		 * @param $canAddWebPagePreviews boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function restrictChatMemberAsync(
+			$chatId,
+			$userId,
+			$untilDate = null,
+			$canSendMessages = false,
+			$canSendMediaMessages = false,
+			$canSendOtherMessages = false,
+			$canAddWebPagePreviews = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('restrictChatMemberAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer
+		 * @param $untilDate integer
+		 * @param $canChangeInfo boolean
+		 * @param $canPostMessages boolean
+		 * @param $canEditMessages boolean
+		 * @param $canDeleteMessages boolean
+		 * @param $canInviteUsers boolean
+		 * @param $canRestrictMembers boolean
+		 * @param $canPinMessages boolean
+		 * @param $canPromoteMembers boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function promoteChatMember(
+			$chatId,
+			$userId,
+			$untilDate = null,
+			$canChangeInfo = false,
+			$canPostMessages = false,
+			$canEditMessages = false,
+			$canDeleteMessages = false,
+			$canInviteUsers = false,
+			$canRestrictMembers = false,
+			$canPinMessages = false,
+			$canPromoteMembers = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('promoteChatMember', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer
+		 * @param $untilDate integer
+		 * @param $canChangeInfo boolean
+		 * @param $canPostMessages boolean
+		 * @param $canEditMessages boolean
+		 * @param $canDeleteMessages boolean
+		 * @param $canInviteUsers boolean
+		 * @param $canRestrictMembers boolean
+		 * @param $canPinMessages boolean
+		 * @param $canPromoteMembers boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function promoteChatMemberAsync(
+			$chatId,
+			$userId,
+			$untilDate = null,
+			$canChangeInfo = false,
+			$canPostMessages = false,
+			$canEditMessages = false,
+			$canDeleteMessages = false,
+			$canInviteUsers = false,
+			$canRestrictMembers = false,
+			$canPinMessages = false,
+			$canPromoteMembers = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('promoteChatMemberAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return string
+		*/
+		public function exportChatInviteLink(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('exportChatInviteLink', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function exportChatInviteLinkAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('exportChatInviteLinkAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $photo \TelegramBot\Api\Extension\InputFile
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setChatPhoto(
+			$chatId,
+			$photo
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatPhoto', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $photo \TelegramBot\Api\Extension\InputFile
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setChatPhotoAsync(
+			$chatId,
+			$photo
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatPhotoAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function deleteChatPhoto(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteChatPhoto', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function deleteChatPhotoAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteChatPhotoAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $title string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setChatTitle(
+			$chatId,
+			$title
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatTitle', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $title string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setChatTitleAsync(
+			$chatId,
+			$title
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatTitleAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $description string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setChatDescription(
+			$chatId,
+			$description = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatDescription', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $description string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setChatDescriptionAsync(
+			$chatId,
+			$description = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatDescriptionAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $disableNotification boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function pinChatMessage(
+			$chatId,
+			$messageId,
+			$disableNotification = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('pinChatMessage', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $disableNotification boolean
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function pinChatMessageAsync(
+			$chatId,
+			$messageId,
+			$disableNotification = false
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('pinChatMessageAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function unpinChatMessage(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('unpinChatMessage', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function unpinChatMessageAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('unpinChatMessageAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function leaveChat(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('leaveChat', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function leaveChatAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('leaveChatAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Chat
+		*/
+		public function getChat(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChat', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getChatAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Iterators\ArrayOfChatMember
+		*/
+		public function getChatAdministrators(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatAdministrators', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getChatAdministratorsAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatAdministratorsAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return integer
+		*/
+		public function getChatMembersCount(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatMembersCount', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getChatMembersCountAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatMembersCountAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\ChatMember
+		*/
+		public function getChatMember(
+			$chatId,
+			$userId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatMember', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer
+		 * @param $userId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getChatMemberAsync(
+			$chatId,
+			$userId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getChatMemberAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $stickerSetName string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setChatStickerSet(
+			$chatId,
+			$stickerSetName
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatStickerSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $stickerSetName string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setChatStickerSetAsync(
+			$chatId,
+			$stickerSetName
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setChatStickerSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function deleteChatStickerSet(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteChatStickerSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function deleteChatStickerSetAsync(
+			$chatId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteChatStickerSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $callbackQueryId string
+		 * @param $text string
+		 * @param $showAlert boolean
+		 * @param $url string
+		 * @param $cacheTime integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function answerCallbackQuery(
+			$callbackQueryId,
+			$text = null,
+			$showAlert = false,
+			$url = null,
+			$cacheTime = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerCallbackQuery', func_get_args());
+			}
+		}
+		/**
+		 * @param $callbackQueryId string
+		 * @param $text string
+		 * @param $showAlert boolean
+		 * @param $url string
+		 * @param $cacheTime integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function answerCallbackQueryAsync(
+			$callbackQueryId,
+			$text = null,
+			$showAlert = false,
+			$url = null,
+			$cacheTime = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerCallbackQueryAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $text string
+		 * @param $inlineMessageId string
+		 * @param $parseMode string
+		 * @param $disableWebPagePreview boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message|boolean
+		*/
+		public function editMessageText(
+			$chatId,
+			$messageId,
+			$text,
+			$inlineMessageId = null,
+			$parseMode = null,
+			$disableWebPagePreview = false,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageText', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $text string
+		 * @param $inlineMessageId string
+		 * @param $parseMode string
+		 * @param $disableWebPagePreview boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function editMessageTextAsync(
+			$chatId,
+			$messageId,
+			$text,
+			$inlineMessageId = null,
+			$parseMode = null,
+			$disableWebPagePreview = false,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageTextAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $caption string
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message|boolean
+		*/
+		public function editMessageCaption(
+			$chatId,
+			$messageId,
+			$caption,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageCaption', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $caption string
+		 * @param $inlineMessageId string
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function editMessageCaptionAsync(
+			$chatId,
+			$messageId,
+			$caption,
+			$inlineMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageCaptionAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @param $inlineMessageId string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message|boolean
+		*/
+		public function editMessageReplyMarkup(
+			$chatId,
+			$messageId,
+			$replyMarkup,
+			$inlineMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageReplyMarkup', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @param $inlineMessageId string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function editMessageReplyMarkupAsync(
+			$chatId,
+			$messageId,
+			$replyMarkup,
+			$inlineMessageId = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('editMessageReplyMarkupAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function deleteMessage(
+			$chatId,
+			$messageId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteMessage', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $messageId integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function deleteMessageAsync(
+			$chatId,
+			$messageId
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteMessageAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $sticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendSticker(
+			$chatId,
+			$sticker,
+			$disableNotification = false,
+			$replyToMessageId = false,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendSticker', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $sticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId boolean
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendStickerAsync(
+			$chatId,
+			$sticker,
+			$disableNotification = false,
+			$replyToMessageId = false,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendStickerAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $name string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\StickerSet
+		*/
+		public function getStickerSet(
+			$name
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getStickerSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $name string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function getStickerSetAsync(
+			$name
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('getStickerSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\File
+		*/
+		public function uploadStickerFile(
+			$userId,
+			$pngSticker
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('uploadStickerFile', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function uploadStickerFileAsync(
+			$userId,
+			$pngSticker
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('uploadStickerFileAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $name string
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $emojis string
+		 * @param $containsMasks boolean
+		 * @param $maskPosition \TelegramBot\Api\Types\MaskPosition
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function createNewStickerSet(
+			$userId,
+			$name,
+			$pngSticker,
+			$emojis,
+			$containsMasks = false,
+			$maskPosition = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createNewStickerSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $name string
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $emojis string
+		 * @param $containsMasks boolean
+		 * @param $maskPosition \TelegramBot\Api\Types\MaskPosition
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function createNewStickerSetAsync(
+			$userId,
+			$name,
+			$pngSticker,
+			$emojis,
+			$containsMasks = false,
+			$maskPosition = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('createNewStickerSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $name string
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $emojis string
+		 * @param $maskPosition \TelegramBot\Api\Types\MaskPosition
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function addStickerToSet(
+			$userId,
+			$name,
+			$pngSticker,
+			$emojis,
+			$maskPosition = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('addStickerToSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $userId integer
+		 * @param $name string
+		 * @param $pngSticker \TelegramBot\Api\Extension\InputFile|string
+		 * @param $emojis string
+		 * @param $maskPosition \TelegramBot\Api\Types\MaskPosition
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function addStickerToSetAsync(
+			$userId,
+			$name,
+			$pngSticker,
+			$emojis,
+			$maskPosition = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('addStickerToSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $sticker string
+		 * @param $position integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function setStickerPositionInSet(
+			$sticker,
+			$position
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setStickerPositionInSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $sticker string
+		 * @param $position integer
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function setStickerPositionInSetAsync(
+			$sticker,
+			$position
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('setStickerPositionInSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $sticker string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function deleteStickerFromSet(
+			$sticker
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteStickerFromSet', func_get_args());
+			}
+		}
+		/**
+		 * @param $sticker string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function deleteStickerFromSetAsync(
+			$sticker
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('deleteStickerFromSetAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $inlineQueryId string
+		 * @param $results array
+		 * @param $cacheTime integer
+		 * @param $isPersonal boolean
+		 * @param $nextOffset string
+		 * @param $switchPmText string
+		 * @param $switchPmParameter string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function answerInlineQuery(
+			$inlineQueryId,
+			$results,
+			$cacheTime = null,
+			$isPersonal = false,
+			$nextOffset = null,
+			$switchPmText = null,
+			$switchPmParameter = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerInlineQuery', func_get_args());
+			}
+		}
+		/**
+		 * @param $inlineQueryId string
+		 * @param $results array
+		 * @param $cacheTime integer
+		 * @param $isPersonal boolean
+		 * @param $nextOffset string
+		 * @param $switchPmText string
+		 * @param $switchPmParameter string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function answerInlineQueryAsync(
+			$inlineQueryId,
+			$results,
+			$cacheTime = null,
+			$isPersonal = false,
+			$nextOffset = null,
+			$switchPmText = null,
+			$switchPmParameter = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerInlineQueryAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $title string
+		 * @param $description string
+		 * @param $payload string
+		 * @param $providerToken string
+		 * @param $startParameter string
+		 * @param $currency string
+		 * @param $prices array
+		 * @param $providerData string
+		 * @param $photoUrl string
+		 * @param $photoSize integer
+		 * @param $photoWidth integer
+		 * @param $photoHeight integer
+		 * @param $needName boolean
+		 * @param $needPhoneNumber boolean
+		 * @param $needEmail boolean
+		 * @param $needShippingAddress boolean
+		 * @param $isFlexible boolean
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \TelegramBot\Api\Types\Message
+		*/
+		public function sendInvoice(
+			$chatId,
+			$title,
+			$description,
+			$payload,
+			$providerToken,
+			$startParameter,
+			$currency,
+			$prices,
+			$providerData = null,
+			$photoUrl = null,
+			$photoSize = null,
+			$photoWidth = null,
+			$photoHeight = null,
+			$needName = false,
+			$needPhoneNumber = false,
+			$needEmail = false,
+			$needShippingAddress = false,
+			$isFlexible = false,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendInvoice', func_get_args());
+			}
+		}
+		/**
+		 * @param $chatId integer|string
+		 * @param $title string
+		 * @param $description string
+		 * @param $payload string
+		 * @param $providerToken string
+		 * @param $startParameter string
+		 * @param $currency string
+		 * @param $prices array
+		 * @param $providerData string
+		 * @param $photoUrl string
+		 * @param $photoSize integer
+		 * @param $photoWidth integer
+		 * @param $photoHeight integer
+		 * @param $needName boolean
+		 * @param $needPhoneNumber boolean
+		 * @param $needEmail boolean
+		 * @param $needShippingAddress boolean
+		 * @param $isFlexible boolean
+		 * @param $disableNotification boolean
+		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function sendInvoiceAsync(
+			$chatId,
+			$title,
+			$description,
+			$payload,
+			$providerToken,
+			$startParameter,
+			$currency,
+			$prices,
+			$providerData = null,
+			$photoUrl = null,
+			$photoSize = null,
+			$photoWidth = null,
+			$photoHeight = null,
+			$needName = false,
+			$needPhoneNumber = false,
+			$needEmail = false,
+			$needShippingAddress = false,
+			$isFlexible = false,
+			$disableNotification = false,
+			$replyToMessageId = null,
+			$replyMarkup = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('sendInvoiceAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $shippingQueryId string
+		 * @param $ok boolean
+		 * @param $shippingOptions array
+		 * @param $errorMessage string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function answerShippingQuery(
+			$shippingQueryId,
+			$ok,
+			$shippingOptions = [],
+			$errorMessage = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerShippingQuery', func_get_args());
+			}
+		}
+		/**
+		 * @param $shippingQueryId string
+		 * @param $ok boolean
+		 * @param $shippingOptions array
+		 * @param $errorMessage string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function answerShippingQueryAsync(
+			$shippingQueryId,
+			$ok,
+			$shippingOptions = [],
+			$errorMessage = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerShippingQueryAsync', func_get_args());
+			}
+		}
+		/**
+		 * @param $preCheckoutQueryId string
+		 * @param $ok boolean
+		 * @param $errorMessage string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return boolean
+		*/
+		public function answerPreCheckoutQuery(
+			$preCheckoutQueryId,
+			$ok,
+			$errorMessage = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerPreCheckoutQuery', func_get_args());
+			}
+		}
+		/**
+		 * @param $preCheckoutQueryId string
+		 * @param $ok boolean
+		 * @param $errorMessage string
+		 * @throws \TelegramBot\Api\Exceptions\TelegramException
+		 * @return \GuzzleHttp\Promise\PromiseInterface
+		*/
+		public function answerPreCheckoutQueryAsync(
+			$preCheckoutQueryId,
+			$ok,
+			$errorMessage = null
+		){
+			if(method_exists($this, '__call')){
+				return $this->__call('answerPreCheckoutQueryAsync', func_get_args());
+			}
+		}
 }

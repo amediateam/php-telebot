@@ -10,7 +10,7 @@ abstract class ArrayOfKeyboardButton
     /**
      * @param $data
      * @return array
-     * @throws \TelegramBot\Api\InvalidArgumentException
+     * @throws \TelegramBot\Api\Exceptions\InvalidArgumentException
      */
     public static function fromResponse(BotApi $bot, $data)
     {

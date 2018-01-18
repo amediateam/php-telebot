@@ -13,7 +13,7 @@ abstract class ArrayOfInputMedia
      * @param BotApi $botApi
      * @param $data
      * @return InputMediaPhoto[]|InputMediaVideo[]
-     * @throws \TelegramBot\Api\InvalidArgumentException
+     * @throws \TelegramBot\Api\Exceptions\InvalidArgumentException
      */
     public static function fromResponse(BotApi $botApi, $data)
     {

@@ -1,6 +1,5 @@
 <?php
-
-namespace TelegramBot\Api;
+namespace TelegramBot\Api\Exceptions;
 
 /**
  * Class InvalidArgumentException
@@ -8,7 +7,7 @@ namespace TelegramBot\Api;
  * @codeCoverageIgnore
  * @package TelegramBot\Api
  */
-class InvalidArgumentException extends \Exception
+class InvalidArgumentException extends TelegramException
 {
 
 }

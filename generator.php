@@ -81,8 +81,8 @@ function generateDoc($className, $data, $isType)
         } else {
             $string .= " * @method {$returnType}set{$camelCased}({$itemType}\${$key})\n";
         }
-        if(substr($camelCased, 0, 2) == "Is"){
-            $string .= " * @method {$itemType}".lcfirst($camelCased)."()\n";
+        if (substr($camelCased, 0, 2) == "Is") {
+            $string .= " * @method {$itemType}" . lcfirst($camelCased) . "()\n";
         } else {
             $string .= " * @method {$itemType}get{$camelCased}()\n";
         }
@@ -149,7 +149,7 @@ function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocum
 
 function generateMethodFunctionsMethodsAndTypesDoc()
 {
-    global $schema, $defined_types;
+    global $schema;
     $methodMap = $typeMap = [];
     for ($zz = 0; $zz <= 1; ++$zz) {
         $isType = $zz == 1;
@@ -158,19 +158,14 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 continue;
             }
             $returnType = null;
-            $parameters = "";
+            $parameters = [];
             $paramsArray = $declaration['requiredParams'];
             foreach ($declaration['map'] as $key => $val) {
                 if (in_array($key, $declaration['requiredParams'])) continue;
                 $paramsArray[] = $key;
             }
             foreach ($paramsArray as $parameter) {
-                if (in_array(strtolower($parameter), $defined_types)) {
-                    echo $method;
-                    exit("Oops");
-                }
                 $parameterType = $declaration['map'][$parameter];
-                if (!empty($parameters)) $parameters .= ', ';
                 if (is_array($parameterType)) {
                     $type = [];
                     foreach ($parameterType as $subType) {
@@ -204,39 +199,25 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 if (strpos($type, 'ArrayOf') !== false) {
                     $type = fixArrayOfType($type, true);
                 }
-                if (!empty($defaultValue) && !$required) {
-                    $parameters .= sprintf("%s%s = %s", $type, (empty($type) ? '' : ' ') . '$' . $parameter, $defaultValue);
-                } else {
-                    $parameters .= sprintf('%s%s', $type, (empty($type) ? '' : ' ') . '$' . $parameter);
-                }
+                $parameters[] = ['type' => $type, 'name' => '$' . $parameter, 'defaultValue' => !$required ? $defaultValue : null];
             }
             if ($isType) {
-                $typeInCamelCase = toCamelCase($method);
-                $returnType = str_replace("'", null, implode("|", getReturnType($method)));
-                $typeMap[$method] = [
+                $typeMap['create' . $method] = [
                     'returnType' => getReturnType($method, true),
                     'paramsMap' => array_keys($declaration['map']),
+                    'parameters' => $parameters,
                 ];
-                if (!empty($returnType)) $returnType .= ' ';
-                echo "* @method {$returnType}create$typeInCamelCase($parameters)\n";
             } else {
-                $typeInCamelCase = toCamelCase($method);
-                $returnType = str_replace("'", null, implode("|", getReturnType($declaration['returnType'])));
                 $methodMap[$method] = [
                     'returnType' => getReturnType($declaration['returnType'], true),
                     'paramsMap' => array_keys($declaration['map']),
+                    'parameters' => $parameters,
                 ];
-                if (strpos($returnType, 'ArrayOf') !== false) {
-                    $returnType = fixArrayOfType($returnType, false, false, true);
-                }
-                if (!empty($returnType)) $returnType .= ' ';
-                echo "* @method {$returnType}$method($parameters)\n";
                 $methodMap[$method . 'Async'] = [
                     'returnType' => ['\GuzzleHttp\Promise\PromiseInterface::class'],
                     'paramsMap' => array_keys($declaration['map']),
+                    'parameters' => $parameters,
                 ];
-                echo "* @method \\GuzzleHttp\\Promise\\PromiseInterface {$method}Async($parameters)\n";
-                echo "* @method \\TelegramBot\\Api\\Methods\\$method init$typeInCamelCase($parameters)\n";
             }
         }
     }
@@ -246,16 +227,13 @@ function generateMethodFunctionsMethodsAndTypesDoc()
         $methodMap
     ];
 }
-
 function generateMethodFunctions()
 {
     ob_start();
     echo '<?php' . PHP_EOL;
     echo 'namespace TelegramBot\Api;' . PHP_EOL;
-    echo "/**\n";
-    list($typeMap, $methodMap) = generateMethodFunctionsMethodsAndTypesDoc();
-    echo "*/\n";
     echo 'class MethodFunctions';
+    list($typeMap, $methodMap) = generateMethodFunctionsMethodsAndTypesDoc();
     echo "{\n";
     {
         echo "\t" . 'protected $methodMap = [' . "\n";
@@ -298,6 +276,34 @@ function generateMethodFunctions()
             echo "\t\t],\n";
         }
         echo "\t];\n";
+    }
+    $remove = function ($x) {
+        return str_replace(['\'', '::class'], null, $x);
+    };
+    foreach (array_merge($typeMap, $methodMap) as $method => $map) {
+        $params = '';
+        echo "\t\t/**\n";
+        foreach ($map['parameters'] as $p) {
+            if (!empty($params)) $params .= ',' . "\n";
+            if (empty($p['defaultValue'])) {
+                $params .= sprintf("\t\t\t%s", $p['name']);
+            } else {
+                $params .= sprintf("\t\t\t%s = %s", $p['name'], $p['defaultValue']);
+            }
+            echo "\t\t * @param {$p['name']} " . $remove($p['type']) . "\n";
+        }
+        echo "\t\t * @throws \TelegramBot\Api\Exceptions\TelegramException\n";
+        echo "\t\t * @return " . implode("|", array_map($remove, $map['returnType'])) . "\n";
+        echo "\t\t*/\n";
+        if (empty($params)) {
+            echo "\t\tpublic function $method(){\n";
+        } else {
+            echo "\t\tpublic function $method(\n$params\n\t\t){\n";
+        }
+        echo "\t\t\t" . 'if(method_exists($this, \'__call\')){' . "\n";
+        echo "\t\t\t\treturn " . '$this->__call(\''.$method.'\', func_get_args());' . "\n";
+        echo "\t\t\t}\n";
+        echo "\t\t}\n";
     }
     echo "}\n";
     return ob_get_clean();
@@ -380,7 +386,7 @@ function generateType($type)
     echo generateDoc($type, $typeInfo, true);
     echo 'class ' . $type . ' extends BaseType implements TypeInterface' . PHP_EOL;
     echo '{' . PHP_EOL;
-    echo 'public static $name = \''.$type.'\';' . "\n";
+    echo 'public static $name = \'' . $type . '\';' . "\n";
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], true);
     echo generateMap($typeInfo['map'], true);

@@ -3,9 +3,10 @@
 namespace TelegramBot\Api;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use ReflectionException;
-use TelegramBot\Api\Extension\KeyboardBuilder;
+use TelegramBot\Api\Exceptions\HttpException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\TelegramException;
 use TelegramBot\Api\Types\File;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
@@ -205,6 +206,12 @@ class BotApi extends MethodFunctions
         return true;
     }
 
+    /**
+     * @param BaseMethod $method
+     * @return array
+     * @throws Exceptions\MissingParameterException
+     * @throws InvalidArgumentException
+     */
     private function createMultipart(BaseMethod $method)
     {
         $multipart = [];
@@ -220,7 +227,6 @@ class BotApi extends MethodFunctions
 
     /**
      * @param $method
-     * @param $args
      * @param bool $async
      * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
      * @throws HttpException
@@ -234,29 +240,28 @@ class BotApi extends MethodFunctions
         } else {
             $options['json'] = $method->toJson(true);
         }
-        try {
-            $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);
-            if ($async) {
-                return $response;
-            }
-            $httpCode = $response->getStatusCode();
-            if (!in_array($httpCode, [self::DEFAULT_STATUS_CODE, self::NOT_MODIFIED_STATUS_CODE])) {
-                $json = json_decode($response->getBody()->getContents(), true) ?: [];
-                $errorDescription = array_key_exists('description', $json) ? $json['description'] : self::$codes[$httpCode];
-                $errorParameters = array_key_exists('parameters', $json) ? $json['parameters'] : [];
-                throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
-            }
-            $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-            if (array_keys($body, 'ok') && false === (bool)$body['ok']) {
-                throw new TelegramException($body['description'], $body['error_code']);
-            }
-            return $body['result'];
-        } catch (ClientException $e) {
-            throw new HttpException("Unable to make request: {$e->getMessage()}", $e->getCode(), $e);
+        $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);
+        if ($async) {
+            return $response;
         }
+        $httpCode = $response->getStatusCode();
+        if (!in_array($httpCode, [self::DEFAULT_STATUS_CODE, self::NOT_MODIFIED_STATUS_CODE])) {
+            $json = json_decode($response->getBody()->getContents(), true) ?: [];
+            $errorDescription = array_key_exists('description', $json) ? $json['description'] : self::$codes[$httpCode];
+            $errorParameters = array_key_exists('parameters', $json) ? $json['parameters'] : [];
+            throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
+        }
+        $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+        if (array_keys($body, 'ok') && false === (bool)$body['ok']) {
+            throw new TelegramException($body['description'], $body['error_code']);
+        }
+        return $body['result'];
     }
 
-
+    /**
+     * @param $lastOffset
+     * @throws TelegramException
+     */
     public function clearUpdates($lastOffset)
     {
         $this->getUpdates($lastOffset + 1);
@@ -270,9 +275,12 @@ class BotApi extends MethodFunctions
      * @throws HttpException
      * @throws TelegramException
      */
-    public function callArr($method, array $args)
+    public function callArr($method, array $args, $async = false)
     {
         $args['keyValuePair'] = true;
+        if ($async && strpos($method, 'Async') === false) {
+            $method .= 'Async';
+        }
         return $this->__call($method, $args);
     }
 
@@ -294,10 +302,9 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * @param \TelegramBot\Api\Types\Update $update
+     * @param Update $update
      * @param string $eventName
-     *
-     * @throws \TelegramBot\Api\TelegramException
+     * @throws BotanException
      */
     public function trackUpdate(Update $update, $eventName = 'Message')
     {
@@ -311,12 +318,9 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * Wrapper for tracker
-     *
-     * @param \TelegramBot\Api\Types\Message $message
+     * @param Message $message
      * @param string $eventName
-     *
-     * @throws \TelegramBot\Api\TelegramException
+     * @throws BotanException
      */
     public function track(Message $message, $eventName = 'Message')
     {
@@ -350,8 +354,9 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * @param \TelegramBot\Api\Types\File|string $fileId
+     * @param $fileId string|File
      * @return string
+     * @throws TelegramException
      */
     public function getFileDownloadUrl($fileId)
     {
@@ -365,9 +370,10 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * @param \TelegramBot\Api\Types\File|string $fileId
+     * @param $fileId string|File
      * @param $saveFile
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws TelegramException
      */
     public function downloadFile($fileId, $saveFile)
     {
@@ -403,23 +409,24 @@ class BotApi extends MethodFunctions
         }
         $method->mergeData($params);
         $response = $this->call($method, $async);
-        try {
-            $return = $declaration['returnType'];
-            if (!is_array($declaration['returnType'])) {
-                $return = [$declaration['returnType']];
+        $return = $declaration['returnType'];
+        if (!is_array($declaration['returnType'])) {
+            $return = [$declaration['returnType']];
+        }
+        foreach ($return as $returnType) {
+            if (KeyValuePairStore::validateType($response, $returnType)) {
+                $response = KeyValuePairStore::getValueByType($response, $returnType, $this);
+                break;
             }
-            foreach ($return as $returnType) {
-                if (KeyValuePairStore::validateType($response, $returnType)) {
-                    $response = KeyValuePairStore::getValueByType($response, $returnType, $this);
-                    break;
-                }
-            }
-        } catch (ReflectionException $e) {
-
         }
         return $response;
     }
 
+    /**
+     * @param callable $callback
+     * @param $data
+     * @return bool
+     */
     public function handleWebhookUpdate(callable $callback, $data)
     {
         if (!is_array($data)) {
@@ -437,6 +444,15 @@ class BotApi extends MethodFunctions
         return false;
     }
 
+    /**
+     * @param callable $callback
+     * @param int $offset
+     * @param int $limit
+     * @param int $timeout
+     * @param array $allowedUpdates
+     * @return int
+     * @throws TelegramException
+     */
     public function poll(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
     {
         /** @var Update[] $updates */
@@ -451,6 +467,16 @@ class BotApi extends MethodFunctions
         return $offset;
     }
 
+    /**
+     * @param callable $callback
+     * @param int $offset
+     * @param int $limit
+     * @param int $timeout
+     * @param array $allowedUpdates
+     * @param int $sleepTime
+     * @return int
+     * @throws TelegramException
+     */
     public function start_polling(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [], $sleepTime = 0)
     {
         $loop = true;
