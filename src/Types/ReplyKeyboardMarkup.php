@@ -9,5 +9,6 @@ class ReplyKeyboardMarkup extends Types\ReplyKeyboardMarkup
     public function reverseKeyboard()
     {
         $this->setKeyboard(array_map("array_reverse", $this->getKeyboard()));
+        return $this;
     }
 }
