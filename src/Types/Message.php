@@ -8,6 +8,13 @@ class Message extends Types\Message
 {
     private $effectiveStatusUpdate = null;
 
+    /**
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function delete(){
+        return $this->botApi->deleteMessage($this->getChat()->getId(), $this->getMessageId());
+    }
+
     public function getEffectiveStatusUpdate()
     {
         if ($this->effectiveStatusUpdate !== null) {
