@@ -156,6 +156,7 @@ class KeyValuePairStore
         }
         $output = [];
         foreach ($this->data as $key => $value) {
+            if ($key == 'keyValuePair') continue;
             if (!is_null($value)) {
                 if (!self::validateType($value, static::$map[$key])) {
                     throw new InvalidArgumentException("Invalid type supplied for \"" . lcfirst(self::toCamelCase($key)) . "\" (needs type: " . static::$map[$key] . ").");

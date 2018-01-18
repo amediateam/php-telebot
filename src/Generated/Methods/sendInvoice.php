@@ -47,7 +47,7 @@ use TelegramBot\Api\BaseMethod;
 */
 class sendInvoice extends BaseMethod
 {
-	protected $method = 'sendInvoice';
+	public static $method = 'sendInvoice';
 	static protected $requiredParams = [
 		'chat_id',
 		'title',
