@@ -9,16 +9,18 @@ use TelegramBot\Api\Types\Update;
 
 class ChosenInlineResultHandler extends BaseHandler
 {
-    protected $regex;
+    protected $regex = null;
     protected $matches = [];
 
     public function __construct(callable $callback, $regex = [])
     {
         parent::__construct($callback);
-        if (!is_array($regex)) {
-            $regex = [$regex];
+        if(!is_null($this->regex)){
+            if (!is_array($regex)) {
+                $regex = [$regex];
+            }
+            $this->regex = $regex;
         }
-        $this->regex = $regex;
     }
 
     public function checkUpdate(Update $update)
@@ -26,7 +28,7 @@ class ChosenInlineResultHandler extends BaseHandler
         if (!Filters::chosenInlineResult()($update)) {
             return false;
         }
-        if (!is_null($this->regex)) {
+        if (!is_null($this->regex) && sizeof($this->regex)) {
             foreach ($this->regex as $regex) {
                 if (preg_match($regex, $update->getChosenInlineResult()->getQuery(), $this->matches))
                     return true;

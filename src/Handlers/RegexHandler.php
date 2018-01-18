@@ -9,7 +9,7 @@ use function preg_match;
 
 class RegexHandler extends MessageHandler
 {
-    private $regex;
+    private $regex = null;
     private $matches = [];
 
     public function __construct(
@@ -22,10 +22,12 @@ class RegexHandler extends MessageHandler
         bool $channelPostUpdates = true
     )
     {
-        if (!is_array($regex)) {
-            $regex = [$regex];
+        if(!is_null($this->regex)){
+            if (!is_array($regex)) {
+                $regex = [$regex];
+            }
+            $this->regex = $regex;
         }
-        $this->regex = $regex;
         parent::__construct($callback, $filters, $commandUpdates, $messageUpdates, $editedUpdates, $channelPostUpdates);
     }
 
@@ -34,7 +36,7 @@ class RegexHandler extends MessageHandler
         if (!parent::checkUpdate($update)) {
             return false;
         }
-        if (!is_null($this->regex)) {
+        if (!is_null($this->regex) && sizeof($this->regex)) {
             foreach ($this->regex as $regex) {
                 if (preg_match($regex, $update->getEffectiveMessage()->getText(), $this->matches))
                     return true;
