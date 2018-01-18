@@ -22,6 +22,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultCachedDocument extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultCachedDocument';
 	static protected $requiredParams = [
 		'id',
 		'title',

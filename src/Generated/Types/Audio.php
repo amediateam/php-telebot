@@ -18,6 +18,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Audio extends BaseType implements TypeInterface
 {
+public static $name = 'Audio';
 	static protected $requiredParams = [
 		'file_id',
 		'duration'

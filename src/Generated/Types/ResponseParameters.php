@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ResponseParameters extends BaseType implements TypeInterface
 {
+public static $name = 'ResponseParameters';
 	static protected $requiredParams = [
 		
 	];

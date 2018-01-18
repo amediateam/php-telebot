@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Document extends BaseType implements TypeInterface
 {
+public static $name = 'Document';
 	static protected $requiredParams = [
 		'file_id'
 	];

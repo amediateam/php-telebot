@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class MessageEntity extends BaseType implements TypeInterface
 {
+public static $name = 'MessageEntity';
 	const TYPE_MENTION = 'mention';
 	const TYPE_HASHTAG = 'hashtag';
 	const TYPE_BOT_COMMAND = 'bot_command';

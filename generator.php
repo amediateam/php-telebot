@@ -380,6 +380,7 @@ function generateType($type)
     echo generateDoc($type, $typeInfo, true);
     echo 'class ' . $type . ' extends BaseType implements TypeInterface' . PHP_EOL;
     echo '{' . PHP_EOL;
+    echo 'public static $name = \''.$type.'\';' . "\n";
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], true);
     echo generateMap($typeInfo['map'], true);
@@ -408,7 +409,7 @@ function generateMethod($type)
     echo generateDoc($type, $typeInfo, false);
     echo 'class ' . $type . ' extends BaseMethod' . PHP_EOL;
     echo '{' . PHP_EOL;
-    echo "\t" . 'protected $method = \'' . $type . '\';' . "\n";
+    echo "\t" . 'public static $method = \'' . $type . '\';' . "\n";
     echo generateConstants($typeInfo['constants']);
     echo generateRequiredParams($typeInfo['requiredParams'], false);
     echo generateMap($typeInfo['map'], false);

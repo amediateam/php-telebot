@@ -12,6 +12,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class GameHighScore extends BaseType implements TypeInterface
 {
+public static $name = 'GameHighScore';
 	static protected $requiredParams = [
 		'position',
 		'user',

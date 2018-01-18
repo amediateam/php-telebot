@@ -28,6 +28,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultVenue extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultVenue';
 	static protected $requiredParams = [
 		'id',
 		'latitude',

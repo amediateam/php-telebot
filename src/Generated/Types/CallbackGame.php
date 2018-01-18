@@ -6,6 +6,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class CallbackGame extends BaseType implements TypeInterface
 {
+public static $name = 'CallbackGame';
 	static protected $requiredParams = [
 		
 	];

@@ -12,6 +12,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class KeyboardButton extends BaseType implements TypeInterface
 {
+public static $name = 'KeyboardButton';
 	static protected $requiredParams = [
 		'text'
 	];

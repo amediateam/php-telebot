@@ -24,6 +24,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultGame extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultGame';
 	static protected $requiredParams = [
 		'id',
 		'document_url',

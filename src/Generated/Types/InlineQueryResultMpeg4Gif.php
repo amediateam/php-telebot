@@ -28,6 +28,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultMpeg4Gif extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultMpeg4Gif';
 	static protected $requiredParams = [
 		'id',
 		'mpeg4_url'

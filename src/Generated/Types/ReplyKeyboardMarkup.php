@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ReplyKeyboardMarkup extends BaseType implements TypeInterface
 {
+public static $name = 'ReplyKeyboardMarkup';
 	static protected $requiredParams = [
 		'keyboard'
 	];

@@ -8,6 +8,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineKeyboardMarkup extends BaseType implements TypeInterface
 {
+public static $name = 'InlineKeyboardMarkup';
 	static protected $requiredParams = [
 		'inline_keyboard'
 	];

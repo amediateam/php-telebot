@@ -15,7 +15,7 @@ abstract class BaseMethod extends KeyValuePairStore
 {
     /** @var BotApi */
     protected $botApi;
-    protected $method;
+    public static $method;
 
     public function __construct(BotApi $bot = null)
     {
@@ -27,7 +27,7 @@ abstract class BaseMethod extends KeyValuePairStore
 
     public function getMethod()
     {
-        return $this->method;
+        return static::$method;
     }
 
     public function setBot(BotApi $bot)

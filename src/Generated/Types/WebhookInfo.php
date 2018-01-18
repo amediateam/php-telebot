@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class WebhookInfo extends BaseType implements TypeInterface
 {
+public static $name = 'WebhookInfo';
 	static protected $requiredParams = [
 		'url'
 	];

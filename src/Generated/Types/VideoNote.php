@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class VideoNote extends BaseType implements TypeInterface
 {
+public static $name = 'VideoNote';
 	static protected $requiredParams = [
 		'file_id',
 		'length',

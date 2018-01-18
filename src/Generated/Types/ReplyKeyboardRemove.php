@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ReplyKeyboardRemove extends BaseType implements TypeInterface
 {
+public static $name = 'ReplyKeyboardRemove';
 	static protected $requiredParams = [
 		'remove_keyboard'
 	];

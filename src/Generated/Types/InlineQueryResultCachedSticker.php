@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultCachedSticker extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultCachedSticker';
 	static protected $requiredParams = [
 		'id',
 		'sticker_file_id'

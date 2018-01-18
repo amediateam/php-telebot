@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class StickerSet extends BaseType implements TypeInterface
 {
+public static $name = 'StickerSet';
 	static protected $requiredParams = [
 		'name',
 		'title',

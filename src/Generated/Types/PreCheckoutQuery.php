@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class PreCheckoutQuery extends BaseType implements TypeInterface
 {
+public static $name = 'PreCheckoutQuery';
 	static protected $requiredParams = [
 		'id',
 		'from',

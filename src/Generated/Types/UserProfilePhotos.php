@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class UserProfilePhotos extends BaseType implements TypeInterface
 {
+public static $name = 'UserProfilePhotos';
 	static protected $requiredParams = [
 		'total_count',
 		'photos'

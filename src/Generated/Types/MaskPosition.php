@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class MaskPosition extends BaseType implements TypeInterface
 {
+public static $name = 'MaskPosition';
 	static protected $requiredParams = [
 		'point',
 		'x_shift',

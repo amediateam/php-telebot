@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Animation extends BaseType implements TypeInterface
 {
+public static $name = 'Animation';
 	static protected $requiredParams = [
 		'file_id'
 	];

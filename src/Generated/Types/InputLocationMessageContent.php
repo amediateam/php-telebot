@@ -12,6 +12,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InputLocationMessageContent extends BaseType implements TypeInterface
 {
+public static $name = 'InputLocationMessageContent';
 	static protected $requiredParams = [
 		'latitude',
 		'longitude'

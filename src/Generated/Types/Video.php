@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Video extends BaseType implements TypeInterface
 {
+public static $name = 'Video';
 	static protected $requiredParams = [
 		'file_id',
 		'width',

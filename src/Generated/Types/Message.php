@@ -88,6 +88,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Message extends BaseType implements TypeInterface
 {
+public static $name = 'Message';
 	static protected $requiredParams = [
 		'message_id'
 	];

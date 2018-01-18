@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ForceReply extends BaseType implements TypeInterface
 {
+public static $name = 'ForceReply';
 	static protected $requiredParams = [
 		'force_reply'
 	];

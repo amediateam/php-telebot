@@ -38,6 +38,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ChatMember extends BaseType implements TypeInterface
 {
+public static $name = 'ChatMember';
 	const CREATOR = 'creator';
 	const ADMINISTRATOR = 'administrator';
 	const MEMBER = 'member';

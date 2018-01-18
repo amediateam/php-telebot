@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Invoice extends BaseType implements TypeInterface
 {
+public static $name = 'Invoice';
 	static protected $requiredParams = [
 		'title',
 		'description',

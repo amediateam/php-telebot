@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ChosenInlineResult extends BaseType implements TypeInterface
 {
+public static $name = 'ChosenInlineResult';
 	static protected $requiredParams = [
 		'result_id',
 		'from',

@@ -22,6 +22,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Sticker extends BaseType implements TypeInterface
 {
+public static $name = 'Sticker';
 	static protected $requiredParams = [
 		'file_id',
 		'width',

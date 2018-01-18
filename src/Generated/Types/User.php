@@ -18,6 +18,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class User extends BaseType implements TypeInterface
 {
+public static $name = 'User';
 	static protected $requiredParams = [
 		'id'
 	];

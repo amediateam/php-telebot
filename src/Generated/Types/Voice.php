@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Voice extends BaseType implements TypeInterface
 {
+public static $name = 'Voice';
 	static protected $requiredParams = [
 		'file_id',
 		'duration'

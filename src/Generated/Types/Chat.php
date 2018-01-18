@@ -32,6 +32,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Chat extends BaseType implements TypeInterface
 {
+public static $name = 'Chat';
 	const TYPE_PRIVATE = 'private';
 	const TYPE_GROUP = 'group';
 	const TYPE_SUPER_GROUP = 'supergroup';

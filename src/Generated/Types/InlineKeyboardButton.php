@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineKeyboardButton extends BaseType implements TypeInterface
 {
+public static $name = 'InlineKeyboardButton';
 	static protected $requiredParams = [
 		'text'
 	];

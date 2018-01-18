@@ -12,6 +12,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ShippingOption extends BaseType implements TypeInterface
 {
+public static $name = 'ShippingOption';
 	static protected $requiredParams = [
 		'id',
 		'title',

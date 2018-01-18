@@ -12,6 +12,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InputMediaPhoto extends BaseType implements TypeInterface
 {
+public static $name = 'InputMediaPhoto';
 	static protected $requiredParams = [
 		'type',
 		'media'

@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class SuccessfulPayment extends BaseType implements TypeInterface
 {
+public static $name = 'SuccessfulPayment';
 	static protected $requiredParams = [
 		'currency',
 		'total_amount',

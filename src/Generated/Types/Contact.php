@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Contact extends BaseType implements TypeInterface
 {
+public static $name = 'Contact';
 	static protected $requiredParams = [
 		'phone_number',
 		'first_name'

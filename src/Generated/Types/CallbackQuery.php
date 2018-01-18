@@ -20,6 +20,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class CallbackQuery extends BaseType implements TypeInterface
 {
+public static $name = 'CallbackQuery';
 	static protected $requiredParams = [
 		'id',
 		'from'

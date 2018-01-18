@@ -32,6 +32,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultVideo extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultVideo';
 	static protected $requiredParams = [
 		'id',
 		'video_url',

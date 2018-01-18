@@ -378,8 +378,10 @@ class BotApi extends MethodFunctions
     /**
      * @param $method
      * @param $arguments
-     * @return mixed
-     * @throws TelegramException|InvalidJsonException|InvalidArgumentException
+     * @return bool|float|\GuzzleHttp\Promise\PromiseInterface|int|\Psr\Http\Message\ResponseInterface|string|BaseMethod|BaseType
+     * @throws HttpException
+     * @throws InvalidArgumentException
+     * @throws TelegramException
      */
     public function __call($method, $arguments)
     {
@@ -400,13 +402,7 @@ class BotApi extends MethodFunctions
             $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
         }
         $method->mergeData($params);
-        try {
-            $response = $this->call($method, $async);
-        } catch (HttpException $e) {
-            throw new TelegramException($e->getMessage(), $e->getCode());
-        } catch (InvalidArgumentException $e) {
-            throw $e;
-        }
+        $response = $this->call($method, $async);
         try {
             $return = $declaration['returnType'];
             if (!is_array($declaration['returnType'])) {

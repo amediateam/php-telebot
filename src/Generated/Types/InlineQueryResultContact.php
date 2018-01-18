@@ -26,6 +26,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultContact extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultContact';
 	static protected $requiredParams = [
 		'id',
 		'phone_number',

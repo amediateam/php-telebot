@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class ChatPhoto extends BaseType implements TypeInterface
 {
+public static $name = 'ChatPhoto';
 	static protected $requiredParams = [
 		'small_file_id',
 		'big_file_id'

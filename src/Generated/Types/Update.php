@@ -26,6 +26,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class Update extends BaseType implements TypeInterface
 {
+public static $name = 'Update';
 	static protected $requiredParams = [
 		'update_id'
 	];

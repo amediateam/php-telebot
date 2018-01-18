@@ -10,6 +10,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class LabeledPrice extends BaseType implements TypeInterface
 {
+public static $name = 'LabeledPrice';
 	static protected $requiredParams = [
 		'label',
 		'amount'

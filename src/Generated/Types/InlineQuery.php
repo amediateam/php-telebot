@@ -16,6 +16,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQuery extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQuery';
 	static protected $requiredParams = [
 		'id',
 		'from',

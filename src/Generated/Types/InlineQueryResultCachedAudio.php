@@ -18,6 +18,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class InlineQueryResultCachedAudio extends BaseType implements TypeInterface
 {
+public static $name = 'InlineQueryResultCachedAudio';
 	static protected $requiredParams = [
 		'id',
 		'audio_file_id'

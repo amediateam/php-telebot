@@ -14,6 +14,7 @@ use TelegramBot\Api\TypeInterface;
 */
 class OrderInfo extends BaseType implements TypeInterface
 {
+public static $name = 'OrderInfo';
 	static protected $requiredParams = [
 		
 	];
