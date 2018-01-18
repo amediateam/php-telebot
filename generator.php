@@ -202,7 +202,7 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 $parameters[] = ['type' => $type, 'name' => '$' . $parameter, 'defaultValue' => !$required ? $defaultValue : null];
             }
             if ($isType) {
-                $typeMap['create' . $method] = [
+                $typeMap[$method] = [
                     'returnType' => getReturnType($method, true),
                     'paramsMap' => array_keys($declaration['map']),
                     'parameters' => $parameters,
@@ -227,6 +227,7 @@ function generateMethodFunctionsMethodsAndTypesDoc()
         $methodMap
     ];
 }
+
 function generateMethodFunctions()
 {
     ob_start();
@@ -280,7 +281,10 @@ function generateMethodFunctions()
     $remove = function ($x) {
         return str_replace(['\'', '::class'], null, $x);
     };
-    foreach (array_merge($typeMap, $methodMap) as $method => $map) {
+    $generate = function ($method, $map, $isType = false) use ($remove) {
+        if ($isType) {
+            $method = 'create' . $method;
+        }
         $params = '';
         echo "\t\t/**\n";
         foreach ($map['parameters'] as $p) {
@@ -301,9 +305,15 @@ function generateMethodFunctions()
             echo "\t\tpublic function $method(\n$params\n\t\t){\n";
         }
         echo "\t\t\t" . 'if(method_exists($this, \'__call\')){' . "\n";
-        echo "\t\t\t\treturn " . '$this->__call(\''.$method.'\', func_get_args());' . "\n";
+        echo "\t\t\t\treturn " . '$this->__call(\'' . $method . '\', func_get_args());' . "\n";
         echo "\t\t\t}\n";
         echo "\t\t}\n";
+    };
+    foreach ($typeMap as $method => $map) {
+        $generate($method, $map, true);
+    }
+    foreach ($methodMap as $method => $map) {
+        $generate($method, $map, false);
     }
     echo "}\n";
     return ob_get_clean();

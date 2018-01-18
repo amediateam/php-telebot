@@ -1257,7 +1257,7 @@ class MethodFunctions{
 		],
 	];
 	protected $typeMap = [
-		'createReplyKeyboardMarkup' => [
+		'ReplyKeyboardMarkup' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ReplyKeyboardMarkup::class,
 			],
@@ -1268,7 +1268,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'createKeyboardButton' => [
+		'KeyboardButton' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\KeyboardButton::class,
 			],
@@ -1278,7 +1278,7 @@ class MethodFunctions{
 				'request_location',
 			],
 		],
-		'createReplyKeyboardRemove' => [
+		'ReplyKeyboardRemove' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ReplyKeyboardRemove::class,
 			],
@@ -1287,7 +1287,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'createInlineKeyboardMarkup' => [
+		'InlineKeyboardMarkup' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 			],
@@ -1295,7 +1295,7 @@ class MethodFunctions{
 				'inline_keyboard',
 			],
 		],
-		'createInlineKeyboardButton' => [
+		'InlineKeyboardButton' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineKeyboardButton::class,
 			],
@@ -1309,7 +1309,7 @@ class MethodFunctions{
 				'pay',
 			],
 		],
-		'createForceReply' => [
+		'ForceReply' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\ForceReply::class,
 			],
@@ -1318,7 +1318,7 @@ class MethodFunctions{
 				'selective',
 			],
 		],
-		'createInlineQueryResultArticle' => [
+		'InlineQueryResultArticle' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultArticle::class,
 			],
@@ -1336,7 +1336,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultAudio' => [
+		'InlineQueryResultAudio' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultAudio::class,
 			],
@@ -1352,7 +1352,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultContact' => [
+		'InlineQueryResultContact' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultContact::class,
 			],
@@ -1369,7 +1369,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultGame' => [
+		'InlineQueryResultGame' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultGame::class,
 			],
@@ -1385,7 +1385,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultDocument' => [
+		'InlineQueryResultDocument' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultDocument::class,
 			],
@@ -1404,7 +1404,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultGif' => [
+		'InlineQueryResultGif' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultGif::class,
 			],
@@ -1422,7 +1422,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultLocation' => [
+		'InlineQueryResultLocation' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultLocation::class,
 			],
@@ -1440,7 +1440,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultMpeg4Gif' => [
+		'InlineQueryResultMpeg4Gif' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultMpeg4Gif::class,
 			],
@@ -1458,7 +1458,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultPhoto' => [
+		'InlineQueryResultPhoto' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultPhoto::class,
 			],
@@ -1475,7 +1475,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultVenue' => [
+		'InlineQueryResultVenue' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVenue::class,
 			],
@@ -1493,7 +1493,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultVideo' => [
+		'InlineQueryResultVideo' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVideo::class,
 			],
@@ -1513,7 +1513,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInlineQueryResultVoice' => [
+		'InlineQueryResultVoice' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InlineQueryResultVoice::class,
 			],
@@ -1528,7 +1528,7 @@ class MethodFunctions{
 				'type',
 			],
 		],
-		'createInputTextMessageContent' => [
+		'InputTextMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputTextMessageContent::class,
 			],
@@ -1538,7 +1538,7 @@ class MethodFunctions{
 				'disable_web_page_preview',
 			],
 		],
-		'createInputLocationMessageContent' => [
+		'InputLocationMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputLocationMessageContent::class,
 			],
@@ -1548,7 +1548,7 @@ class MethodFunctions{
 				'live_period',
 			],
 		],
-		'createInputVenueMessageContent' => [
+		'InputVenueMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputVenueMessageContent::class,
 			],
@@ -1560,7 +1560,7 @@ class MethodFunctions{
 				'foursquare_id',
 			],
 		],
-		'createInputContactMessageContent' => [
+		'InputContactMessageContent' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputContactMessageContent::class,
 			],
@@ -1570,7 +1570,7 @@ class MethodFunctions{
 				'last_name',
 			],
 		],
-		'createInputMediaPhoto' => [
+		'InputMediaPhoto' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputMediaPhoto::class,
 			],
@@ -1580,7 +1580,7 @@ class MethodFunctions{
 				'caption',
 			],
 		],
-		'createInputMediaVideo' => [
+		'InputMediaVideo' => [
 			'returnType' => [
 				\TelegramBot\Api\Types\InputMediaVideo::class,
 			],
