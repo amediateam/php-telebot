@@ -494,4 +494,88 @@ class BotApi extends MethodFunctions
         $this->clearUpdates($offset);
         return $offset;
     }
+
+    public function detectMessageType(Message $message)
+    {
+        $keyVal = [
+            'text', 'photo', 'video', 'voice', 'sticker', 'video_note', 'document', 'audio', 'contact', 'location', 'venue'
+        ];
+        foreach ($keyVal as $key) {
+            $method = 'get' . ucfirst($key);
+            if (false != $message->$method()) {
+                return $key;
+            }
+        }
+        return null;
+    }
+
+    public function cloneMessage(Message $message, $reply = false)
+    {
+        $type = $this->detectMessageType($message);
+        $params = [];
+        $method = null;
+        if (false != $message->getCaption()) {
+            $params['caption'] = $message->getCaption();
+        }
+        if ($reply && false != $message->getReplyToMessage()) {
+            $params['reply_to_message_id'] = $message->getReplyToMessage()->getMessageId();
+        }
+        switch ($type) {
+            case 'text':
+                $method = 'sendMessage';
+                $params['text'] = $message->getText();
+                break;
+            case 'photo':
+                $method = 'sendPhoto';
+                $photo = $message->getPhoto()[sizeof($message->getPhoto()) - 1];
+                $params['photo'] = $photo->getFileId();
+                break;
+            case 'video':
+                $method = 'sendVideo';
+                $params['video'] = $message->getVideo()->getFileId();
+                break;
+            case 'venue':
+                $method = 'sendVenue';
+                $params['title'] = $message->getVenue()->getTitle();
+                $params['address'] = $message->getVenue()->getAddress();
+                $params['foursquare_id'] = $message->getVenue()->getFoursquareId();
+                $params['latitude'] = $message->getVenue()->getLocation()->getLatitude();
+                $params['longitude'] = $message->getVenue()->getLocation()->getLongitude();
+                break;
+            case 'sticker':
+                $method = 'sendSticker';
+                $params['sticker'] = $message->getSticker()->getFileId();
+                break;
+            case 'voice':
+                $method = 'sendVoice';
+                $params['voice'] = $message->getVideo()->getFileId();
+                break;
+            case 'audio':
+                $method = 'sendAudio';
+                $params['audio'] = $message->getAudio()->getFileId();
+                break;
+            case 'contact':
+                $method = 'sendContact';
+                $params['phone_number'] = $message->getContact()->getPhoneNumber();
+                if ($message->getContact()->getFirstName()) {
+                    $params['first_name'] = $message->getContact()->getFirstName();
+                }
+                if ($message->getContact()->getLastName()) {
+                    $params['last_name'] = $message->getContact()->getLastName();
+                }
+                break;
+            case 'location':
+                $method = 'sendLocation';
+                $params['latitude'] = $message->getLocation()->getLatitude();
+                $params['longitude'] = $message->getLocation()->getLongitude();
+                break;
+            case 'video_note':
+                $method = 'sendVideoNote';
+                $params['video_note'] = $message->getVideoNote()->getFileId();
+                $params['duration'] = $message->getVideoNote()->getDuration();
+                $params['length'] = $message->getVideoNote()->getLength();
+                break;
+        }
+        return ['method' => $method, 'params' => $params];
+    }
 }
