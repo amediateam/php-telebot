@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api;
 
+use function array_merge;
 use function is_numeric;
 use function lcfirst;
 use const PHP_EOL;
@@ -116,6 +117,7 @@ class KeyValuePairStore
         }
         return $sumUp;
     }
+
     /**
      * @param $data
      * @throws InvalidArgumentException
@@ -123,20 +125,15 @@ class KeyValuePairStore
     public function mergeData($data)
     {
         foreach ($data as $property => $value) {
-            if(!array_key_exists($property, static::$map)) continue;
-            if (self::validateType($value, static::$map[$property])) {
-                if (is_array(static::$map[$property])) {
-                    if (in_array(InputFile::class, static::$map[$property])) {
-                        $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
-                    }
-                } else if (static::$map[$property] == InputFile::class) {
+            if (is_array(static::$map[$property])) {
+                if (in_array(InputFile::class, static::$map[$property])) {
                     $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
                 }
-                $this->data[$property] = $value;
-            } else {
-                throw new InvalidArgumentException("Invalid type supplied for " . substr($property, 3) . " (needs type: " . static::$map[$property] . ").");
+            } else if (static::$map[$property] == InputFile::class) {
+                $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
             }
         }
+        $this->data = array_merge($this->data, $data);
     }
 
     /**
