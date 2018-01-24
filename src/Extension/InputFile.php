@@ -1,8 +1,6 @@
 <?php
-
 namespace TelegramBot\Api\Extension;
-
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use function is_readable;
 
 class InputFile

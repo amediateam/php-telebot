@@ -120,9 +120,13 @@ class KeyValuePairStore
 
     public function mergeData($data)
     {
-        $this->data = array_merge($this->data, $data);
+        foreach ($data as $property => $value) {
+            if (in_array(InputFile::class, static::$map[$property])) {
+                $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
+            }
+            $this->data[$property] = $value;
+        }
     }
-
 
     /**
      * @param $v
