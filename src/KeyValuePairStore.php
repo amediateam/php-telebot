@@ -125,6 +125,7 @@ class KeyValuePairStore
     public function mergeData($data)
     {
         foreach ($data as $property => $value) {
+            if(!array_key_exists($property, static::$map)) continue;
             if (is_array(static::$map[$property])) {
                 if (in_array(InputFile::class, static::$map[$property])) {
                     $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
