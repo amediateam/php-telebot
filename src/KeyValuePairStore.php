@@ -47,10 +47,10 @@ class KeyValuePairStore
                 if (self::validateType($arguments[0], static::$map[$property])) {
                     if (is_array(static::$map[$property])) {
                         if (in_array(InputFile::class, static::$map[$property])) {
-                            $this->hasInputFile = $arguments[0] instanceof InputFile;
+                            $this->hasInputFile = $this->hasInputFile || $arguments[0] instanceof InputFile;
                         }
                     } else if (static::$map[$property] == InputFile::class) {
-                        $this->hasInputFile = $arguments[0] instanceof InputFile;
+                        $this->hasInputFile = $this->hasInputFile || $arguments[0] instanceof InputFile;
                     }
                     return $this->data[$property] = $arguments[0];
                 }
@@ -116,15 +116,26 @@ class KeyValuePairStore
         }
         return $sumUp;
     }
-
-
+    /**
+     * @param $data
+     * @throws InvalidArgumentException
+     */
     public function mergeData($data)
     {
         foreach ($data as $property => $value) {
-            if (in_array(InputFile::class, static::$map[$property])) {
-                $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
+            if(!array_key_exists($property, static::$map)) continue;
+            if (self::validateType($value, static::$map[$property])) {
+                if (is_array(static::$map[$property])) {
+                    if (in_array(InputFile::class, static::$map[$property])) {
+                        $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
+                    }
+                } else if (static::$map[$property] == InputFile::class) {
+                    $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
+                }
+                $this->data[$property] = $value;
+            } else {
+                throw new InvalidArgumentException("Invalid type supplied for " . substr($property, 3) . " (needs type: " . static::$map[$property] . ").");
             }
-            $this->data[$property] = $value;
         }
     }
 
