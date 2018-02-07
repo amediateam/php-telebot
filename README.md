@@ -1,10 +1,10 @@
-# Telegram BOT API Wrapper
-### Telegram BOT API: V3.5
-## Last maintain: 2/8/2018
+# Telegram BOT API Wrapper (V3.5)
+##### Last maintain: 2/8/2018
 **Examples:**
 ```php
 <?php
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Methods\sendMessage;
 $bot = new BotApi('<token>');
 
 $chatId = '<telegram_chat_id>';

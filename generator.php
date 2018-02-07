@@ -121,7 +121,7 @@ function getReturnType($rType, $useStaticClass = false)
 
 function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocumentReturnType = false)
 {
-    $type = basename($type);
+    $typeX = basename($type);
     $map = [
         'ArrayOfString' => 'string',
         'ArrayOfShippingOption' => '\\TelegramBot\\Api\\Types\\ShippingOption',
@@ -137,12 +137,16 @@ function fixArrayOfType($type, $parameter = false, $returnType = false, $isDocum
         'ArrayOfChatMember' => '\\TelegramBot\\Api\\Types\\ChatMember',
         'ArrayOfInputMedia' => '\\TelegramBot\\Api\\Types\\InputMedia',
         'ArrayOfMessage' => '\\TelegramBot\\Api\\Types\\Message',
-        'ArrayOfArrayOfPhotoSize' => '\\TelegramBot\\Api\\Types\\PhotoSize' . ($returnType ? '[]' : ''),
-        'ArrayOfArrayOfKeyboardButton' => '\\TelegramBot\\Api\\Types\\KeyboardButton' . ($returnType ? '[]' : ''),
-        'ArrayOfArrayOfInlineKeyboardButton' => '\\TelegramBot\\Api\\Types\\InlineKeyboardButton' . ($returnType ? '[]' : ''),
+        'ArrayOfArrayOfPhotoSize' => '\\TelegramBot\\Api\\Types\\PhotoSize',
+        'ArrayOfArrayOfKeyboardButton' => '\\TelegramBot\\Api\\Types\\KeyboardButton',
+        'ArrayOfArrayOfInlineKeyboardButton' => '\\TelegramBot\\Api\\Types\\InlineKeyboardButton',
     ];
-    if (isset($map[$type])) {
-        return $parameter ? 'array' : $map[$type] . ($returnType ? ($isDocumentReturnType ? '' : '::class') : '[]');
+
+    if (isset($map[$typeX])) {
+        if ($returnType) {
+            $map[$typeX] .= '[]';
+        }
+        return $parameter ? 'array' : $map[$typeX] . ($returnType ? ($isDocumentReturnType ? '' : '::class') : '[]');
     }
     return $type;
 }
@@ -199,7 +203,11 @@ function generateMethodFunctionsMethodsAndTypesDoc()
                 if (strpos($type, 'ArrayOf') !== false) {
                     $type = fixArrayOfType($type, true);
                 }
-                $parameters[] = ['type' => $type, 'name' => '$' . $parameter, 'defaultValue' => !$required ? $defaultValue : null];
+                $parameters[] = [
+                    'type' => $type,
+                    'name' => '$' . $parameter,
+                    'defaultValue' => !$required ? $defaultValue : null
+                ];
             }
             if ($isType) {
                 $typeMap[$method] = [
@@ -281,7 +289,10 @@ function generateMethodFunctions()
     $remove = function ($x) {
         return str_replace(['\'', '::class'], null, $x);
     };
-    $generate = function ($method, $map, $isType = false) use ($remove) {
+    $fixArrayOfType = function ($x) {
+        return fixArrayOfType($x, false, true, true);
+    };
+    $generate = function ($method, $map, $isType = false) use ($remove, $fixArrayOfType) {
         if ($isType) {
             $method = 'create' . $method;
         }
@@ -297,7 +308,7 @@ function generateMethodFunctions()
             echo "\t\t * @param {$p['name']} " . $remove($p['type']) . "\n";
         }
         echo "\t\t * @throws \TelegramBot\Api\Exceptions\TelegramException\n";
-        echo "\t\t * @return " . implode("|", array_map($remove, $map['returnType'])) . "\n";
+        echo "\t\t * @return " . implode("|", array_map($fixArrayOfType, array_map($remove, $map['returnType']))) . "\n";
         echo "\t\t*/\n";
         if (empty($params)) {
             echo "\t\tpublic function $method(){\n";

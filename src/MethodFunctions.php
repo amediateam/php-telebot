@@ -2176,7 +2176,7 @@ class MethodFunctions{
 		 * @param $timeout integer
 		 * @param $allowedUpdates array
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
-		 * @return \TelegramBot\Api\Iterators\ArrayOfUpdate
+		 * @return \TelegramBot\Api\Types\Update[]
 		*/
 		public function getUpdates(
 			$offset = null,
@@ -2684,7 +2684,7 @@ class MethodFunctions{
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
-		 * @return \TelegramBot\Api\Iterators\ArrayOfMessage
+		 * @return \TelegramBot\Api\Types\Message[]
 		*/
 		public function sendMediaGroup(
 			$chatId,
@@ -3447,7 +3447,7 @@ class MethodFunctions{
 		/**
 		 * @param $chatId integer|string
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
-		 * @return \TelegramBot\Api\Iterators\ArrayOfChatMember
+		 * @return \TelegramBot\Api\Types\ChatMember[]
 		*/
 		public function getChatAdministrators(
 			$chatId
