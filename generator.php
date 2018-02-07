@@ -212,18 +212,18 @@ function generateMethodFunctionsMethodsAndTypesDoc()
             if ($isType) {
                 $typeMap[$method] = [
                     'returnType' => getReturnType($method, true),
-                    'paramsMap' => array_keys($declaration['map']),
+                    'paramsMap' => array_keys($parameters),
                     'parameters' => $parameters,
                 ];
             } else {
                 $methodMap[$method] = [
                     'returnType' => getReturnType($declaration['returnType'], true),
-                    'paramsMap' => array_keys($declaration['map']),
+                    'paramsMap' => $paramsArray,
                     'parameters' => $parameters,
                 ];
                 $methodMap[$method . 'Async'] = [
                     'returnType' => ['\GuzzleHttp\Promise\PromiseInterface::class'],
-                    'paramsMap' => array_keys($declaration['map']),
+                    'paramsMap' => $paramsArray,
                     'parameters' => $parameters,
                 ];
             }
