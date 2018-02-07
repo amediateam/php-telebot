@@ -98,8 +98,8 @@ class MethodFunctions{
 				'parse_mode',
 				'disable_web_page_preview',
 				'disable_notification',
-				'reply_markup',
 				'reply_to_message_id',
+				'reply_markup',
 			],
 		],
 		'sendMessageAsync' => [
@@ -112,8 +112,8 @@ class MethodFunctions{
 				'parse_mode',
 				'disable_web_page_preview',
 				'disable_notification',
-				'reply_markup',
 				'reply_to_message_id',
+				'reply_markup',
 			],
 		],
 		'forwardMessage' => [
@@ -2302,8 +2302,8 @@ class MethodFunctions{
 		 * @param $parseMode string
 		 * @param $disableWebPagePreview boolean
 		 * @param $disableNotification boolean
-		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \TelegramBot\Api\Types\Message
 		*/
@@ -2313,8 +2313,8 @@ class MethodFunctions{
 			$parseMode = null,
 			$disableWebPagePreview = false,
 			$disableNotification = false,
-			$replyMarkup = null,
-			$replyToMessageId = null
+			$replyToMessageId = null,
+			$replyMarkup = null
 		){
 			if(method_exists($this, '__call')){
 				return $this->__call('sendMessage', func_get_args());
@@ -2326,8 +2326,8 @@ class MethodFunctions{
 		 * @param $parseMode string
 		 * @param $disableWebPagePreview boolean
 		 * @param $disableNotification boolean
-		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @param $replyToMessageId integer
+		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \GuzzleHttp\Promise\PromiseInterface
 		*/
@@ -2337,8 +2337,8 @@ class MethodFunctions{
 			$parseMode = null,
 			$disableWebPagePreview = false,
 			$disableNotification = false,
-			$replyMarkup = null,
-			$replyToMessageId = null
+			$replyToMessageId = null,
+			$replyMarkup = null
 		){
 			if(method_exists($this, '__call')){
 				return $this->__call('sendMessageAsync', func_get_args());

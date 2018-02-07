@@ -1076,13 +1076,13 @@ return [
                 'parse_mode' => 'String',
                 'disable_web_page_preview' => 'Boolean',
                 'disable_notification' => 'Boolean',
+                'reply_to_message_id' => 'Integer',
                 'reply_markup' => [
                     'InlineKeyboardMarkup',
                     'ReplyKeyboardMarkup',
                     'ReplyKeyboardRemove',
                     'ForceReply',
                 ],
-                'reply_to_message_id' => 'Integer',
             ],
             'defaultData' => [
             ],

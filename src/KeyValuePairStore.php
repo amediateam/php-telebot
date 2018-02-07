@@ -148,7 +148,7 @@ class KeyValuePairStore
         if ($v instanceof BaseType || $v instanceof BaseMethod) {
             return $v->toJson(true);
         } else if ($v instanceof InputFile) {
-            return $v->getInputFile();
+            return $v->getStream();
         }
         if (is_array($v)) {
             return array_map([$this, 'jsonLoopThroughArray'], $v);
@@ -181,8 +181,6 @@ class KeyValuePairStore
                     $output[$key] = array_map([$this, 'jsonLoopThroughArray'], $value);
                 } else if ($value instanceof BaseType || $value instanceof BaseMethod) {
                     $output[$key] = $value->toJson(true);
-                } else if ($value instanceof InputFile) {
-                    $output[$key] = $value->getInputFile();
                 } else {
                     $output[$key] = $value;
                 }

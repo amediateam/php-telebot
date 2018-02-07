@@ -7,6 +7,7 @@ use ReflectionException;
 use TelegramBot\Api\Exceptions\HttpException;
 use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Exceptions\TelegramException;
+use TelegramBot\Api\Extension\InputFile;
 use TelegramBot\Api\Types\File;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
@@ -219,6 +220,10 @@ class BotApi extends MethodFunctions
         foreach ($data as $key => $arg) {
             if (is_array($arg)) {
                 $arg = \json_encode($arg);
+            }
+            if($arg instanceof InputFile){
+                $multipart[] = array_merge($arg->getMultipartData(), ['name' => $key]);
+                continue;
             }
             $multipart[] = ['name' => $key, 'contents' => $arg];
         }
