@@ -136,7 +136,6 @@ class KeyValuePairStore
             }
         }
         $this->data = array_merge($this->data, $data);
-        print_r($this->data);
     }
 
     /**
