@@ -87,6 +87,7 @@ class KeyValuePairStore
 
     public static function validateType($value, $types)
     {
+        if($value === null) return true;
         if (!is_array($types)) {
             $types = [$types];
         }
@@ -135,6 +136,7 @@ class KeyValuePairStore
             }
         }
         $this->data = array_merge($this->data, $data);
+        print_r($this->data);
     }
 
     /**

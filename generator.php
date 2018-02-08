@@ -212,7 +212,7 @@ function generateMethodFunctionsMethodsAndTypesDoc()
             if ($isType) {
                 $typeMap[$method] = [
                     'returnType' => getReturnType($method, true),
-                    'paramsMap' => array_keys($parameters),
+                    'paramsMap' => $paramsArray,
                     'parameters' => $parameters,
                 ];
             } else {

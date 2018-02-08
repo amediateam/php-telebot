@@ -3,6 +3,7 @@
 namespace TelegramBot\Api;
 
 use GuzzleHttp\Client;
+use const PHP_EOL;
 use ReflectionException;
 use TelegramBot\Api\Exceptions\HttpException;
 use TelegramBot\Api\Exceptions\InvalidArgumentException;
@@ -335,6 +336,12 @@ class BotApi extends MethodFunctions
     }
 
 
+    /**
+     * @param $type
+     * @param $arguments
+     * @return string|BaseType
+     * @throws InvalidArgumentException
+     */
     private function createInstanceOfType($type, $arguments)
     {
         $declaration = $this->typeMap[$type];
@@ -346,6 +353,12 @@ class BotApi extends MethodFunctions
         return $instance;
     }
 
+    /**
+     * @param $method
+     * @param $arguments
+     * @return string|BaseMethod
+     * @throws InvalidArgumentException
+     */
     private function createInstanceOfMethod($method, $arguments)
     {
         $method = lcfirst($method);
@@ -384,6 +397,18 @@ class BotApi extends MethodFunctions
     {
         $url = $this->getFileDownloadUrl($fileId);
         return $this->httpClient->request('GET', $url, ['sink' => $saveFile]);
+    }
+
+    /**
+     * @param $fileId string|File
+     * @param $saveFile
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws TelegramException
+     */
+    public function downloadFileContents($fileId)
+    {
+        $url = $this->getFileDownloadUrl($fileId);
+        return $this->httpClient->request('GET', $url);
     }
 
     /**
