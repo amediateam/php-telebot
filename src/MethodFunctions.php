@@ -146,6 +146,7 @@ class MethodFunctions{
 				'chat_id',
 				'photo',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -159,6 +160,7 @@ class MethodFunctions{
 				'chat_id',
 				'photo',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -175,6 +177,7 @@ class MethodFunctions{
 				'performer',
 				'title',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -191,6 +194,7 @@ class MethodFunctions{
 				'performer',
 				'title',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -204,6 +208,7 @@ class MethodFunctions{
 				'chat_id',
 				'document',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -217,6 +222,7 @@ class MethodFunctions{
 				'chat_id',
 				'document',
 				'caption',
+				'parse_mode',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -233,6 +239,8 @@ class MethodFunctions{
 				'width',
 				'height',
 				'caption',
+				'parse_mode',
+				'supports_streaming',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -249,6 +257,8 @@ class MethodFunctions{
 				'width',
 				'height',
 				'caption',
+				'parse_mode',
+				'supports_streaming',
 				'disable_notification',
 				'reply_to_message_id',
 				'reply_markup',
@@ -262,6 +272,7 @@ class MethodFunctions{
 				'chat_id',
 				'voice',
 				'caption',
+				'parse_mode',
 				'duration',
 				'disable_notification',
 				'reply_to_message_id',
@@ -276,6 +287,7 @@ class MethodFunctions{
 				'chat_id',
 				'voice',
 				'caption',
+				'parse_mode',
 				'duration',
 				'disable_notification',
 				'reply_to_message_id',
@@ -931,6 +943,7 @@ class MethodFunctions{
 				'message_id',
 				'caption',
 				'inline_message_id',
+				'parse_mode',
 				'reply_markup',
 			],
 		],
@@ -943,6 +956,7 @@ class MethodFunctions{
 				'message_id',
 				'caption',
 				'inline_message_id',
+				'parse_mode',
 				'reply_markup',
 			],
 		],
@@ -1345,6 +1359,7 @@ class MethodFunctions{
 				'title',
 				'audio_url',
 				'caption',
+				'parse_mode',
 				'performer',
 				'audio_duration',
 				'input_message_content',
@@ -1378,6 +1393,7 @@ class MethodFunctions{
 				'document_url',
 				'title',
 				'caption',
+				'parse_mode',
 				'mime_type',
 				'description',
 				'input_message_content',
@@ -1395,6 +1411,7 @@ class MethodFunctions{
 				'mime_type',
 				'document_url',
 				'caption',
+				'parse_mode',
 				'description',
 				'reply_markup',
 				'input_message_content',
@@ -1417,6 +1434,7 @@ class MethodFunctions{
 				'thumb_url',
 				'title',
 				'caption',
+				'parse_mode',
 				'input_message_content',
 				'reply_markup',
 				'type',
@@ -1453,6 +1471,7 @@ class MethodFunctions{
 				'thumb_url',
 				'title',
 				'caption',
+				'parse_mode',
 				'reply_markup',
 				'input_message_content',
 				'type',
@@ -1470,6 +1489,7 @@ class MethodFunctions{
 				'photo_height',
 				'title',
 				'caption',
+				'parse_mode',
 				'reply_markup',
 				'input_message_content',
 				'type',
@@ -1504,6 +1524,7 @@ class MethodFunctions{
 				'thumb_url',
 				'title',
 				'caption',
+				'parse_mode',
 				'video_width',
 				'video_height',
 				'video_duration',
@@ -1522,6 +1543,7 @@ class MethodFunctions{
 				'voice_url',
 				'title',
 				'caption',
+				'parse_mode',
 				'voice_duration',
 				'input_message_content',
 				'reply_markup',
@@ -1578,6 +1600,7 @@ class MethodFunctions{
 				'type',
 				'media',
 				'caption',
+				'parse_mode',
 			],
 		],
 		'InputMediaVideo' => [
@@ -1588,9 +1611,11 @@ class MethodFunctions{
 				'type',
 				'media',
 				'caption',
+				'parse_mode',
 				'width',
 				'height',
 				'duration',
+				'supports_streaming',
 			],
 		],
 	];
@@ -1729,6 +1754,7 @@ class MethodFunctions{
 		 * @param $title string
 		 * @param $audioUrl string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $performer string
 		 * @param $audioDuration integer
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
@@ -1742,6 +1768,7 @@ class MethodFunctions{
 			$title,
 			$audioUrl,
 			$caption = null,
+			$parseMode = null,
 			$performer = null,
 			$audioDuration = null,
 			$inputMessageContent = null,
@@ -1787,6 +1814,7 @@ class MethodFunctions{
 		 * @param $documentUrl string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $mimeType string
 		 * @param $description string
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
@@ -1800,6 +1828,7 @@ class MethodFunctions{
 			$documentUrl,
 			$title,
 			$caption = null,
+			$parseMode = null,
 			$mimeType = null,
 			$description = null,
 			$inputMessageContent = null,
@@ -1816,6 +1845,7 @@ class MethodFunctions{
 		 * @param $mimeType string
 		 * @param $documentUrl string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $description string
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
 		 * @param $inputMessageContent InputMessageContent
@@ -1832,6 +1862,7 @@ class MethodFunctions{
 			$mimeType,
 			$documentUrl,
 			$caption = null,
+			$parseMode = null,
 			$description = null,
 			$replyMarkup = null,
 			$inputMessageContent,
@@ -1853,6 +1884,7 @@ class MethodFunctions{
 		 * @param $thumbUrl string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
 		 * @param $type string
@@ -1868,6 +1900,7 @@ class MethodFunctions{
 			$thumbUrl = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$inputMessageContent = null,
 			$replyMarkup = null,
 			$type = 'gif'
@@ -1917,6 +1950,7 @@ class MethodFunctions{
 		 * @param $thumbUrl string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
 		 * @param $type string
@@ -1932,6 +1966,7 @@ class MethodFunctions{
 			$thumbUrl = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$replyMarkup = null,
 			$inputMessageContent = null,
 			$type = 'mpeg4_gif'
@@ -1948,6 +1983,7 @@ class MethodFunctions{
 		 * @param $photoHeight integer
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
 		 * @param $type string
@@ -1962,6 +1998,7 @@ class MethodFunctions{
 			$photoHeight = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$replyMarkup = null,
 			$inputMessageContent = null,
 			$type = 'photo'
@@ -2009,6 +2046,7 @@ class MethodFunctions{
 		 * @param $thumbUrl string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $videoWidth integer
 		 * @param $videoHeight integer
 		 * @param $videoDuration integer
@@ -2026,6 +2064,7 @@ class MethodFunctions{
 			$thumbUrl = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$videoWidth = null,
 			$videoHeight = null,
 			$videoDuration = null,
@@ -2043,6 +2082,7 @@ class MethodFunctions{
 		 * @param $voiceUrl string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $voiceDuration integer
 		 * @param $inputMessageContent \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup
@@ -2055,6 +2095,7 @@ class MethodFunctions{
 			$voiceUrl,
 			$title,
 			$caption = null,
+			$parseMode = null,
 			$voiceDuration = null,
 			$inputMessageContent = null,
 			$replyMarkup = null,
@@ -2136,13 +2177,15 @@ class MethodFunctions{
 		 * @param $type string
 		 * @param $media string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \TelegramBot\Api\Types\InputMediaPhoto
 		*/
 		public function createInputMediaPhoto(
 			$type,
 			$media,
-			$caption = null
+			$caption = null,
+			$parseMode = null
 		){
 			if(method_exists($this, '__call')){
 				return $this->__call('createInputMediaPhoto', func_get_args());
@@ -2152,9 +2195,11 @@ class MethodFunctions{
 		 * @param $type string
 		 * @param $media string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $width integer
 		 * @param $height integer
 		 * @param $duration integer
+		 * @param $supportsStreaming boolean
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \TelegramBot\Api\Types\InputMediaVideo
 		*/
@@ -2162,9 +2207,11 @@ class MethodFunctions{
 			$type,
 			$media,
 			$caption = null,
+			$parseMode = null,
 			$width = null,
 			$height = null,
-			$duration = null
+			$duration = null,
+			$supportsStreaming = false
 		){
 			if(method_exists($this, '__call')){
 				return $this->__call('createInputMediaVideo', func_get_args());
@@ -2384,6 +2431,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $photo \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2394,6 +2442,7 @@ class MethodFunctions{
 			$chatId,
 			$photo,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2406,6 +2455,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $photo \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2416,6 +2466,7 @@ class MethodFunctions{
 			$chatId,
 			$photo,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2431,6 +2482,7 @@ class MethodFunctions{
 		 * @param $performer string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2444,6 +2496,7 @@ class MethodFunctions{
 			$performer = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2459,6 +2512,7 @@ class MethodFunctions{
 		 * @param $performer string
 		 * @param $title string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2472,6 +2526,7 @@ class MethodFunctions{
 			$performer = null,
 			$title = null,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2484,6 +2539,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $document \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2494,6 +2550,7 @@ class MethodFunctions{
 			$chatId,
 			$document,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2506,6 +2563,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $document \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2516,6 +2574,7 @@ class MethodFunctions{
 			$chatId,
 			$document,
 			$caption = null,
+			$parseMode = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2531,6 +2590,8 @@ class MethodFunctions{
 		 * @param $width integer
 		 * @param $height integer
 		 * @param $caption string
+		 * @param $parseMode string
+		 * @param $supportsStreaming boolean
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2544,6 +2605,8 @@ class MethodFunctions{
 			$width = null,
 			$height = null,
 			$caption = null,
+			$parseMode = null,
+			$supportsStreaming = false,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2559,6 +2622,8 @@ class MethodFunctions{
 		 * @param $width integer
 		 * @param $height integer
 		 * @param $caption string
+		 * @param $parseMode string
+		 * @param $supportsStreaming boolean
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
@@ -2572,6 +2637,8 @@ class MethodFunctions{
 			$width = null,
 			$height = null,
 			$caption = null,
+			$parseMode = null,
+			$supportsStreaming = false,
 			$disableNotification = false,
 			$replyToMessageId = null,
 			$replyMarkup = null
@@ -2584,6 +2651,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $voice \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $duration integer
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
@@ -2595,6 +2663,7 @@ class MethodFunctions{
 			$chatId,
 			$voice,
 			$caption = null,
+			$parseMode = null,
 			$duration = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
@@ -2608,6 +2677,7 @@ class MethodFunctions{
 		 * @param $chatId integer|string
 		 * @param $voice \TelegramBot\Api\Extension\InputFile|string
 		 * @param $caption string
+		 * @param $parseMode string
 		 * @param $duration integer
 		 * @param $disableNotification boolean
 		 * @param $replyToMessageId integer
@@ -2619,6 +2689,7 @@ class MethodFunctions{
 			$chatId,
 			$voice,
 			$caption = null,
+			$parseMode = null,
 			$duration = null,
 			$disableNotification = false,
 			$replyToMessageId = null,
@@ -3665,6 +3736,7 @@ class MethodFunctions{
 		 * @param $messageId integer
 		 * @param $caption string
 		 * @param $inlineMessageId string
+		 * @param $parseMode string
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \TelegramBot\Api\Types\Message|boolean
@@ -3674,6 +3746,7 @@ class MethodFunctions{
 			$messageId,
 			$caption,
 			$inlineMessageId = null,
+			$parseMode = null,
 			$replyMarkup = null
 		){
 			if(method_exists($this, '__call')){
@@ -3685,6 +3758,7 @@ class MethodFunctions{
 		 * @param $messageId integer
 		 * @param $caption string
 		 * @param $inlineMessageId string
+		 * @param $parseMode string
 		 * @param $replyMarkup \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply
 		 * @throws \TelegramBot\Api\Exceptions\TelegramException
 		 * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3694,6 +3768,7 @@ class MethodFunctions{
 			$messageId,
 			$caption,
 			$inlineMessageId = null,
+			$parseMode = null,
 			$replyMarkup = null
 		){
 			if(method_exists($this, '__call')){

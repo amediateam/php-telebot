@@ -15,6 +15,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultVideo setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setVideoWidth(integer $videoWidth)
  * @method integer getVideoWidth()
  * @method \TelegramBot\Api\Types\InlineQueryResultVideo setVideoHeight(integer $videoHeight)
@@ -45,6 +47,7 @@ public static $name = 'InlineQueryResultVideo';
 		'thumb_url' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'video_width' => 'integer',
 		'video_height' => 'integer',
 		'video_duration' => 'integer',

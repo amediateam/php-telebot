@@ -11,6 +11,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultAudio setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setPerformer(string $performer)
  * @method string getPerformer()
  * @method \TelegramBot\Api\Types\InlineQueryResultAudio setAudioDuration(integer $audioDuration)
@@ -35,6 +37,7 @@ public static $name = 'InlineQueryResultAudio';
 		'audio_url' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'performer' => 'string',
 		'audio_duration' => 'integer',
 		'input_message_content' => [

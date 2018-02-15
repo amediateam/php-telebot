@@ -11,6 +11,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultVoice setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultVoice setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultVoice setVoiceDuration(integer $voiceDuration)
  * @method integer getVoiceDuration()
  * @method \TelegramBot\Api\Types\InlineQueryResultVoice setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
@@ -33,6 +35,7 @@ public static $name = 'InlineQueryResultVoice';
 		'voice_url' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'voice_duration' => 'integer',
 		'input_message_content' => [
 			\TelegramBot\Api\Types\InputTextMessageContent::class,

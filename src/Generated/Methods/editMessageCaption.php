@@ -10,6 +10,8 @@ use TelegramBot\Api\BaseMethod;
  * @method string getInlineMessageId()
  * @method \TelegramBot\Api\Methods\editMessageCaption setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Methods\editMessageCaption setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Methods\editMessageCaption setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardMarkup|\TelegramBot\Api\Types\ReplyKeyboardRemove|\TelegramBot\Api\Types\ForceReply getReplyMarkup()
 */
@@ -29,6 +31,7 @@ class editMessageCaption extends BaseMethod
 		'message_id' => 'integer',
 		'inline_message_id' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'reply_markup' => [
 			\TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 			\TelegramBot\Api\Types\ReplyKeyboardMarkup::class,

@@ -9,6 +9,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getMedia()
  * @method \TelegramBot\Api\Types\InputMediaPhoto setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InputMediaPhoto setParseMode(string $parseMode)
+ * @method string getParseMode()
 */
 class InputMediaPhoto extends BaseType implements TypeInterface
 {
@@ -21,6 +23,7 @@ public static $name = 'InputMediaPhoto';
 		'type' => 'string',
 		'media' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 	];
 	static protected $defaultData = [
 		'type' => 'photo'

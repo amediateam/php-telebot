@@ -8,6 +8,8 @@ use TelegramBot\Api\BaseMethod;
  * @method \TelegramBot\Api\Extension\InputFile|string getVoice()
  * @method \TelegramBot\Api\Methods\sendVoice setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Methods\sendVoice setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Methods\sendVoice setDuration(integer $duration)
  * @method integer getDuration()
  * @method \TelegramBot\Api\Methods\sendVoice setDisableNotification(boolean $disableNotification)
@@ -34,6 +36,7 @@ class sendVoice extends BaseMethod
 			'string',
 		],
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'duration' => 'integer',
 		'disable_notification' => 'boolean',
 		'reply_to_message_id' => 'integer',

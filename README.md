@@ -1,5 +1,5 @@
-# Telegram BOT API Wrapper (V3.5)
-##### Last maintain: 2/8/2018
+# Telegram BOT API Wrapper (V3.6)
+##### Last maintain: 2/15/2018
 **Examples:**
 ```php
 <?php

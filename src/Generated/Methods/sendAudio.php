@@ -14,6 +14,8 @@ use TelegramBot\Api\BaseMethod;
  * @method string getTitle()
  * @method \TelegramBot\Api\Methods\sendAudio setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Methods\sendAudio setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Methods\sendAudio setDisableNotification(boolean $disableNotification)
  * @method boolean getDisableNotification()
  * @method \TelegramBot\Api\Methods\sendAudio setReplyToMessageId(integer $replyToMessageId)
@@ -41,6 +43,7 @@ class sendAudio extends BaseMethod
 		'performer' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'disable_notification' => 'boolean',
 		'reply_to_message_id' => 'integer',
 		'reply_markup' => [

@@ -19,6 +19,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultGif setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultGif setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultGif setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
  * @method \TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent getInputMessageContent()
  * @method \TelegramBot\Api\Types\InlineQueryResultGif setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
@@ -42,6 +44,7 @@ public static $name = 'InlineQueryResultGif';
 		'thumb_url' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'input_message_content' => [
 			\TelegramBot\Api\Types\InputTextMessageContent::class,
 			\TelegramBot\Api\Types\InputLocationMessageContent::class,

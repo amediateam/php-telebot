@@ -17,6 +17,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultPhoto setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
@@ -39,6 +41,7 @@ public static $name = 'InlineQueryResultPhoto';
 		'photo_height' => 'integer',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 		'input_message_content' => [
 			\TelegramBot\Api\Types\InputTextMessageContent::class,

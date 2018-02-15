@@ -9,6 +9,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getTitle()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultGame setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setDocumentUrl(string $documentUrl)
  * @method string getDocumentUrl()
  * @method \TelegramBot\Api\Types\InlineQueryResultGame setMimeType(string $mimeType)
@@ -34,6 +36,7 @@ public static $name = 'InlineQueryResultGame';
 		'id' => 'string',
 		'title' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'document_url' => 'string',
 		'mime_type' => 'string',
 		'description' => 'string',

@@ -13,6 +13,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getDescription()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedPhoto setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedPhoto setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedPhoto setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedPhoto setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
@@ -33,6 +35,7 @@ public static $name = 'InlineQueryResultCachedPhoto';
 		'title' => 'string',
 		'description' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 		'input_message_content' => [
 			\TelegramBot\Api\Types\InputTextMessageContent::class,

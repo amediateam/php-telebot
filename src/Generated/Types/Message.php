@@ -85,6 +85,8 @@ use TelegramBot\Api\TypeInterface;
  * @method \TelegramBot\Api\Types\Invoice getInvoice()
  * @method \TelegramBot\Api\Types\Message setSuccessfulPayment(\TelegramBot\Api\Types\SuccessfulPayment $successfulPayment)
  * @method \TelegramBot\Api\Types\SuccessfulPayment getSuccessfulPayment()
+ * @method \TelegramBot\Api\Types\Message setConnectedWebsite(string $connectedWebsite)
+ * @method string getConnectedWebsite()
 */
 class Message extends BaseType implements TypeInterface
 {
@@ -134,6 +136,7 @@ public static $name = 'Message';
 		'pinned_message' => \TelegramBot\Api\Types\Message::class,
 		'invoice' => \TelegramBot\Api\Types\Invoice::class,
 		'successful_payment' => \TelegramBot\Api\Types\SuccessfulPayment::class,
+		'connected_website' => 'string',
 	];
 	static protected $defaultData = [
 	];

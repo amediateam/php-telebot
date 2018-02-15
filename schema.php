@@ -99,6 +99,7 @@ return [
                 'pinned_message' => 'Message',
                 'invoice' => 'Invoice',
                 'successful_payment' => 'SuccessfulPayment',
+                'connected_website' => 'String',
             ],
         ],
         'MessageEntity' => [
@@ -357,6 +358,7 @@ return [
                 'id' => 'String',
                 'audio_file_id' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -378,6 +380,7 @@ return [
                 'document_file_id' => 'String',
                 'description' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -399,6 +402,7 @@ return [
                 'gif_file_id' => 'String',
                 'description' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -419,6 +423,7 @@ return [
                 'mpeg4_file_id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -440,6 +445,7 @@ return [
                 'title' => 'String',
                 'description' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -479,6 +485,7 @@ return [
                 'title' => 'String',
                 'description' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -499,6 +506,7 @@ return [
                 'voice_file_id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -544,6 +552,7 @@ return [
                 'audio_url' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'performer' => 'String',
                 'audio_duration' => 'Integer',
                 'input_message_content' => [
@@ -590,6 +599,7 @@ return [
                 'id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'document_url' => 'String',
                 'mime_type' => 'String',
                 'description' => 'String',
@@ -613,6 +623,7 @@ return [
                 'id' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'document_url' => 'String',
                 'mime_type' => 'String',
                 'description' => 'String',
@@ -639,6 +650,7 @@ return [
                 'thumb_url' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'input_message_content' => [
                     'InputTextMessageContent',
                     'InputLocationMessageContent',
@@ -689,6 +701,7 @@ return [
                 'thumb_url' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -713,6 +726,7 @@ return [
                 'photo_height' => 'Integer',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => 'InlineKeyboardMarkup',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -761,6 +775,7 @@ return [
                 'thumb_url' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'video_width' => 'Integer',
                 'video_height' => 'Integer',
                 'video_duration' => 'Integer',
@@ -786,6 +801,7 @@ return [
                 'voice_url' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'voice_duration' => 'Integer',
                 'input_message_content' => [
                     'InputTextMessageContent',
@@ -1012,6 +1028,7 @@ return [
                 'type' => 'String',
                 'media' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
             ],
             'defaultData' => ['type' => 'photo'],
             'creatable' => true,
@@ -1022,9 +1039,11 @@ return [
                 'type' => 'String',
                 'media' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'width' => 'Integer',
                 'height' => 'Integer',
                 'duration' => 'Integer',
+                'supports_streaming' => 'boolean',
             ],
             'defaultData' => ['type' => 'video'],
             'creatable' => true,
@@ -1104,6 +1123,7 @@ return [
                 'chat_id' => ['Integer', 'String'],
                 'photo' => ['InputFile', 'String'],
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'disable_notification' => 'Boolean',
                 'reply_to_message_id' => 'Integer',
                 'reply_markup' => [
@@ -1126,6 +1146,7 @@ return [
                 'performer' => 'String',
                 'title' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'disable_notification' => 'Boolean',
                 'reply_to_message_id' => 'Integer',
                 'reply_markup' => [
@@ -1145,6 +1166,7 @@ return [
                 'chat_id' => ['Integer', 'String'],
                 'document' => ['InputFile', 'String'],
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'disable_notification' => 'Boolean',
                 'reply_to_message_id' => 'Integer',
                 'reply_markup' => [
@@ -1167,6 +1189,8 @@ return [
                 'width' => 'Integer',
                 'height' => 'Integer',
                 'caption' => 'String',
+                'parse_mode' => 'String',
+                'supports_streaming' => 'Boolean',
                 'disable_notification' => 'Boolean',
                 'reply_to_message_id' => 'Integer',
                 'reply_markup' => [
@@ -1186,6 +1210,7 @@ return [
                 'chat_id' => ['Integer', 'String'],
                 'voice' => ['InputFile', 'String'],
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'duration' => 'Integer',
                 'disable_notification' => 'Boolean',
                 'reply_to_message_id' => 'Integer',
@@ -1541,6 +1566,7 @@ return [
                 'message_id' => 'Integer',
                 'inline_message_id' => 'String',
                 'caption' => 'String',
+                'parse_mode' => 'String',
                 'reply_markup' => [
                     'InlineKeyboardMarkup',
                     'ReplyKeyboardMarkup',

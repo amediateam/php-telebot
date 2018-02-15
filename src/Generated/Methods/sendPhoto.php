@@ -8,6 +8,8 @@ use TelegramBot\Api\BaseMethod;
  * @method \TelegramBot\Api\Extension\InputFile|string getPhoto()
  * @method \TelegramBot\Api\Methods\sendPhoto setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Methods\sendPhoto setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Methods\sendPhoto setDisableNotification(boolean $disableNotification)
  * @method boolean getDisableNotification()
  * @method \TelegramBot\Api\Methods\sendPhoto setReplyToMessageId(integer $replyToMessageId)
@@ -32,6 +34,7 @@ class sendPhoto extends BaseMethod
 			'string',
 		],
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'disable_notification' => 'boolean',
 		'reply_to_message_id' => 'integer',
 		'reply_markup' => [

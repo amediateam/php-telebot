@@ -14,6 +14,10 @@ use TelegramBot\Api\BaseMethod;
  * @method integer getHeight()
  * @method \TelegramBot\Api\Methods\sendVideo setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Methods\sendVideo setParseMode(string $parseMode)
+ * @method string getParseMode()
+ * @method \TelegramBot\Api\Methods\sendVideo setSupportsStreaming(boolean $supportsStreaming)
+ * @method boolean getSupportsStreaming()
  * @method \TelegramBot\Api\Methods\sendVideo setDisableNotification(boolean $disableNotification)
  * @method boolean getDisableNotification()
  * @method \TelegramBot\Api\Methods\sendVideo setReplyToMessageId(integer $replyToMessageId)
@@ -41,6 +45,8 @@ class sendVideo extends BaseMethod
 		'width' => 'integer',
 		'height' => 'integer',
 		'caption' => 'string',
+		'parse_mode' => 'string',
+		'supports_streaming' => 'boolean',
 		'disable_notification' => 'boolean',
 		'reply_to_message_id' => 'integer',
 		'reply_markup' => [

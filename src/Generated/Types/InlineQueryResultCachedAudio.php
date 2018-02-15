@@ -9,6 +9,8 @@ use TelegramBot\Api\TypeInterface;
  * @method string getAudioFileId()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setCaption(string $caption)
  * @method string getCaption()
+ * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setParseMode(string $parseMode)
+ * @method string getParseMode()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setReplyMarkup(\TelegramBot\Api\Types\InlineKeyboardMarkup $replyMarkup)
  * @method \TelegramBot\Api\Types\InlineKeyboardMarkup getReplyMarkup()
  * @method \TelegramBot\Api\Types\InlineQueryResultCachedAudio setInputMessageContent(\TelegramBot\Api\Types\InputTextMessageContent|\TelegramBot\Api\Types\InputLocationMessageContent|\TelegramBot\Api\Types\InputVenueMessageContent|\TelegramBot\Api\Types\InputContactMessageContent $inputMessageContent)
@@ -27,6 +29,7 @@ public static $name = 'InlineQueryResultCachedAudio';
 		'id' => 'string',
 		'audio_file_id' => 'string',
 		'caption' => 'string',
+		'parse_mode' => 'string',
 		'reply_markup' => \TelegramBot\Api\Types\InlineKeyboardMarkup::class,
 		'input_message_content' => [
 			\TelegramBot\Api\Types\InputTextMessageContent::class,
