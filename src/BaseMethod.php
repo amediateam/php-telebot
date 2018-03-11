@@ -2,8 +2,10 @@
 
 namespace TelegramBot\Api;
 
-use function array_search;
-use TelegramBot\Api\Extension\InputFile;
+use TelegramBot\Api\Exceptions\HttpException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidJsonException;
+use TelegramBot\Api\Exceptions\TelegramException;
 
 /**
  * Class BaseType
@@ -20,9 +22,14 @@ abstract class BaseMethod extends KeyValuePairStore
     public function __construct(BotApi $bot = null)
     {
         parent::__construct();
-        if($bot instanceof BotApi){
+        if ($bot instanceof BotApi) {
             $this->setBot($bot);
         }
+    }
+
+    public static function newInstance(BotApi $bot = null)
+    {
+        return new static($bot);
     }
 
     public function getMethod()
@@ -42,7 +49,7 @@ abstract class BaseMethod extends KeyValuePairStore
 
     public function getBot()
     {
-        if(!($this->botApi instanceof BotApi)){
+        if (!($this->botApi instanceof BotApi)) {
             throw new TelegramException("No botApi was passed to this type.");
         }
         return $this->botApi;

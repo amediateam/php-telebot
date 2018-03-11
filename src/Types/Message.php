@@ -11,7 +11,8 @@ class Message extends Types\Message
     /**
      * @throws \TelegramBot\Api\Exceptions\TelegramException
      */
-    public function delete(){
+    public function delete()
+    {
         return $this->botApi->deleteMessage($this->getChat()->getId(), $this->getMessageId());
     }
 
