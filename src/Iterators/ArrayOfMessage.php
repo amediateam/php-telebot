@@ -1,13 +1,18 @@
 <?php
-
 namespace TelegramBot\Api\Iterators;
 
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\Message;
-use TelegramBot\Api\InvalidArgumentException;
 
 abstract class ArrayOfMessage
 {
+    /**
+     * @param BotApi $bot
+     * @param $data
+     * @return array
+     * @throws InvalidArgumentException
+     */
     public static function fromResponse(BotApi $bot, $data)
     {
         $arrayOfMessage = [];

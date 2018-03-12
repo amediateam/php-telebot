@@ -2,8 +2,8 @@
 
 namespace TelegramBot\Api\Iterators;
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\KeyboardButton;
-use TelegramBot\Api\InvalidArgumentException;
 
 abstract class ArrayOfKeyboardButton
 {

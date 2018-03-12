@@ -1,14 +1,14 @@
 <?php
 namespace TelegramBot\Api\Iterators;
 
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\BotApi;
 
 abstract class ArrayOfArrayOfPhotoSize
 {
-    public static function fromResponse($data)
+    public static function fromResponse(BotApi $botApi, $data)
     {
-        return array_map(function ($arrayOfPhotoSize) {
-            return ArrayOfPhotoSize::fromResponse($arrayOfPhotoSize);
+        return array_map(function ($arrayOfPhotoSize) use ($botApi) {
+            return ArrayOfPhotoSize::fromResponse($botApi, $arrayOfPhotoSize);
         }, $data);
     }
 

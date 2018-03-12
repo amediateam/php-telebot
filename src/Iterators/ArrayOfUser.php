@@ -1,7 +1,7 @@
 <?php
 namespace TelegramBot\Api\Iterators;
-use TelegramBot\Api\InvalidArgumentException;
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\User;
 
 abstract class ArrayOfUser
@@ -10,7 +10,10 @@ abstract class ArrayOfUser
     {
         $arrayOfPhotoSize = [];
         foreach ($data as $userItem) {
-            $arrayOfPhotoSize[] = User::fromResponse($botApi, $userItem);
+            try {
+                $arrayOfPhotoSize[] = User::fromResponse($botApi, $userItem);
+            } catch (InvalidArgumentException $e) {
+            }
         }
 
         return $arrayOfPhotoSize;

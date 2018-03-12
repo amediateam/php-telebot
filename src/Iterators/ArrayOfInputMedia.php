@@ -3,7 +3,7 @@
 namespace TelegramBot\Api\Iterators;
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\InputMediaPhoto;
 use TelegramBot\Api\Types\InputMediaVideo;
 

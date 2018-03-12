@@ -2,8 +2,8 @@
 
 namespace TelegramBot\Api\Iterators;
 
-use TelegramBot\Api\InvalidArgumentException;
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\Sticker;
 
 abstract class ArrayOfSticker
@@ -12,7 +12,10 @@ abstract class ArrayOfSticker
     {
         $arrayOfSticker = [];
         foreach ($data as $sticker) {
-            $arrayOfSticker[] = Sticker::fromResponse($botApi, $sticker);
+            try {
+                $arrayOfSticker[] = Sticker::fromResponse($botApi, $sticker);
+            } catch (InvalidArgumentException $e) {
+            }
         }
 
         return $arrayOfSticker;

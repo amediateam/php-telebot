@@ -1,8 +1,8 @@
 <?php
 namespace TelegramBot\Api\Iterators;
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\LabeledPrice;
-use TelegramBot\Api\InvalidArgumentException;
 
 abstract class ArrayOfLabeledPrice
 {
@@ -10,7 +10,10 @@ abstract class ArrayOfLabeledPrice
     {
         $array = [];
         foreach ($data as $labeledPrice) {
-            $array[] = LabeledPrice::fromResponse($bot, $labeledPrice);
+            try {
+                $array[] = LabeledPrice::fromResponse($bot, $labeledPrice);
+            } catch (InvalidArgumentException $e) {
+            }
         }
 
         return $array;

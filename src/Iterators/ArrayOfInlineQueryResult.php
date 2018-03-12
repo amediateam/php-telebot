@@ -4,7 +4,7 @@ namespace TelegramBot\Api\Iterators;
 
 use TelegramBot\Api\BaseType;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\InlineQueryResultArticle;
 use TelegramBot\Api\Types\InlineQueryResultAudio;
 use TelegramBot\Api\Types\InlineQueryResultCachedAudio;
@@ -92,6 +92,13 @@ abstract class ArrayOfInlineQueryResult
     }
 
 
+    /**
+     * @param $inlineQueryItem
+     * @param bool $validate
+     * @param BotApi|null $bot
+     * @return bool|static
+     * @throws InvalidArgumentException
+     */
     private static function processByType($inlineQueryItem, $validate = false, BotApi $bot = null)
     {
         if ($validate && self::isInlineQueryResultType($inlineQueryItem)) return true;
@@ -166,8 +173,10 @@ abstract class ArrayOfInlineQueryResult
                 break;
         }
         if (is_null($class)) {
+            /** @var $class BaseType */
             return $validate ? false : $class::fromResponse($bot, $inlineQueryItem);
         }
+        /** @var $class BaseType */
         return $validate ? $class::validate($inlineQueryItem) : $class::fromResponse($bot, $inlineQueryItem);
     }
 

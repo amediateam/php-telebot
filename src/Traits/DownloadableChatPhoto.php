@@ -9,6 +9,7 @@ trait DownloadableChatPhoto
     /**
      * @param $savePath
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
      */
     public function downloadSmall($savePath)
     {
@@ -20,6 +21,7 @@ trait DownloadableChatPhoto
     /**
      * @param $savePath
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
      */
     public function downloadBig($savePath)
     {

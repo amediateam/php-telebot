@@ -3,7 +3,7 @@
 namespace TelegramBot\Api\Iterators;
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\Update;
 
 abstract class ArrayOfUpdate
@@ -12,7 +12,10 @@ abstract class ArrayOfUpdate
     {
         $arrayOfUpdates = [];
         foreach ($data as $update) {
-            $arrayOfUpdates[] = Update::fromResponse($bot, $update);
+            try {
+                $arrayOfUpdates[] = Update::fromResponse($bot, $update);
+            } catch (InvalidArgumentException $e) {
+            }
         }
 
         return $arrayOfUpdates;

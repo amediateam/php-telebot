@@ -2,11 +2,17 @@
 
 namespace TelegramBot\Api\Iterators;
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\InlineKeyboardButton;
 
 abstract class ArrayOfInlineKeyboardButton
 {
+    /**
+     * @param BotApi $bot
+     * @param array $data
+     * @return array
+     * @throws InvalidArgumentException
+     */
     public static function fromResponse(BotApi $bot, array $data)
     {
         $array = [];

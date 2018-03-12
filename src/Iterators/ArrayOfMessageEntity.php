@@ -7,9 +7,8 @@
  */
 
 namespace TelegramBot\Api\Iterators;
-use TelegramBot\Api\InvalidArgumentException;
-
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Types\MessageEntity;
 
 abstract class ArrayOfMessageEntity
@@ -18,7 +17,10 @@ abstract class ArrayOfMessageEntity
     {
         $arrayOfMessageEntity = [];
         foreach ($data as $messageEntity) {
-            $arrayOfMessageEntity[] = MessageEntity::fromResponse($bot, $messageEntity);
+            try {
+                $arrayOfMessageEntity[] = MessageEntity::fromResponse($bot, $messageEntity);
+            } catch (InvalidArgumentException $e) {
+            }
         }
 
         return $arrayOfMessageEntity;

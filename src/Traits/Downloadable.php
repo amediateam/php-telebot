@@ -9,6 +9,7 @@ trait Downloadable
     /**
      * @param $savePath
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
      */
     public function download($savePath)
     {
