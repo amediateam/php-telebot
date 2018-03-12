@@ -1,6 +1,9 @@
 <?php
 
 namespace TelegramBot\Api\Methods;
+
+use TelegramBot\Api\BotApi;
+
 /**
  * @method addStickerToSet setUserId(integer $userId)
  * @method addStickerToSet setName(string $name)
@@ -16,6 +19,16 @@ class addStickerToSet extends BaseMethod
         'png_sticker',
         'emojis',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

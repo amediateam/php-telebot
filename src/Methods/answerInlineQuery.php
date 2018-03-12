@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Entities\InlineQueryResult\InlineQueryResult;
 
 /**
@@ -24,6 +25,16 @@ class answerInlineQuery extends BaseMethod
         'switch_pm_text',
         'switch_pm_parameter',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

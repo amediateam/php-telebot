@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Entities\MaskPosition;
 use TelegramBot\Api\Extension\InputFile;
 
@@ -22,6 +23,16 @@ class createNewStickerSet extends BaseMethod
         'contains_masks',
         'mask_position',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

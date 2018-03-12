@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\StickerSet;
 
 /**
@@ -11,6 +12,16 @@ class getStickerSet extends BaseMethod
     protected $map = [
         'name',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return StickerSet
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param array $response

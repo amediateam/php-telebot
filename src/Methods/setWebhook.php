@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Extension\InputFile;
 
 /**
@@ -17,6 +18,16 @@ class setWebhook extends BaseMethod
         'max_connections',
         'allowed_updates',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

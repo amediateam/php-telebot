@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\Update;
 
 /**
@@ -18,6 +19,17 @@ class getUpdates extends BaseMethod
         'timeout',
         'allowed_updates',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return Update[]
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
+
 
     /**
      * @param array $response

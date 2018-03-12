@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\File;
 
 /**
@@ -11,6 +12,16 @@ class getFile extends BaseMethod
     protected $map = [
         'file_id',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return File
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param array $response

@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\Chat;
 
 /**
@@ -11,6 +12,17 @@ class getChat extends BaseMethod
     protected $map = [
         'chat_id',
     ];
+
+
+    /**
+     * @param BotApi|null $botApi
+     * @return Chat
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param array $response

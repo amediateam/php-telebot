@@ -1,5 +1,8 @@
 <?php
 namespace TelegramBot\Api\Methods;
+
+use TelegramBot\Api\BotApi;
+
 /**
  * @method pinChatMessage setChatId(integer | string $chatId)
  * @method pinChatMessage setMessageId(integer $messageId)
@@ -12,6 +15,16 @@ class pinChatMessage extends BaseMethod
         'message_id',
         'disable_notification',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

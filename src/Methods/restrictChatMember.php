@@ -1,6 +1,8 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
+
 /**
  * @method restrictChatMember setChatId(integer $chatId)
  * @method restrictChatMember setUserId(integer $userId)
@@ -21,6 +23,16 @@ class restrictChatMember extends BaseMethod
         'can_send_other_messages',
         'can_add_web_page_previews',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

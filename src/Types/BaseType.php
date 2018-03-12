@@ -36,7 +36,7 @@ abstract class BaseType
         throw new TelegramException("Method not implemented.");
     }
 
-    protected function getPropertyFromData($name, $class = null, $default = null)
+    protected function getPropertyFromData($name, $class = null, $default = false)
     {
         $value = $default;
         if (array_key_exists($name, $this->rawData)) {

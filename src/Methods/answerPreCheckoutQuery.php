@@ -1,5 +1,8 @@
 <?php
 namespace TelegramBot\Api\Methods;
+
+use TelegramBot\Api\BotApi;
+
 /**
  * @method answerPreCheckoutQuery setPreCheckoutQueryId(string $preCheckoutQueryId)
  * @method answerPreCheckoutQuery setOk(boolean $ok)
@@ -12,6 +15,17 @@ class answerPreCheckoutQuery extends BaseMethod
         'ok',
         'error_message',
     ];
+
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool

@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\UserProfilePhotos;
 
 /**
@@ -16,6 +17,17 @@ class getUserProfilePhotos extends BaseMethod
         'offset',
         'limit',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return UserProfilePhotos
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
+
 
     /**
      * @param array $response

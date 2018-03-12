@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Entities\ReplyMarkup\ForceReply;
 use TelegramBot\Api\Entities\ReplyMarkup\InlineKeyboardMarkup;
 use TelegramBot\Api\Entities\ReplyMarkup\ReplyKeyboardMarkup;
@@ -27,6 +28,16 @@ class sendLocation extends BaseMethod
         'reply_to_message_id',
         'reply_markup',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return Message
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param array $response

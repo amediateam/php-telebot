@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Entities\InputMedia;
 use TelegramBot\Api\Types\Message;
 
@@ -22,6 +23,16 @@ class sendMediaGroup extends BaseMethod
         'disable_notification',
         'reply_to_message_id',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return Message[]
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param InputMedia[] $media

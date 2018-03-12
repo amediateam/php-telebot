@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Methods;
 
+use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Types\File;
 
 /**
@@ -14,6 +15,16 @@ class uploadStickerFile extends BaseMethod
         'user_id',
         'png_sticker',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return File
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @param array $response

@@ -1,6 +1,9 @@
 <?php
 
 namespace TelegramBot\Api\Methods;
+
+use TelegramBot\Api\BotApi;
+
 /**
  * @method answerCallbackQuery setCallbackQueryId(string $callbackQueryId)
  * @method answerCallbackQuery setText(string $text)
@@ -17,6 +20,16 @@ class answerCallbackQuery extends BaseMethod
         'url',
         'cache_time',
     ];
+
+    /**
+     * @param BotApi|null $botApi
+     * @return bool
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function execute(BotApi $botApi = null)
+    {
+        return parent::execute($botApi);
+    }
 
     /**
      * @return bool
