@@ -12,6 +12,9 @@ class setStickerPositionInSet extends BaseMethod
         'position',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

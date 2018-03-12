@@ -17,6 +17,10 @@ class getUserProfilePhotos extends BaseMethod
         'limit',
     ];
 
+    /**
+     * @param array $response
+     * @return UserProfilePhotos
+     */
     public function toResult(array $response)
     {
         return new UserProfilePhotos($response, $this->botApi);

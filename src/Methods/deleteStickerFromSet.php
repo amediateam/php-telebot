@@ -8,4 +8,12 @@ class deleteStickerFromSet extends BaseMethod
     protected $map = [
         'sticker',
     ];
+
+    /**
+     * @return bool
+     */
+    public function toResult()
+    {
+        return true;
+    }
 }

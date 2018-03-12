@@ -18,6 +18,10 @@ class forwardMessage extends BaseMethod
         'message_id',
     ];
 
+    /**
+     * @param array $response
+     * @return Message
+     */
     public function toResult(array $response)
     {
         return new Message($response, $this->botApi);

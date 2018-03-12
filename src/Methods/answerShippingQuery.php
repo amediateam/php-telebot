@@ -18,6 +18,9 @@ class answerShippingQuery extends BaseMethod
         'error_message',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

@@ -11,6 +11,9 @@ class setChatTitle extends BaseMethod
         'title',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

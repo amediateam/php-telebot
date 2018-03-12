@@ -11,6 +11,9 @@ class setChatStickerSet extends BaseMethod
         'sticker_set_name',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

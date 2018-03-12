@@ -25,6 +25,9 @@ class answerInlineQuery extends BaseMethod
         'switch_pm_parameter',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

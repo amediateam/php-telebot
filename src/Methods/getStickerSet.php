@@ -12,6 +12,10 @@ class getStickerSet extends BaseMethod
         'name',
     ];
 
+    /**
+     * @param array $response
+     * @return StickerSet
+     */
     public function toResult(array $response)
     {
         return new StickerSet($response, $this->botApi);

@@ -19,6 +19,10 @@ class getUpdates extends BaseMethod
         'allowed_updates',
     ];
 
+    /**
+     * @param array $response
+     * @return Update[]
+     */
     public function toResult(array $response)
     {
         $arr = [];

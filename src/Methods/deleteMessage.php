@@ -11,6 +11,9 @@ class deleteMessage extends BaseMethod
         'message_id',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

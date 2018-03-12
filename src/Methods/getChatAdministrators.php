@@ -13,6 +13,10 @@ class getChatAdministrators extends BaseMethod
         'chat_id',
     ];
 
+    /**
+     * @param array $response
+     * @return ChatMember[]
+     */
     public function toResult(array $response)
     {
         $result = [];

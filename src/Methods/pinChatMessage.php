@@ -13,6 +13,9 @@ class pinChatMessage extends BaseMethod
         'disable_notification',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

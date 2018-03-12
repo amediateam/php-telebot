@@ -9,6 +9,9 @@ class unpinChatMessage extends BaseMethod
         'chat_id',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

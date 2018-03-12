@@ -11,6 +11,9 @@ class setChatDescription extends BaseMethod
         'description',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

@@ -15,6 +15,10 @@ class uploadStickerFile extends BaseMethod
         'png_sticker',
     ];
 
+    /**
+     * @param array $response
+     * @return File
+     */
     public function toResult(array $response)
     {
         return new File($response, $this->botApi);

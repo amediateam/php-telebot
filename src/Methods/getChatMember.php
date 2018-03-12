@@ -14,6 +14,10 @@ class getChatMember extends BaseMethod
         'user_id',
     ];
 
+    /**
+     * @param array $response
+     * @return ChatMember
+     */
     public function toResult(array $response)
     {
         return new ChatMember($response, $this->botApi);

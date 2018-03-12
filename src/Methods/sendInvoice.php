@@ -55,6 +55,10 @@ class sendInvoice extends BaseMethod
         'reply_markup',
     ];
 
+    /**
+     * @param array $response
+     * @return Message
+     */
     public function toResult(array $response)
     {
         return new Message($response, $this->botApi);

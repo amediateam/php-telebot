@@ -17,6 +17,9 @@ class addStickerToSet extends BaseMethod
         'emojis',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

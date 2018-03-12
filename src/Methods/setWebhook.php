@@ -18,6 +18,9 @@ class setWebhook extends BaseMethod
         'allowed_updates',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

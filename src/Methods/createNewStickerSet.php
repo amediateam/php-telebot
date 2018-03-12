@@ -23,6 +23,9 @@ class createNewStickerSet extends BaseMethod
         'mask_position',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

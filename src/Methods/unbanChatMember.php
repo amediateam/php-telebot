@@ -11,6 +11,9 @@ class unbanChatMember extends BaseMethod
         'user_id',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

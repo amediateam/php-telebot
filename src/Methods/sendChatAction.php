@@ -12,6 +12,9 @@ class sendChatAction extends BaseMethod
         'action',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

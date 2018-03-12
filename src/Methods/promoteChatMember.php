@@ -30,6 +30,9 @@ class promoteChatMember extends BaseMethod
         'can_promote_members',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

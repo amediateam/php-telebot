@@ -12,6 +12,10 @@ class getFile extends BaseMethod
         'file_id',
     ];
 
+    /**
+     * @param array $response
+     * @return File
+     */
     public function toResult(array $response)
     {
         return new File($response, $this->botApi);

@@ -18,6 +18,9 @@ class answerCallbackQuery extends BaseMethod
         'cache_time',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

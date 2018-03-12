@@ -11,6 +11,9 @@ class setChatPhoto extends BaseMethod
         'photo',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

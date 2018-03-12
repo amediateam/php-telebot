@@ -22,6 +22,9 @@ class restrictChatMember extends BaseMethod
         'can_add_web_page_previews',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

@@ -21,6 +21,9 @@ class stopMessageLiveLocation extends BaseMethod
         'reply_markup',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;

@@ -13,6 +13,9 @@ class kickChatMember extends BaseMethod
         'until_date',
     ];
 
+    /**
+     * @return bool
+     */
     public function toResult()
     {
         return true;
