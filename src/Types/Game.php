@@ -32,17 +32,15 @@ class Game extends BaseType
         parent::__construct($data, $bot);
         $this->title = $this->getPropertyFromData('title', 'string');
         $this->description = $this->getPropertyFromData('description', 'string');
-        $this->photo = false;
+        $this->photo = [];
         if (isset($data['photo']) && is_array($data['photo'])) {
-            $this->photo = [];
             foreach ($data['photo'] as $photo) {
                 $this->photo = new PhotoSize($photo, $bot);
             }
         }
         $this->text = $this->getPropertyFromData('text', 'string');
-        $this->text_entities = false;
+        $this->text_entities = [];
         if (isset($data['text_entities']) && is_array($data['text_entities'])) {
-            $this->text_entities = [];
             foreach ($data['text_entities'] as $entity) {
                 $this->text_entities[] = new MessageEntity($entity, $bot);
             }

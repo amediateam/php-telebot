@@ -154,16 +154,14 @@ class Message extends BaseType
         $this->media_group_id = $this->getPropertyFromData('media_group_id', 'string');
         $this->author_signature = $this->getPropertyFromData('author_signature', 'string');
         $this->text = $this->getPropertyFromData('text', 'string');
-        $this->entities = false;
+        $this->entities = [];
         if (isset($data['entities']) && is_array($data['entities'])) {
-            $this->entities = [];
             foreach ($data['entities'] as $entity) {
                 $this->entities[] = new MessageEntity($entity, $botApi);
             }
         }
-        $this->caption_entities = false;
+        $this->caption_entities = [];
         if (isset($data['caption_entities']) && is_array($data['caption_entities'])) {
-            $this->caption_entities = [];
             foreach ($data['caption_entities'] as $entity) {
                 $this->caption_entities[] = new MessageEntity($entity, $botApi);
             }
@@ -171,9 +169,8 @@ class Message extends BaseType
         $this->audio = $this->getPropertyFromData('audio', Audio::class);
         $this->document = $this->getPropertyFromData('document', Document::class);
         $this->game = $this->getPropertyFromData('game', Game::class);
-        $this->photo = false;
+        $this->photo = [];
         if (isset($data['photo']) && is_array($data['photo'])) {
-            $this->photo = [];
             foreach ($data['photo'] as $photo) {
                 $this->photo = new PhotoSize($photo, $botApi);
             }
@@ -186,18 +183,16 @@ class Message extends BaseType
         $this->contact = $this->getPropertyFromData('contact', Contact::class);
         $this->location = $this->getPropertyFromData('location', Location::class);
         $this->venue = $this->getPropertyFromData('venue', Venue::class);
-        $this->new_chat_members = false;
+        $this->new_chat_members = [];
         if (isset($data['new_chat_members']) && is_array($data['new_chat_members'])) {
-            $this->new_chat_members = [];
             foreach ($data['new_chat_members'] as $user) {
                 $this->new_chat_members[] = new User($user, $botApi);
             }
         }
         $this->left_chat_member = $this->getPropertyFromData('left_chat_member', User::class);
         $this->new_chat_title = $this->getPropertyFromData('new_chat_title', 'string');
-        $this->new_chat_photo = false;
+        $this->new_chat_photo = [];
         if (isset($data['new_chat_photo']) && is_array($data['new_chat_photo'])) {
-            $this->new_chat_photo = [];
             foreach ($data['new_chat_photo'] as $photo) {
                 $this->new_chat_photo[] = new PhotoSize($photo, $botApi);
             }

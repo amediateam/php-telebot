@@ -23,9 +23,8 @@ class StickerSet extends BaseType
         $this->name = $this->getPropertyFromData('name', 'string');
         $this->title = $this->getPropertyFromData('title', 'string');
         $this->contains_masks = $this->getPropertyFromData('contains_masks', 'bool');
-        $this->stickers = false;
+        $this->stickers = [];
         if (isset($data['stickers']) && is_array($data['stickers'])) {
-            $this->stickers = [];
             foreach ($data['stickers'] as $sticker) {
                 $this->stickers = new Sticker($sticker, $botApi);
             }

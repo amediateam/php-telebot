@@ -32,12 +32,9 @@ class WebhookInfo extends BaseType
         $this->last_error_date = $this->getPropertyFromData('last_error_date', 'integer');
         $this->last_error_message = $this->getPropertyFromData('last_error_message', 'string');
         $this->max_connections = $this->getPropertyFromData('max_connections', 'integer');
-        $this->allowed_updates = false;
-        if (isset($data['allowed_updates']) && is_array($data['allowed_updates'])) {
-            $this->allowed_updates = [];
-            foreach ($data['allowed_updates'] as $allowed_update) {
-                $this->allowed_updates[] = $allowed_update;
-            }
+        $this->allowed_updates = [];
+        foreach ($data['allowed_updates'] as $allowed_update) {
+            $this->allowed_updates[] = $allowed_update;
         }
     }
 }
