@@ -29,6 +29,9 @@ abstract class BaseType
         if (substr($name, 0, 3) == 'get') {
             $property = CaseConverter::toUnderscoreCase(substr($name, 3));
             if (property_exists($this, $property)) {
+                if (!isset($this->$property)) {
+                    return null;
+                }
                 return $this->$property;
             }
             throw new TelegramException("Invalid property.");
@@ -36,7 +39,7 @@ abstract class BaseType
         throw new TelegramException("Method not implemented.");
     }
 
-    protected function getPropertyFromData($name, $class = null, $default = false)
+    protected function getPropertyFromData($name, $class = null, $default = null)
     {
         $value = $default;
         if (array_key_exists($name, $this->rawData)) {

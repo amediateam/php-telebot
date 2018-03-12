@@ -1,15 +1,31 @@
 <?php
+
 namespace TelegramBot\Api;
 
 use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Types\Audio;
+use TelegramBot\Api\Types\CallbackQuery;
 use TelegramBot\Api\Types\Chat;
+use TelegramBot\Api\Types\ChosenInlineResult;
+use TelegramBot\Api\Types\Contact;
+use TelegramBot\Api\Types\Document;
+use TelegramBot\Api\Types\Game;
+use TelegramBot\Api\Types\InlineQuery;
+use TelegramBot\Api\Types\Invoice;
+use TelegramBot\Api\Types\Location;
+use TelegramBot\Api\Types\Message;
+use TelegramBot\Api\Types\PreCheckoutQuery;
+use TelegramBot\Api\Types\ShippingQuery;
+use TelegramBot\Api\Types\Sticker;
+use TelegramBot\Api\Types\SuccessfulPayment;
 use TelegramBot\Api\Types\Update;
+use TelegramBot\Api\Types\User;
+use TelegramBot\Api\Types\Venue;
+use TelegramBot\Api\Types\Video;
+use TelegramBot\Api\Types\Voice;
 
 class Filters
 {
-    public static $text = FilterText::class;
-    public static $command = FilterCommand::class;
-
     public static function all()
     {
         return function () {
@@ -20,7 +36,7 @@ class Filters
     public static function message($require = true)
     {
         return function (Update $update) use ($require) {
-            $result = $update->getEffectiveMessage() !== false;
+            $result = $update->getEffectiveMessage() instanceof Message;
             return $result == $require;
         };
     }
@@ -28,7 +44,7 @@ class Filters
     public static function inlineQuery($require = true)
     {
         return function (Update $update) use ($require) {
-            $result = $update->getInlineQuery() !== false;
+            $result = $update->getInlineQuery() instanceof InlineQuery;
 
             return $result == $require;
         };
@@ -37,7 +53,7 @@ class Filters
     public static function game($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && $update->getEffectiveMessage()->getGame() != false);
+            return $require == (self::message()($update) && $update->getEffectiveMessage()->getGame() instanceof Game);
         };
     }
 
@@ -45,8 +61,8 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) && (
-                        false !== $update->getEffectiveMessage()->getMigrateFromChatId() ||
-                        false !== $update->getEffectiveMessage()->getMigrateToChatId()
+                        !empty($update->getEffectiveMessage()->getMigrateFromChatId()) ||
+                        !empty($update->getEffectiveMessage()->getMigrateToChatId())
                     ));
         };
     }
@@ -54,35 +70,35 @@ class Filters
     public static function pinnedMessage($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && false !== (bool)$update->getEffectiveMessage()->getPinnedMessage());
+            return $require == (self::message()($update) && $update->getEffectiveMessage()->getPinnedMessage() instanceof Message);
         };
     }
 
     public static function newChatPhoto($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && false !== (bool)$update->getEffectiveMessage()->getNewChatPhoto());
+            return $require == (self::message()($update) && sizeof($update->getEffectiveMessage()->getNewChatPhoto()));
         };
     }
 
     public static function newChatMembers($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && false !== (bool)$update->getEffectiveMessage()->getNewChatMembers());
+            return $require == (self::message()($update) && sizeof($update->getEffectiveMessage()->getNewChatMembers()));
         };
     }
 
     public static function leftChatMember($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && false !== (bool)$update->getEffectiveMessage()->getLeftChatMember());
+            return $require == (self::message()($update) && $update->getEffectiveMessage()->getLeftChatMember() instanceof User);
         };
     }
 
     public static function newChatTitle($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) && false !== (bool)$update->getEffectiveMessage()->getNewChatTitle());
+            return $require == (self::message()($update) && !empty($update->getEffectiveMessage()->getNewChatTitle()));
         };
     }
 
@@ -132,7 +148,7 @@ class Filters
         return function (Update $update) use ($require) {
             return $require == (
                     self::message()($update) &&
-                    false !== $update->getEffectiveMessage()->getForwardDate()
+                    $update->getEffectiveMessage()->getForwardFromChat() instanceof Chat
                 );
         };
     }
@@ -141,7 +157,7 @@ class Filters
     public static function chosenInlineResult($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == ($update->getChosenInlineResult() !== false);
+            return $require == ($update->getChosenInlineResult() instanceof ChosenInlineResult);
         };
     }
 
@@ -150,7 +166,7 @@ class Filters
         return function (Update $update) use ($require) {
             return $require == (
                     self::message()($update) &&
-                    $update->getEffectiveMessage()->getSuccessfulPayment() !== false
+                    $update->getEffectiveMessage()->getSuccessfulPayment() instanceof SuccessfulPayment
                 );
         };
     }
@@ -158,39 +174,35 @@ class Filters
     public static function shippingQuery($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == ($update->getShippingQuery() !== false);
+            return $require == ($update->getShippingQuery() instanceof ShippingQuery);
         };
     }
 
     public static function preCheckoutQuery($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == ($update->getPreCheckoutQuery() !== false);
+            return $require == ($update->getPreCheckoutQuery() instanceof PreCheckoutQuery);
         };
     }
 
     public static function callbackQuery($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == ($update->getCallbackQuery() !== false);
+            return $require == ($update->getCallbackQuery() instanceof CallbackQuery);
         };
     }
 
     public static function text($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getText() !== false &&
-                    !empty($update->getEffectiveMessage()->getText()));
+            return $require == (self::message()($update) && !empty($update->getEffectiveMessage()->getText()));
         };
     }
 
     public static function command($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getText() !== false &&
-                    substr($update->getEffectiveMessage()->getText(), 0, 1) == '/');
+            return $require == (self::text()($update) && substr($update->getEffectiveMessage()->getText(), 0, 1) == '/');
         };
     }
 
@@ -198,7 +210,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getVoice() !== false);
+                    $update->getEffectiveMessage()->getVoice() instanceof Voice);
         };
     }
 
@@ -206,7 +218,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getSticker() !== false);
+                    $update->getEffectiveMessage()->getSticker() instanceof Sticker);
         };
     }
 
@@ -214,15 +226,14 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getAudio() !== false);
+                    $update->getEffectiveMessage()->getAudio() instanceof Audio);
         };
     }
 
     public static function photo($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getPhoto() !== false);
+            return $require == (self::message()($update) && sizeof($update->getEffectiveMessage()->getPhoto()));
         };
     }
 
@@ -230,7 +241,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getInvoice() !== false);
+                    $update->getEffectiveMessage()->getInvoice() instanceof Invoice);
         };
     }
 
@@ -238,7 +249,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getDocument() !== false);
+                    $update->getEffectiveMessage()->getDocument() instanceof Document);
         };
     }
 
@@ -246,7 +257,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getVideo() !== false);
+                    $update->getEffectiveMessage()->getVideo() instanceof Video);
         };
     }
 
@@ -254,7 +265,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getContact() !== false);
+                    $update->getEffectiveMessage()->getContact() instanceof Contact);
         };
     }
 
@@ -262,7 +273,7 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getLocation() !== false);
+                    $update->getEffectiveMessage()->getLocation() instanceof Location);
         };
     }
 
@@ -270,23 +281,21 @@ class Filters
     {
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getVenue() !== false);
+                    $update->getEffectiveMessage()->getVenue() instanceof Venue);
         };
     }
 
     public static function reply($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) &&
-                    false != $update->getEffectiveMessage()->getReplyToMessage());
+            return $require == (self::message()($update) && $update->getEffectiveMessage()->getReplyToMessage() instanceof Message);
         };
     }
 
     public static function private($require = true)
     {
         return function (Update $update) use ($require) {
-            return $require == (self::message()($update) &&
-                    $update->getEffectiveMessage()->getChat()->getType() == Chat::TYPE_PRIVATE);
+            return $require == (self::message()($update) && $update->getEffectiveChat()->getType() == Chat::TYPE_PRIVATE);
         };
     }
 
@@ -295,8 +304,8 @@ class Filters
         return function (Update $update) use ($require) {
             return $require == (self::message()($update) &&
                     (
-                        $update->getEffectiveMessage()->getChat()->getType() == Chat::TYPE_SUPER_GROUP ||
-                        $update->getEffectiveMessage()->getChat()->getType() == Chat::TYPE_GROUP
+                        $update->getEffectiveChat()->getType() == Chat::TYPE_SUPER_GROUP ||
+                        $update->getEffectiveChat()->getType() == Chat::TYPE_GROUP
                     ));
         };
     }
@@ -308,6 +317,12 @@ class Filters
             $result = false;
             if (!self::message()($update)) return $require == $result;
             foreach ($update->getEffectiveMessage()->getEntities() as $e) {
+                if ($e['type'] == $entity) {
+                    $result = true;
+                    break;
+                }
+            }
+            foreach ($update->getEffectiveMessage()->getCaptionEntities() as $e) {
                 if ($e['type'] == $entity) {
                     $result = true;
                     break;
