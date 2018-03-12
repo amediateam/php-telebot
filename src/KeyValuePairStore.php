@@ -39,7 +39,7 @@ class KeyValuePairStore
                 if (isset($this->data[$property])) {
                     return $this->data[$property];
                 }
-                return $this;
+                return false;
             }
             throw new InvalidArgumentException();
         } else if ($threeFirstChars == 'set') {
