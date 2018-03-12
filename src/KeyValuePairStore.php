@@ -53,7 +53,8 @@ class KeyValuePairStore
                     } else if (static::$map[$property] == InputFile::class) {
                         $this->hasInputFile = $this->hasInputFile || $arguments[0] instanceof InputFile;
                     }
-                    return $this->data[$property] = $arguments[0];
+                    $this->data[$property] = $arguments[0];
+                    return $this;
                 }
                 throw new InvalidArgumentException("Invalid type supplied for " . substr($name, 3) . " (needs type: " . static::$map[$property] . ").");
             }
