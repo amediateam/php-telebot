@@ -15,6 +15,14 @@ class ReplyKeyboardMarkup extends BaseEntity
     /** @var bool */
     protected $selective;
 
+    public static function createWithData($keyboard, $resize_keyboard = true, $one_time_keyboard = false, $selective = false)
+    {
+        return self::create()->setKeyboard($keyboard)
+            ->setResizeKeyboard($resize_keyboard)
+            ->setOneTimeKeyboard($one_time_keyboard)
+            ->setSelective($selective);
+    }
+
     /**
      * @param KeyboardButton[][] $keyboard
      * @return ReplyKeyboardMarkup
@@ -59,6 +67,12 @@ class ReplyKeyboardMarkup extends BaseEntity
     public function setSelective(bool $selective): ReplyKeyboardMarkup
     {
         $this->selective = $selective;
+        return $this;
+    }
+
+    public function reverseKeyboard()
+    {
+        $this->setKeyboard(array_map("array_reverse", $this->keyboard));
         return $this;
     }
 }

@@ -13,6 +13,12 @@ class InlineKeyboardMarkup extends BaseEntity
         return self::create()->setInlineKeyboard($inline_keyboard);
     }
 
+    public function reverseKeyboard()
+    {
+        $this->setInlineKeyboard(array_map("array_reverse", $this->inline_keyboard));
+        return $this;
+    }
+
     /**
      * @param array $inline_keyboard
      * @return InlineKeyboardMarkup
