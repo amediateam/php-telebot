@@ -1,9 +1,20 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class pinChatMessage extends Methods\pinChatMessage
+/**
+ * @method pinChatMessage setChatId(integer | string $chatId)
+ * @method pinChatMessage setMessageId(integer $messageId)
+ * @method pinChatMessage setDisableNotification(boolean $disableNotification)
+ */
+class pinChatMessage extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+        'message_id',
+        'disable_notification',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

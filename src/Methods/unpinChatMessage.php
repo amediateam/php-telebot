@@ -1,9 +1,16 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class unpinChatMessage extends Methods\unpinChatMessage
+/**
+ * @method unpinChatMessage setChatId(integer | string $chatId)
+ */
+class unpinChatMessage extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

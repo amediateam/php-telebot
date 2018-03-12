@@ -1,6 +1,7 @@
 <?php
 namespace TelegramBot\Api;
 
+use TelegramBot\Api\Handlers\BaseHandler;
 use TelegramBot\Api\Types\Update;
 use function call_user_func_array;
 

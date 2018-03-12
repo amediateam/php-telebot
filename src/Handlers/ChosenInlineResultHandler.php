@@ -2,7 +2,6 @@
 
 namespace TelegramBot\Api\Handlers;
 
-use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;

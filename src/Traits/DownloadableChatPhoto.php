@@ -6,6 +6,13 @@ use TelegramBot\Api\BotApi;
 
 trait DownloadableChatPhoto
 {
+    /** @var string */
+    protected $small_file_id;
+    /** @var string */
+    protected $big_file_id;
+    /** @var BotApi */
+    protected $botApi;
+
     /**
      * @param $savePath
      * @return mixed|\Psr\Http\Message\ResponseInterface
@@ -14,8 +21,7 @@ trait DownloadableChatPhoto
     public function downloadSmall($savePath)
     {
         /** @var $bot BotApi */
-        $bot = $this->getBot();
-        return $bot->downloadFile($this->getSmallFileId(), $savePath);
+        return $this->botApi->downloadFile($this->small_file_id, $savePath);
     }
 
     /**
@@ -25,8 +31,6 @@ trait DownloadableChatPhoto
      */
     public function downloadBig($savePath)
     {
-        /** @var $bot BotApi */
-        $bot = $this->getBot();
-        return $bot->downloadFile($this->getBigFileId(), $savePath);
+        return $this->botApi->downloadFile($this->big_file_id, $savePath);
     }
 }

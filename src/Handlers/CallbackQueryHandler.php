@@ -2,7 +2,6 @@
 
 namespace TelegramBot\Api\Handlers;
 
-use TelegramBot\Api\BaseHandler;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Filters;
 use TelegramBot\Api\Types\Update;
@@ -16,7 +15,7 @@ class CallbackQueryHandler extends BaseHandler
     public function __construct(callable $callback, $regex = [])
     {
         parent::__construct($callback);
-        if(!is_null($this->regex)){
+        if (!is_null($this->regex)) {
             if (!is_array($regex)) {
                 $regex = [$regex];
             }

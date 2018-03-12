@@ -2,9 +2,9 @@
 
 namespace TelegramBot\Api;
 
-use function is_callable;
-use TelegramBot\Api\State\State;
+use TelegramBot\Api\Handlers\BaseHandler;
 use TelegramBot\Api\Types\Update;
+use function is_callable;
 
 abstract class Dispatcher
 {

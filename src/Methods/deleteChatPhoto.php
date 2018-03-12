@@ -1,9 +1,16 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class deleteChatPhoto extends Methods\deleteChatPhoto
+/**
+ * @method deleteChatPhoto setChatId(integer | string $chatId)
+ */
+class deleteChatPhoto extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

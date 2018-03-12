@@ -1,9 +1,18 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class setChatTitle extends Methods\setChatTitle
+/**
+ * @method setChatTitle setChatId(integer | string $chatId)
+ * @method setChatTitle setTitle(string $title)
+ */
+class setChatTitle extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+        'title',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

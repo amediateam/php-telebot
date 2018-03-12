@@ -1,13 +1,29 @@
 <?php
-
 namespace TelegramBot\Api\Types;
 
-use TelegramBot\Api\Generated\Types;
+use TelegramBot\Api\BotApi;
 
-class InlineQuery extends Types\InlineQuery
+/**
+ * @method string getId()
+ * @method User getFrom()
+ * @method Location getLocation()
+ * @method string getQuery()
+ * @method string getOffset()
+ */
+class InlineQuery extends BaseType
 {
-    public function answer(array $results, $cacheTime = null, $isPersonal = false, $nextOffset = null, $switchPmText = null, $switchPmParameter = null)
+    /** @var string */
+    protected $id;
+    /** @var User */
+    protected $from;
+    /** @var string */
+    protected $query;
+
+    public function __construct(array $data, BotApi $botApi)
     {
-        $this->getBot()->answerInlineQuery($this->getId(), $results, $cacheTime, $isPersonal, $nextOffset, $switchPmText, $switchPmParameter);
+        parent::__construct($data, $botApi);
+        $this->id = $this->getPropertyFromData('id', 'string');
+        $this->from = $this->getPropertyFromData('from', User::class);
+        $this->query = $this->getPropertyFromData('query', 'string');
     }
 }

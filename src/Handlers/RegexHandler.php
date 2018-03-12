@@ -1,9 +1,6 @@
 <?php
-
 namespace TelegramBot\Api\Handlers;
-
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Handlers\Abstracts\AbstractRegexHandler;
 use TelegramBot\Api\Types\Update;
 use function preg_match;
 

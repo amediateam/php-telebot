@@ -1,9 +1,19 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class sendChatAction extends Methods\sendChatAction
+
+/**
+ * @method sendChatAction setChatId(integer $chatId)
+ * @method sendChatAction setAction(string $action)
+ */
+class sendChatAction extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+        'action',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

@@ -1,9 +1,9 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class deleteWebhook extends Methods\deleteWebhook
+class deleteWebhook extends BaseMethod
 {
-
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

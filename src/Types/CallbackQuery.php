@@ -2,22 +2,79 @@
 
 namespace TelegramBot\Api\Types;
 
-use TelegramBot\Api\Generated\Types;
+use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Methods\answerCallbackQuery;
 
-class CallbackQuery extends Types\CallbackQuery
+/**
+ * @method integer getId()
+ * @method User getFrom()
+ * @method Message getMessage()
+ * @method integer getInlineMessageId()
+ * @method string getChatInstance()
+ * @method string getData()
+ * @method string getGameShortName()
+ */
+class CallbackQuery extends BaseType
 {
+    /** @var int|null */
+    protected $id;
+    /** @var null|User */
+    protected $from;
+    /** @var null|Message */
+    protected $message;
+    /** @var mixed|null */
+    protected $inline_message_id;
+    /** @var mixed|null */
+    protected $chat_instance;
+    /** @var mixed|null */
+    protected $data;
+    /** @var mixed|null */
+    protected $game_short_name;
+
+    public function __construct(array $data, BotApi $botApi)
+    {
+        parent::__construct($data, $botApi);
+        $this->id = $this->getPropertyFromData('id', 'int');
+        $this->from = $this->getPropertyFromData('from', User::class);
+        $this->message = $this->getPropertyFromData('message', Message::class);
+        $this->inline_message_id = $this->getPropertyFromData('inline_message_id', 'string');
+        $this->chat_instance = $this->getPropertyFromData('chat_instance', 'string');
+        $this->data = $this->getPropertyFromData('data', 'string');
+        $this->game_short_name = $this->getPropertyFromData('game_short_name', 'string');
+    }
+
+    /**
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
     public function answer()
     {
-        return $this->getBot()->answerCallbackQuery($this->getId());
+        answerCallbackQuery::create($this->botApi)
+            ->setCallbackQueryId($this->id)
+            ->execute();
     }
 
-    public function answerText($text, $showAlert = false, $cacheTime = null)
+    /**
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function answerWithText($text, $showAlert = false, $cacheTime = null)
     {
-        return $this->getBot()->answerCallbackQuery($this->getId(), $text, $showAlert, null, $cacheTime);
+        answerCallbackQuery::create($this->botApi)
+            ->setCallbackQueryId($this->id)
+            ->setText($text)
+            ->setShowAlert($showAlert)
+            ->setCacheTime($cacheTime)
+            ->execute();
     }
 
-    public function answerUrl($url, $cacheTime = null)
+    /**
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function answerWithUrl($url, $cacheTime = null)
     {
-        return $this->getBot()->answerCallbackQuery($this->getId(), null, false, $url, $cacheTime);
+        answerCallbackQuery::create($this->botApi)
+            ->setCallbackQueryId($this->id)
+            ->setUrl($url)
+            ->setCacheTime($cacheTime)
+            ->execute();
     }
 }

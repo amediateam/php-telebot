@@ -1,9 +1,17 @@
 <?php
+
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class getChatMembersCount extends Methods\getChatMembersCount
+/**
+ * @method getChatMembersCount setChatId(integer | string $chatId)
+ */
+class getChatMembersCount extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+    ];
 
-
-
+    public function toResult(array $response)
+    {
+        return (int)$response;
+    }
 }

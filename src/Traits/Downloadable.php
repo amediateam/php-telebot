@@ -6,6 +6,11 @@ use TelegramBot\Api\BotApi;
 
 trait Downloadable
 {
+    /** @var string */
+    protected $file_id;
+    /** @var BotApi */
+    protected $botApi;
+
     /**
      * @param $savePath
      * @return mixed|\Psr\Http\Message\ResponseInterface
@@ -13,8 +18,6 @@ trait Downloadable
      */
     public function download($savePath)
     {
-        /** @var $bot BotApi */
-        $bot = $this->getBot();
-        return $bot->downloadFile($this->getFileId(), $savePath);
+        return $this->botApi->downloadFile($this->file_id, $savePath);
     }
 }

@@ -2,19 +2,50 @@
 
 namespace TelegramBot\Api\Types;
 
-use TelegramBot\Api\Filters;
-use TelegramBot\Api\Generated\Types;
+use TelegramBot\Api\BotApi;
 
-class Update extends Types\Update
+/**
+ * @method integer getUpdateId()
+ * @method Message getMessage()
+ * @method Message getEditedMessage()
+ * @method Message getChannelPost()
+ * @method Message getEditedChannelPost()
+ * @method InlineQuery getInlineQuery()
+ * @method ChosenInlineResult getChosenInlineResult()
+ * @method CallbackQuery getCallbackQuery()
+ * @method ShippingQuery getShippingQuery()
+ * @method PreCheckoutQuery getPreCheckoutQuery()
+ */
+class Update extends BaseType
 {
-    /** @var Message */
-    private $effectiveMessage = null;
+    protected $update_id;
+    protected $message;
+    protected $edited_message;
+    protected $channel_post;
+    protected $edited_channel_post;
+    protected $inline_query;
+    protected $chosen_inline_result;
+    protected $callback_query;
+    protected $shipping_query;
+    protected $pre_checkout_query;
+
+    public function __construct(array $data, BotApi $botApi)
+    {
+        parent::__construct($data, $botApi);
+        $this->update_id = $this->getPropertyFromData('update_id', 'integer');
+        $this->message = $this->getPropertyFromData('message', Message::class);
+        $this->edited_message = $this->getPropertyFromData('edited_message', Message::class);
+        $this->channel_post = $this->getPropertyFromData('channel_post', Message::class);
+        $this->edited_channel_post = $this->getPropertyFromData('edited_channel_post', Message::class);
+        $this->inline_query = $this->getPropertyFromData('inline_query', InlineQuery::class);
+        $this->chosen_inline_result = $this->getPropertyFromData('chosen_inline_result', ChosenInlineResult::class);
+        $this->callback_query = $this->getPropertyFromData('callback_query', CallbackQuery::class);
+        $this->shipping_query = $this->getPropertyFromData('shipping_query', ShippingQuery::class);
+        $this->pre_checkout_query = $this->getPropertyFromData('pre_checkout_query', ShippingQuery::class);
+    }
+
     /** @var Chat */
-    private $effectiveChat = null;
-    /** @var boolean */
-    private $isEdited = null;
-    /** @var boolean */
-    private $isChannelPost = null;
+    protected $effectiveChat = null;
 
     public function getEffectiveChat()
     {
@@ -27,6 +58,9 @@ class Update extends Types\Update
         return $this->effectiveChat = false;
     }
 
+    /** @var boolean */
+    protected $isEdited = null;
+
     public function isEdited()
     {
         if ($this->isEdited !== null) {
@@ -35,6 +69,9 @@ class Update extends Types\Update
         return $this->isEdited = (false !== (bool)$this->getEditedMessage() || false !== (bool)$this->getEditedChannelPost());
     }
 
+    /** @var boolean */
+    protected $isChannelPost = null;
+
     public function isChannelPost()
     {
         if ($this->isChannelPost !== null) {
@@ -42,6 +79,9 @@ class Update extends Types\Update
         }
         return $this->isChannelPost = (false !== (bool)$this->getChannelPost() || false !== (bool)$this->getEditedChannelPost());
     }
+
+    /** @var Message */
+    protected $effectiveMessage = null;
 
     public function getEffectiveMessage()
     {
@@ -61,31 +101,5 @@ class Update extends Types\Update
             }
         }
         return $this->effectiveMessage = false;
-    }
-
-    public function getUserId($separatePrivateChats = true)
-    {
-        if ($separatePrivateChats && $this->getEffectiveChat() && !$this->getEffectiveChat()->isPrivate()) {
-            return $this->getEffectiveChat()->getId();
-        }
-        if ($this->getEffectiveMessage()) {
-            return $this->getEffectiveMessage()->getFrom()->getId();
-        } else if ($this->getInlineQuery()) {
-            return $this->getInlineQuery()->getFrom()->getId();
-        } else if ($this->getCallbackQuery()) {
-            return $this->getCallbackQuery()->getFrom()->getId();
-        } else if ($this->getPreCheckoutQuery()) {
-            return $this->getPreCheckoutQuery()->getFrom()->getId();
-        } else if ($this->getShippingQuery()) {
-            return $this->getShippingQuery()->getFrom()->getId();
-        } else if ($this->getChosenInlineResult()) {
-            return $this->getChosenInlineResult()->getFrom()->getId();
-        }
-        return false;
-    }
-
-    public function isStateAware()
-    {
-        return Filters::statusUpdate(false)($this);
     }
 }

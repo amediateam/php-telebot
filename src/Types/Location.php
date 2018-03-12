@@ -2,10 +2,26 @@
 
 namespace TelegramBot\Api\Types;
 
-use TelegramBot\Api\Generated\Types;
+use TelegramBot\Api\BotApi;
 
-class Location extends Types\Location
+/**
+ * @method float getLongitude()
+ * @method float getLatitude()
+ */
+class Location extends BaseType
 {
+    /** @var float */
+    protected $latitude;
+    /** @var float */
+    protected $longitude;
+
+    public function __construct(array $data, BotApi $botApi)
+    {
+        parent::__construct($data, $botApi);
+        $this->latitude = $this->getPropertyFromData('latitude', 'float');
+        $this->longitude = $this->getPropertyFromData('longitude', 'float');
+    }
+
     public function getGoogleMapUrl()
     {
         return sprintf('https://www.google.com/maps/?q=%s,%s', $this->getLatitude(), $this->getLongitude());

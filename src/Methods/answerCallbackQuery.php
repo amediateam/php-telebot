@@ -1,9 +1,25 @@
 <?php
+
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class answerCallbackQuery extends Methods\answerCallbackQuery
+/**
+ * @method answerCallbackQuery setCallbackQueryId(string $callbackQueryId)
+ * @method answerCallbackQuery setText(string $text)
+ * @method answerCallbackQuery setShowAlert(boolean $showAlert)
+ * @method answerCallbackQuery setUrl(string $url)
+ * @method answerCallbackQuery setCacheTime(integer $cacheTime)
+ */
+class answerCallbackQuery extends BaseMethod
 {
+    protected $map = [
+        'callback_query_id',
+        'text',
+        'show_alert',
+        'url',
+        'cache_time',
+    ];
 
-
-
+    public function toResult()
+    {
+        return true;
+    }
 }

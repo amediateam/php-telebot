@@ -1,9 +1,35 @@
 <?php
 namespace TelegramBot\Api\Methods;
-use TelegramBot\Api\Generated\Methods;
-class sendLocation extends Methods\sendLocation
+
+use TelegramBot\Api\Entities\ReplyMarkup\ForceReply;
+use TelegramBot\Api\Entities\ReplyMarkup\InlineKeyboardMarkup;
+use TelegramBot\Api\Entities\ReplyMarkup\ReplyKeyboardMarkup;
+use TelegramBot\Api\Entities\ReplyMarkup\ReplyKeyboardRemove;
+use TelegramBot\Api\Types\Message;
+
+/**
+ * @method sendLocation setChatId(integer $chatId)
+ * @method sendLocation setLatitude(float $latitude)
+ * @method sendLocation setLongitude(float $longitude)
+ * @method sendLocation setLivePeriod(integer $livePeriod)
+ * @method sendLocation setDisableNotification(boolean $disableNotification)
+ * @method sendLocation setReplyToMessageId(integer $replyToMessageId)
+ * @method sendLocation setReplyMarkup(InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply $replyMarkup)
+ */
+class sendLocation extends BaseMethod
 {
+    protected $map = [
+        'chat_id',
+        'latitude',
+        'longitude',
+        'live_period',
+        'disable_notification',
+        'reply_to_message_id',
+        'reply_markup',
+    ];
 
-
-
+    public function toResult(array $response)
+    {
+        return new Message($response, $this->botApi);
+    }
 }

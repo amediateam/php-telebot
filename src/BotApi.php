@@ -3,22 +3,27 @@
 namespace TelegramBot\Api;
 
 use GuzzleHttp\Client;
-use const PHP_EOL;
-use ReflectionException;
+use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
+use TelegramBot\Api\Entities\BaseEntity;
 use TelegramBot\Api\Exceptions\HttpException;
-use TelegramBot\Api\Exceptions\InvalidArgumentException;
 use TelegramBot\Api\Exceptions\TelegramException;
 use TelegramBot\Api\Extension\InputFile;
+use TelegramBot\Api\Methods\BaseMethod;
+use TelegramBot\Api\Methods\getFile;
+use TelegramBot\Api\Methods\getUpdates;
 use TelegramBot\Api\Types\File;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
+use function array_key_exists;
+use function method_exists;
 
 /**
  * Class BotApi
  *
  * @package TelegramBot\Api
  */
-class BotApi extends MethodFunctions
+class BotApi
 {
     /**
      * HTTP codes
@@ -181,12 +186,10 @@ class BotApi extends MethodFunctions
      * @param string $response
      * @throws HttpException
      */
-    public static function curlValidate($curl, $response = null)
+    public static function curlValidate(ResponseInterface $response, array $json)
     {
-        $json = json_decode($response, true) ?: [];
-        if (($httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE))
-            && !in_array($httpCode, [self::DEFAULT_STATUS_CODE, self::NOT_MODIFIED_STATUS_CODE])
-        ) {
+        if (($httpCode = $response->getStatusCode()) &&
+            !in_array($httpCode, [self::DEFAULT_STATUS_CODE, self::NOT_MODIFIED_STATUS_CODE])) {
             $errorDescription = array_key_exists('description', $json) ? $json['description'] : self::$codes[$httpCode];
             $errorParameters = array_key_exists('parameters', $json) ? $json['parameters'] : [];
             throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
@@ -209,87 +212,13 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * @param BaseMethod $method
-     * @return array
-     * @throws Exceptions\MissingParameterException
-     * @throws InvalidArgumentException
-     */
-    private function createMultipart(BaseMethod $method)
-    {
-        $multipart = [];
-        $data = $method->toJson(true);
-        foreach ($data as $key => $arg) {
-            if (is_array($arg)) {
-                $arg = \json_encode($arg);
-            }
-            if($arg instanceof InputFile){
-                $multipart[] = array_merge($arg->getMultipartData(), ['name' => $key]);
-                continue;
-            }
-            $multipart[] = ['name' => $key, 'contents' => $arg];
-        }
-        return $multipart;
-    }
-
-    /**
-     * @param $method
-     * @param bool $async
-     * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
-     * @throws HttpException
-     * @throws TelegramException
-     */
-    public function call(BaseMethod $method, $async = false)
-    {
-        $options = [];
-        if ($method->hasInputFile()) {
-            $options['multipart'] = $this->createMultipart($method);
-        } else {
-            $options['json'] = $method->toJson(true);
-        }
-        $response = $async ? $this->httpClient->postAsync($method->getMethod(), $options) : $this->httpClient->post($method->getMethod(), $options);
-        if ($async) {
-            return $response;
-        }
-        $httpCode = $response->getStatusCode();
-        if (!in_array($httpCode, [self::DEFAULT_STATUS_CODE, self::NOT_MODIFIED_STATUS_CODE])) {
-            $json = json_decode($response->getBody()->getContents(), true) ?: [];
-            $errorDescription = array_key_exists('description', $json) ? $json['description'] : self::$codes[$httpCode];
-            $errorParameters = array_key_exists('parameters', $json) ? $json['parameters'] : [];
-            throw new HttpException($errorDescription, $httpCode, null, $errorParameters);
-        }
-        $body = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-        if (array_keys($body, 'ok') && false === (bool)$body['ok']) {
-            throw new TelegramException($body['description'], $body['error_code']);
-        }
-        return $body['result'];
-    }
-
-    /**
      * @param $lastOffset
      * @throws TelegramException
      */
     public function clearUpdates($lastOffset)
     {
-        $this->getUpdates($lastOffset + 1);
+        getUpdates::create($this)->setOffset($lastOffset + 1)->execute();
     }
-
-    /**
-     * @param $method
-     * @param array $args
-     * @param bool $async
-     * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
-     * @throws HttpException
-     * @throws TelegramException
-     */
-    public function callArr($method, array $args, $async = false)
-    {
-        $args['keyValuePair'] = true;
-        if ($async && strpos($method, 'Async') === false) {
-            $method .= 'Async';
-        }
-        return $this->__call($method, $args);
-    }
-
 
     /**
      * @return string
@@ -335,42 +264,6 @@ class BotApi extends MethodFunctions
         }
     }
 
-
-    /**
-     * @param $type
-     * @param $arguments
-     * @return string|BaseType
-     * @throws InvalidArgumentException
-     */
-    private function createInstanceOfType($type, $arguments)
-    {
-        $declaration = $this->typeMap[$type];
-        $instance = "\\TelegramBot\\Api\\Types\\$type";
-        $instance = new $instance($this);
-        /* @var $instance BaseType */
-        $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
-        $instance->mergeData($params);
-        return $instance;
-    }
-
-    /**
-     * @param $method
-     * @param $arguments
-     * @return string|BaseMethod
-     * @throws InvalidArgumentException
-     */
-    private function createInstanceOfMethod($method, $arguments)
-    {
-        $method = lcfirst($method);
-        $declaration = $this->methodMap[$method];
-        $instance = "\\TelegramBot\\Api\\Methods\\$method";
-        $instance = new $instance($this);
-        /* @var $instance BaseMethod */
-        $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
-        $instance->mergeData($params);
-        return $instance;
-    }
-
     /**
      * @param $fileId string|File
      * @return string
@@ -381,7 +274,7 @@ class BotApi extends MethodFunctions
         if ($fileId instanceof File) {
             $file = $fileId;
         } else {
-            $file = $this->getFile($fileId);
+            $file = getFile::create($this)->setFileId($fileId)->execute();
         }
         $url = $this->getFileUrl() . '/' . $file->getFilePath();
         return $url;
@@ -412,200 +305,58 @@ class BotApi extends MethodFunctions
     }
 
     /**
-     * @param $method
-     * @param $arguments
-     * @return bool|float|\GuzzleHttp\Promise\PromiseInterface|int|\Psr\Http\Message\ResponseInterface|string|BaseMethod|BaseType
-     * @throws HttpException
-     * @throws InvalidArgumentException
+     * @param BaseMethod $method
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws TelegramException
      */
-    public function __call($method, $arguments)
+    public function execute(BaseMethod $method)
     {
-        if (strtolower(substr($method, 0, 6)) == 'create') {
-            return $this->createInstanceOfType(substr($method, 6), $arguments);
-        }
-        if (strtolower(substr($method, 0, 4)) == 'init') {
-            return $this->createInstanceOfMethod(substr($method, 4), $arguments);
-        }
-        $async = strtolower(substr($method, -5)) == 'async';
-        $declaration = $this->methodMap[$method];
-        $method = "\\TelegramBot\\Api\\Methods\\$method";
-        $method = new $method($this);
-        /* @var $method BaseMethod */
-        if (isset($arguments['keyValuePair'])) {
-            $params = $arguments;
-        } else {
-            $params = array_combine(array_slice($declaration['paramsMap'], 0, sizeof($arguments)), $arguments);
-        }
-        $method->mergeData($params);
-        $response = $this->call($method, $async);
-        $return = $declaration['returnType'];
-        if (!is_array($declaration['returnType'])) {
-            $return = [$declaration['returnType']];
-        }
-        foreach ($return as $returnType) {
-            if (KeyValuePairStore::validateType($response, $returnType)) {
-                $response = KeyValuePairStore::getValueByType($response, $returnType, $this);
-                break;
-            }
-        }
-        return $response;
-    }
-
-    /**
-     * @param callable $callback
-     * @param $data
-     * @return bool
-     */
-    public function handleWebhookUpdate(callable $callback, $data)
-    {
-        if (!is_array($data)) {
-            try {
-                $data = \GuzzleHttp\json_decode($data, true);
-            } catch (\InvalidArgumentException $e) {
-                return false;
-            }
-        }
+        $action = basename(get_class($method));
+        $result = null;
+        $request_params = self::setUpRequestParams($method->getData());
         try {
-            $callback(Update::fromResponse($this, $data));
-        } catch (InvalidArgumentException $e) {
-            return false;
+            $response = $this->httpClient->post($this->getUrl() . '/' . $action, $request_params);
+            $result = (string)$response->getBody();
+        } catch (RequestException $e) {
+            $result = ($e->getResponse()) ? (string)$e->getResponse()->getBody() : '';
         }
-        return false;
-    }
-
-    /**
-     * @param callable $callback
-     * @param int $offset
-     * @param int $limit
-     * @param int $timeout
-     * @param array $allowedUpdates
-     * @return int
-     * @throws TelegramException
-     */
-    public function poll(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [])
-    {
-        /** @var Update[] $updates */
-        $updates = $this->getUpdates($offset + 1, $limit, $timeout, $allowedUpdates);
-        foreach ($updates as $update) {
-            $callback($this, $update);
+        if (empty($result)) {
+            throw new TelegramException("Empty result received.");
         }
-        $size = sizeof($updates);
-        if ($size) {
-            $offset = $updates[$size - 1]->getUpdateId();
-        }
-        return $offset;
-    }
-
-    /**
-     * @param callable $callback
-     * @param int $offset
-     * @param int $limit
-     * @param int $timeout
-     * @param array $allowedUpdates
-     * @param int $sleepTime
-     * @return int
-     * @throws TelegramException
-     */
-    public function start_polling(callable $callback, $offset = 0, $limit = 100, $timeout = 60, $allowedUpdates = [], $sleepTime = 0)
-    {
-        $loop = true;
-        if (function_exists("pcntl_signal")) {
-            $signalHandler = function ($signal) use ($loop) {
-                $loop = false;
-            };
-            pcntl_signal(SIGTERM, $signalHandler);
-            pcntl_signal(SIGHUP, $signalHandler);
-        }
-        while ($loop) {
-            $offset = $this->poll($callback, $offset, $limit, $timeout, $allowedUpdates);
-            if ($sleepTime > 0) sleep($sleepTime);
-        }
-        $this->clearUpdates($offset);
-        return $offset;
-    }
-
-    public function detectMessageType(Message $message)
-    {
-        $keyVal = [
-            'text', 'photo', 'video', 'voice', 'sticker', 'video_note', 'document', 'audio', 'contact', 'location', 'venue'
-        ];
-        foreach ($keyVal as $key) {
-            $method = 'get' . ucfirst($key);
-            if (false != $message->$method()) {
-                return $key;
+        $result = json_decode($result, true) ?: [];
+        self::curlValidate($response, $result);
+        if ($result['ok']) {
+            if (method_exists($method, 'toResult')) {
+                return $method->toResult($result['result']);
             }
         }
-        return null;
+        throw new TelegramException(sprintf('%s %s', $result['error_code'], $result['description']));
     }
 
-    public function cloneMessage(Message $message, $reply = false)
+    private static function setUpRequestParams(array $data)
     {
-        $type = $this->detectMessageType($message);
-        $params = [];
-        $method = null;
-        if (false != $message->getCaption()) {
-            $params['caption'] = $message->getCaption();
+        $has_resource = false;
+        $multipart = [];
+        // Convert any nested arrays into JSON strings.
+        array_walk($data, function (&$item) {
+            if ($item instanceof BaseEntity) {
+                $item = $item->toArray();
+            }
+            is_array($item) && $item = json_encode($item);
+        });
+        //Reformat data array in multipart way if it contains a resource
+        foreach ($data as $key => $item) {
+            if ($item instanceof InputFile) {
+                $has_resource = true;
+                $multipart[] = array_merge($item->getMultipartData(), ['name' => $key]);
+                continue;
+            }
+            $has_resource |= (is_resource($item) || $item instanceof \GuzzleHttp\Psr7\Stream);
+            $multipart[] = ['name' => $key, 'contents' => $item];
         }
-        if ($reply && false != $message->getReplyToMessage()) {
-            $params['reply_to_message_id'] = $message->getReplyToMessage()->getMessageId();
+        if ($has_resource) {
+            return ['multipart' => $multipart];
         }
-        switch ($type) {
-            case 'text':
-                $method = 'sendMessage';
-                $params['text'] = $message->getText();
-                break;
-            case 'photo':
-                $method = 'sendPhoto';
-                $photo = $message->getPhoto()[sizeof($message->getPhoto()) - 1];
-                $params['photo'] = $photo->getFileId();
-                break;
-            case 'video':
-                $method = 'sendVideo';
-                $params['video'] = $message->getVideo()->getFileId();
-                break;
-            case 'venue':
-                $method = 'sendVenue';
-                $params['title'] = $message->getVenue()->getTitle();
-                $params['address'] = $message->getVenue()->getAddress();
-                $params['foursquare_id'] = $message->getVenue()->getFoursquareId();
-                $params['latitude'] = $message->getVenue()->getLocation()->getLatitude();
-                $params['longitude'] = $message->getVenue()->getLocation()->getLongitude();
-                break;
-            case 'sticker':
-                $method = 'sendSticker';
-                $params['sticker'] = $message->getSticker()->getFileId();
-                break;
-            case 'voice':
-                $method = 'sendVoice';
-                $params['voice'] = $message->getVideo()->getFileId();
-                break;
-            case 'audio':
-                $method = 'sendAudio';
-                $params['audio'] = $message->getAudio()->getFileId();
-                break;
-            case 'contact':
-                $method = 'sendContact';
-                $params['phone_number'] = $message->getContact()->getPhoneNumber();
-                if ($message->getContact()->getFirstName()) {
-                    $params['first_name'] = $message->getContact()->getFirstName();
-                }
-                if ($message->getContact()->getLastName()) {
-                    $params['last_name'] = $message->getContact()->getLastName();
-                }
-                break;
-            case 'location':
-                $method = 'sendLocation';
-                $params['latitude'] = $message->getLocation()->getLatitude();
-                $params['longitude'] = $message->getLocation()->getLongitude();
-                break;
-            case 'video_note':
-                $method = 'sendVideoNote';
-                $params['video_note'] = $message->getVideoNote()->getFileId();
-                $params['duration'] = $message->getVideoNote()->getDuration();
-                $params['length'] = $message->getVideoNote()->getLength();
-                break;
-        }
-        return ['method' => $method, 'params' => $params];
+        return ['form_params' => $data];
     }
 }

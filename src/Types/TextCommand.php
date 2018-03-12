@@ -2,9 +2,9 @@
 namespace TelegramBot\Api\Types;
 class TextCommand
 {
-    private $name;
-    private $params;
-    private $argsText;
+    protected $name;
+    protected $params;
+    protected $argsText;
 
     public function __construct($name, $params, $argsText)
     {
