@@ -27,7 +27,7 @@ abstract class BaseMethod extends KeyValuePairStore
         }
     }
 
-    public static function newInstance(BotApi $bot = null)
+    public static function create(BotApi $bot = null)
     {
         return new static($bot);
     }

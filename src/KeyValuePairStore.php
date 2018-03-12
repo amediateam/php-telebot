@@ -2,13 +2,13 @@
 
 namespace TelegramBot\Api;
 
+use TelegramBot\Api\Exceptions\InvalidArgumentException;
+use TelegramBot\Api\Exceptions\MissingParameterException;
+use TelegramBot\Api\Exceptions\TelegramException;
+use TelegramBot\Api\Extension\InputFile;
 use function array_merge;
 use function is_numeric;
 use function lcfirst;
-use const PHP_EOL;
-use TelegramBot\Api\Exceptions\InvalidArgumentException;
-use TelegramBot\Api\Exceptions\MissingParameterException;
-use TelegramBot\Api\Extension\InputFile;
 
 class KeyValuePairStore
 {
@@ -39,7 +39,7 @@ class KeyValuePairStore
                 if (isset($this->data[$property])) {
                     return $this->data[$property];
                 }
-                return false;
+                return $this;
             }
             throw new InvalidArgumentException();
         } else if ($threeFirstChars == 'set') {
@@ -58,7 +58,7 @@ class KeyValuePairStore
                 throw new InvalidArgumentException("Invalid type supplied for " . substr($name, 3) . " (needs type: " . static::$map[$property] . ").");
             }
         }
-        return true;
+        return $this;
     }
 
     /**
@@ -78,8 +78,10 @@ class KeyValuePairStore
         } else if ($type == 'float') {
             return (float)$value;
         } else if (strpos($type, 'TelegramBot\\Api\\Types\\') !== false) {
+            /** @var $type BaseType */
             return $type::fromResponse($botApi, $value);
         } else if (strpos($type, 'ArrayOf') !== false) {
+            /** @var $type BaseType */
             return $type::fromResponse($botApi, $value);
         }
         throw new InvalidArgumentException("Type $type not implemented.");
@@ -87,7 +89,7 @@ class KeyValuePairStore
 
     public static function validateType($value, $types)
     {
-        if($value === null) return true;
+        if ($value === null) return true;
         if (!is_array($types)) {
             $types = [$types];
         }
@@ -126,7 +128,7 @@ class KeyValuePairStore
     public function mergeData($data)
     {
         foreach ($data as $property => $value) {
-            if(!array_key_exists($property, static::$map)) continue;
+            if (!array_key_exists($property, static::$map)) continue;
             if (is_array(static::$map[$property])) {
                 if (in_array(InputFile::class, static::$map[$property])) {
                     $this->hasInputFile = $this->hasInputFile || $value instanceof InputFile;
@@ -212,6 +214,10 @@ class KeyValuePairStore
 
     public function __toString()
     {
-        return $this->toJson();
+        try {
+            return $this->toJson();
+        } catch (TelegramException $e) {
+            return $e->getMessage();
+        }
     }
 }
