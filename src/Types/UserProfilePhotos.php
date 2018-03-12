@@ -17,9 +17,14 @@ class UserProfilePhotos extends BaseType
     {
         parent::__construct($data, $botApi);
         $this->total_count = $this->getPropertyFromData('total_count', 'int');
-        $this->photos = [];
-        foreach ($data['photos'] as $photo) {
-            $this->photos[] = new PhotoSize($photo, $botApi);
+        $this->photos = false;
+
+        if (isset($data['photos']) && is_array($data['photos'])) {
+            $this->photos = [];
+            foreach ($data['photos'] as $photo) {
+                $this->photos[] = new PhotoSize($photo, $botApi);
+            }
         }
+
     }
 }
