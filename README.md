@@ -1,29 +1,25 @@
-# Telegram BOT API Wrapper (V3.6)
-##### Last maintain: 2/15/2018
-**Examples:**
+#### Telegram BOT API (HandCraft) 
+##### (V3.6) Last maintain: 3/13/2018
+**Example:**
 ```php
 <?php
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Methods\sendMessage;
+use TelegramBot\Api\Entities\ReplyMarkup\InlineKeyboardMarkup;
+use TelegramBot\Api\Entities\ReplyMarkup\InlineKeyboardButton;
 $bot = new BotApi('<token>');
 
 $chatId = '<telegram_chat_id>';
 $text = 'test!';
 
-//using functions
-$bot->sendMessage($chatId, $text);
-
 //using objects
-$sendMessage = new sendMessage($bot);
-$sendMessage->setChatId($chatId);
-$sendMessage->setText($text);
-$sendMessage->invoke(); //by invoke
-$bot->call($sendMessage); // by call
-
-//send reply markup
-$bot->sendMessage($chatId, $text, null, null, null, $bot->createInlineKeyboardMarkup([
+sendMessage::create($bot)
+->setChatId($chatId)
+->setText($text)
+->setReplyMarkup(InlineKeyboardMarkup::createWithData([
     [
-        $bot->createInlineKeyboardButton('Reply markup!', null, 'callback_data')
-    ]
-]));
+        InlineKeyboardButton::withUrl('Google', 'https://www.google.com')
+    ],
+]))
+->execute(); 
 ```
