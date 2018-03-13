@@ -55,6 +55,9 @@ class Update extends BaseType
         if ($this->getEffectiveMessage()) {
             return $this->effectiveChat = $this->getEffectiveMessage()->getChat();
         }
+        if($this->getCallbackQuery() instanceof CallbackQuery){
+            return $this->effectiveChat = $this->getCallbackQuery()->getMessage()->getChat();
+        }
         return $this->effectiveChat = false;
     }
 

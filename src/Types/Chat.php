@@ -7,6 +7,7 @@ use TelegramBot\Api\Exceptions\TelegramException;
 use TelegramBot\Api\Methods\getChatAdministrators;
 use TelegramBot\Api\Methods\getChatMember;
 use TelegramBot\Api\Methods\getChatMembersCount;
+use TelegramBot\Api\Methods\sendChatAction;
 
 /**
  * @method integer getId()
@@ -120,5 +121,14 @@ class Chat extends BaseType
             throw new TelegramException("There is no administrator in private chat!");
         }
         return getChatAdministrators::create($this->botApi)->setChatId($this->getId())->execute();
+    }
+
+    /**
+     * @param $action
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function sendAction($action)
+    {
+        sendChatAction::create($this->botApi)->setChatId($this->getId())->setAction($action)->execute();
     }
 }

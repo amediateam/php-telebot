@@ -5,6 +5,7 @@ namespace TelegramBot\Api\Types;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Methods\deleteMessage;
 use function is_array;
+use TelegramBot\Api\Methods\sendChatAction;
 
 /**
  * @method integer getMessageId()
