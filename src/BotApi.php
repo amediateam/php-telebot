@@ -14,6 +14,7 @@ use TelegramBot\Api\Methods\getFile;
 use TelegramBot\Api\Methods\getUpdates;
 use TelegramBot\Api\Types\File;
 use TelegramBot\Api\Types\Message;
+use TelegramBot\Api\Types\ResponseParameters;
 use TelegramBot\Api\Types\Update;
 use function array_key_exists;
 use function method_exists;
@@ -324,6 +325,14 @@ class BotApi
             throw new TelegramException("Empty result received.");
         }
         $result = json_decode($result, true) ?: [];
+        if (isset($result['parameters'])) {
+            //Handling retry after!
+            $parameters = new ResponseParameters($result['parameters'], $this);
+            if ($parameters->getRetryAfter() > 0) {
+                sleep($parameters->getRetryAfter());
+                return $method->execute($this);
+            }
+        }
         self::curlValidate($response, $result);
         if ($result['ok']) {
             if (method_exists($method, 'toResult')) {

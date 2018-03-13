@@ -44,6 +44,26 @@ class InlineKeyboardButton extends BaseEntity
         return self::create()->setCallbackData($data)->setText($text);
     }
 
+    public static function withSwitchInlineQuery($text, $query)
+    {
+        return self::create()->setSwitchInlineQuery($query)->setText($text);
+    }
+
+    public static function withSwitchInlineQueryCurrentChat($text, $query)
+    {
+        return self::create()->setSwitchInlineQueryCurrentChat($query)->setText($text);
+    }
+
+    public static function withPayment($text)
+    {
+        return self::create()->setPay(true)->setText($text);
+    }
+
+    public static function withCallBackGame($text, $callbackGame)
+    {
+        return self::create()->setCallbackGame($callbackGame)->setText($text);
+    }
+
     /**
      * @param mixed $callback_data
      * @return InlineKeyboardButton
@@ -54,10 +74,6 @@ class InlineKeyboardButton extends BaseEntity
         return $this;
     }
 
-    public static function withSwitchInlineQueryCurrentChat($text, $query)
-    {
-        return self::create()->setSwitchInlineQueryCurrentChat($query)->setText($text);
-    }
 
     /**
      * @param mixed $switch_inline_query_current_chat
@@ -69,10 +85,6 @@ class InlineKeyboardButton extends BaseEntity
         return $this;
     }
 
-    public static function withCallBackGame($text, $callbackGame)
-    {
-        return self::create()->setCallbackGame($callbackGame)->setText($text);
-    }
 
     /**
      * @param mixed $callback_game
@@ -84,10 +96,6 @@ class InlineKeyboardButton extends BaseEntity
         return $this;
     }
 
-    public static function withPayment($text)
-    {
-        return self::create()->setPay(true)->setText($text);
-    }
 
     /**
      * @param mixed $pay
