@@ -5,6 +5,7 @@ namespace TelegramBot\Api\Methods;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\CaseConverter;
 use TelegramBot\Api\Exceptions\TelegramException;
+use function array_merge;
 use function in_array;
 
 abstract class BaseMethod
@@ -36,6 +37,11 @@ abstract class BaseMethod
             return $botApi->execute($this);
         }
         throw new TelegramException("BotApi not defined.");
+    }
+
+    public function fillData(array $data)
+    {
+        $this->data = array_merge($this->data, $data);
     }
 
     public function getData()
