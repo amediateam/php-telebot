@@ -6,6 +6,7 @@ use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Methods\deleteMessage;
 use function is_array;
 use TelegramBot\Api\Methods\sendChatAction;
+use TelegramBot\Api\Methods\sendMessage;
 
 /**
  * @method integer getMessageId()
@@ -339,5 +340,22 @@ class Message extends BaseType
                 break;
         }
         return ['method' => $method, 'params' => $params];
+    }
+
+    /**
+     * @param $text
+     * @param $parse_mode
+     * @param $replyMarkup
+     * @return Message
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function replyWithText($text, $parse_mode = null, $replyMarkup = null)
+    {
+        return sendMessage::create($this->botApi)
+            ->setChatId($this->getChat()->getId())
+            ->setText($text)
+            ->setReplyMarkup($replyMarkup)
+            ->setParseMode($parse_mode)
+            ->execute();
     }
 }
