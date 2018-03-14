@@ -30,7 +30,7 @@ class InputTextMessageContent extends InputMessageContent
      * @param string $parse_mode
      * @return InputTextMessageContent
      */
-    public function setParseMode(string $parse_mode): InputTextMessageContent
+    public function setParseMode($parse_mode): InputTextMessageContent
     {
         $this->parse_mode = $parse_mode;
         return $this;
@@ -40,7 +40,7 @@ class InputTextMessageContent extends InputMessageContent
      * @param string $message_text
      * @return InputTextMessageContent
      */
-    public function setMessageText(string $message_text): InputTextMessageContent
+    public function setMessageText($message_text): InputTextMessageContent
     {
         $this->message_text = $message_text;
         return $this;

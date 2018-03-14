@@ -19,7 +19,7 @@ class InputContactMessageContent extends InputMessageContent
      * @param string $last_name
      * @return InputContactMessageContent
      */
-    public function setLastName(string $last_name): InputContactMessageContent
+    public function setLastName($last_name): InputContactMessageContent
     {
         $this->last_name = $last_name;
         return $this;
@@ -29,7 +29,7 @@ class InputContactMessageContent extends InputMessageContent
      * @param string $first_name
      * @return InputContactMessageContent
      */
-    public function setFirstName(string $first_name): InputContactMessageContent
+    public function setFirstName($first_name): InputContactMessageContent
     {
         $this->first_name = $first_name;
         return $this;
@@ -39,7 +39,7 @@ class InputContactMessageContent extends InputMessageContent
      * @param string $phone_number
      * @return InputContactMessageContent
      */
-    public function setPhoneNumber(string $phone_number): InputContactMessageContent
+    public function setPhoneNumber($phone_number): InputContactMessageContent
     {
         $this->phone_number = $phone_number;
         return $this;

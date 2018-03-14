@@ -34,7 +34,7 @@ class ShippingOption extends BaseEntity
      * @param string $title
      * @return ShippingOption
      */
-    public function setTitle(string $title): ShippingOption
+    public function setTitle($title): ShippingOption
     {
         $this->title = $title;
         return $this;
@@ -44,7 +44,7 @@ class ShippingOption extends BaseEntity
      * @param string $id
      * @return ShippingOption
      */
-    public function setId(string $id): ShippingOption
+    public function setId($id): ShippingOption
     {
         $this->id = $id;
         return $this;
