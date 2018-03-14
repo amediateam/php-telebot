@@ -6,7 +6,7 @@ use TelegramBot\Api\Entities\InlineQueryResult\InlineQueryResult;
 
 /**
  * @method answerInlineQuery setInlineQueryId(string $inlineQueryId)
- * @method answerInlineQuery setResults(InlineQueryResult [] $results)
+ * @method answerInlineQuery setResults(InlineQueryResult[] $results)
  * @method answerInlineQuery setCacheTime(integer $cacheTime)
  * @method answerInlineQuery setIsPersonal(boolean $isPersonal)
  * @method boolean isPersonal()
