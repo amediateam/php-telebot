@@ -1,4 +1,5 @@
 <?php
+
 namespace TelegramBot\Api\Methods;
 
 use TelegramBot\Api\BotApi;
@@ -6,7 +7,6 @@ use TelegramBot\Api\Entities\InlineQueryResult\InlineQueryResult;
 
 /**
  * @method answerInlineQuery setInlineQueryId(string $inlineQueryId)
- * @method answerInlineQuery setResults(InlineQueryResult[] $results)
  * @method answerInlineQuery setCacheTime(integer $cacheTime)
  * @method answerInlineQuery setIsPersonal(boolean $isPersonal)
  * @method boolean isPersonal()
@@ -25,6 +25,21 @@ class answerInlineQuery extends BaseMethod
         'switch_pm_text',
         'switch_pm_parameter',
     ];
+
+    /**
+     * @param InlineQueryResult[] $results
+     * @return $this
+     */
+    public function setResults(array $results)
+    {
+        foreach ($results as &$result) {
+            if ($result instanceof InlineQueryResult) {
+                $result = $result->toArray();
+            }
+        }
+        $this->data['results'] = $results;
+        return $this;
+    }
 
     /**
      * @param BotApi|null $botApi
