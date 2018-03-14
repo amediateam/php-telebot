@@ -339,7 +339,7 @@ class Message extends BaseType
                 $params['length'] = $this->getVideoNote()->getLength();
                 break;
         }
-        return ['method' => $method, 'params' => $params];
+        return ['method' => 'TelegramBot\\Api\\Methods\\' . $method, 'data' => $params];
     }
 
     /**
