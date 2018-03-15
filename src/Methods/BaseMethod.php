@@ -2,6 +2,7 @@
 
 namespace TelegramBot\Api\Methods;
 
+use ReflectionClass;
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\CaseConverter;
 use TelegramBot\Api\Exceptions\TelegramException;
@@ -13,6 +14,7 @@ abstract class BaseMethod
     protected $botApi;
     protected $map = [];
     protected $data = [];
+    protected $method;
 
     public function __construct(BotApi $botApi = null)
     {
@@ -48,6 +50,15 @@ abstract class BaseMethod
     {
         return $this->data;
     }
+
+    public function getMethod()
+    {
+        if($this->method){
+            return $this->method;
+        }
+        return $this->method = (new ReflectionClass($this))->getShortName();
+    }
+
 
     /**
      * @param $name

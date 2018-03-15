@@ -312,7 +312,7 @@ class BotApi
      */
     public function execute(BaseMethod $method)
     {
-        $action = basename(get_class($method));
+        $action = $method->getMethod();
         $result = null;
         $request_params = self::setUpRequestParams($method->getData());
         try {
