@@ -2,6 +2,7 @@
 namespace TelegramBot\Api\Types;
 
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Traits\Downloadable;
 
 /**
  * @method string getFileId()
@@ -12,6 +13,7 @@ use TelegramBot\Api\BotApi;
  */
 class Document extends BaseType
 {
+    use Downloadable;
     /** @var string */
     protected $file_id;
     /** @var null|PhotoSize */

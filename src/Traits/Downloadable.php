@@ -20,4 +20,13 @@ trait Downloadable
     {
         return $this->botApi->downloadFile($this->file_id, $savePath);
     }
+
+    /**
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function downloadFileContents()
+    {
+        return $this->botApi->downloadFileContents($this->file_id);
+    }
 }
