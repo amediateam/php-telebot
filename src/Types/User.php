@@ -7,7 +7,6 @@ use TelegramBot\Api\Methods\getUserProfilePhotos;
 
 /**
  * @method integer getId()
- * @method boolean isBot()
  * @method string getFirstName()
  * @method string getLastName()
  * @method string getUsername()
@@ -31,6 +30,11 @@ class User extends BaseType
         $this->last_name = $this->getPropertyFromData('last_name', 'string');
         $this->username = $this->getPropertyFromData('username', 'string');
         $this->language_code = $this->getPropertyFromData('language_code', 'string');
+    }
+
+    public function isBot()
+    {
+        return $this->is_bot;
     }
 
     /**

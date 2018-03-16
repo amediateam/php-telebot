@@ -68,4 +68,14 @@ class ChatMember extends BaseType
         $this->can_send_other_messages = $this->getPropertyFromData('can_send_other_messages', 'bool');
         $this->can_add_web_page_previews = $this->getPropertyFromData('can_add_web_page_previews', 'bool');
     }
+
+    public function isParticipant()
+    {
+        return in_array($this->getStatus(), [self::CREATOR, self::ADMINISTRATOR, self::MEMBER]);
+    }
+
+    public function isBot()
+    {
+        return $this->getUser()->isBot();
+    }
 }
