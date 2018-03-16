@@ -302,7 +302,7 @@ class BotApi
     public function downloadFileContents($fileId)
     {
         $url = $this->getFileDownloadUrl($fileId);
-        return $this->httpClient->request('GET', $url)->getBody();
+        return $this->httpClient->request('GET', $url);
     }
 
     /**
