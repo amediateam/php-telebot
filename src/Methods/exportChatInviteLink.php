@@ -27,7 +27,7 @@ class exportChatInviteLink extends BaseMethod
      * @param array $response
      * @return string
      */
-    public function toResult(array $response)
+    public function toResult($response)
     {
         return (string)$response;
     }

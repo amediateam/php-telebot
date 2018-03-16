@@ -27,7 +27,7 @@ class getChatMembersCount extends BaseMethod
      * @param array $response
      * @return int
      */
-    public function toResult(array $response)
+    public function toResult($response)
     {
         return (int)$response;
     }

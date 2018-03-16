@@ -39,10 +39,10 @@ class editMessageLiveLocation extends BaseMethod
 
     /**
      * @param array $response
-     * @return Message
+     * @return bool|Message
      */
-    public function toResult(array $response)
+    public function toResult($response)
     {
-        return new Message($response, $this->botApi);
+        return is_bool($response) ? $response : new Message($response, $this->botApi);
     }
 }
