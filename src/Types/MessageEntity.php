@@ -41,6 +41,6 @@ class MessageEntity extends BaseType
         $this->offset = $this->getPropertyFromData('offset', 'integer');
         $this->length = $this->getPropertyFromData('length', 'integer');
         $this->url = $this->getPropertyFromData('url', 'string');
-        $this->user = $this->getPropertyFromData('url', User::class);
+        $this->user = $this->getPropertyFromData('user', User::class);
     }
 }

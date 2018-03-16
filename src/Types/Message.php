@@ -7,6 +7,7 @@ use TelegramBot\Api\Methods\deleteMessage;
 use function is_array;
 use TelegramBot\Api\Methods\sendChatAction;
 use TelegramBot\Api\Methods\sendMessage;
+use TelegramBot\Api\Methods\sendPhoto;
 
 /**
  * @method integer getMessageId()
@@ -354,6 +355,25 @@ class Message extends BaseType
         return sendMessage::create($this->botApi)
             ->setChatId($this->getChat()->getId())
             ->setText($text)
+            ->setReplyMarkup($replyMarkup)
+            ->setParseMode($parse_mode)
+            ->execute();
+    }
+
+    /**
+     * @param $photo
+     * @param null $caption
+     * @param null $parse_mode
+     * @param null $replyMarkup
+     * @return Message
+     * @throws \TelegramBot\Api\Exceptions\TelegramException
+     */
+    public function replyWithPhoto($photo, $caption = null, $parse_mode = null, $replyMarkup = null)
+    {
+        return sendPhoto::create($this->botApi)
+            ->setChatId($this->getChat()->getId())
+            ->setPhoto($photo)
+            ->setCaption($caption)
             ->setReplyMarkup($replyMarkup)
             ->setParseMode($parse_mode)
             ->execute();
