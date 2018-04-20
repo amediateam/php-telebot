@@ -4,10 +4,9 @@ namespace TelegramBot\Api\Types;
 
 use TelegramBot\Api\BotApi;
 use TelegramBot\Api\Methods\deleteMessage;
-use function is_array;
-use TelegramBot\Api\Methods\sendChatAction;
 use TelegramBot\Api\Methods\sendMessage;
 use TelegramBot\Api\Methods\sendPhoto;
+use function is_array;
 
 /**
  * @method integer getMessageId()
@@ -273,7 +272,7 @@ class Message extends BaseType
         return null;
     }
 
-    public function clone($reply = false)
+    public function cloneToNewMessage($reply = false)
     {
         $type = $this->getType();
         $params = [];
