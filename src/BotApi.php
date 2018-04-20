@@ -4,6 +4,7 @@ namespace TelegramBot\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Stream;
 use Psr\Http\Message\ResponseInterface;
 use TelegramBot\Api\Entities\BaseEntity;
 use TelegramBot\Api\Exceptions\HttpException;
@@ -360,7 +361,7 @@ class BotApi
                 $multipart[] = array_merge($item->getMultipartData(), ['name' => $key]);
                 continue;
             }
-            $has_resource |= (is_resource($item) || $item instanceof \GuzzleHttp\Psr7\Stream);
+            $has_resource |= (is_resource($item) || $item instanceof Stream);
             $multipart[] = ['name' => $key, 'contents' => $item];
         }
         if ($has_resource) {

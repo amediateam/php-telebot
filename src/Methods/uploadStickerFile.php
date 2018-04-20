@@ -3,11 +3,12 @@
 namespace TelegramBot\Api\Methods;
 
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Extension\InputFile;
 use TelegramBot\Api\Types\File;
 
 /**
  * @method uploadStickerFile setUserId(integer $userId)
- * @method uploadStickerFile setPngSticker(\TelegramBot\Api\Extension\InputFile $pngSticker)
+ * @method uploadStickerFile setPngSticker(InputFile $pngSticker)
  */
 class uploadStickerFile extends BaseMethod
 {

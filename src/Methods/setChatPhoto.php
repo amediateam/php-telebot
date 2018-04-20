@@ -2,10 +2,11 @@
 namespace TelegramBot\Api\Methods;
 
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Extension\InputFile;
 
 /**
  * @method setChatPhoto setChatId(integer | string $chatId)
- * @method setChatPhoto setPhoto(\TelegramBot\Api\Extension\InputFile $photo)
+ * @method setChatPhoto setPhoto(InputFile $photo)
  */
 class setChatPhoto extends BaseMethod
 {

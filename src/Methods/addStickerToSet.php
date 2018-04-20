@@ -3,13 +3,15 @@
 namespace TelegramBot\Api\Methods;
 
 use TelegramBot\Api\BotApi;
+use TelegramBot\Api\Extension\InputFile;
+use TelegramBot\Api\Types\MaskPosition;
 
 /**
  * @method addStickerToSet setUserId(integer $userId)
  * @method addStickerToSet setName(string $name)
- * @method addStickerToSet setPngSticker(\TelegramBot\Api\Extension\InputFile | string $pngSticker)
+ * @method addStickerToSet setPngSticker(InputFile | string $pngSticker)
  * @method addStickerToSet setEmojis(string $emojis)
- * @method addStickerToSet setMaskPosition(\TelegramBot\Api\Types\MaskPosition $maskPosition)
+ * @method addStickerToSet setMaskPosition(MaskPosition $maskPosition)
  */
 class addStickerToSet extends BaseMethod
 {

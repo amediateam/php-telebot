@@ -6,11 +6,12 @@ use TelegramBot\Api\Entities\ReplyMarkup\ForceReply;
 use TelegramBot\Api\Entities\ReplyMarkup\InlineKeyboardMarkup;
 use TelegramBot\Api\Entities\ReplyMarkup\ReplyKeyboardMarkup;
 use TelegramBot\Api\Entities\ReplyMarkup\ReplyKeyboardRemove;
+use TelegramBot\Api\Extension\InputFile;
 use TelegramBot\Api\Types\Message;
 
 /**
  * @method sendDocument setChatId(integer | string $chatId)
- * @method sendDocument setDocument(\TelegramBot\Api\Extension\InputFile | string $document)
+ * @method sendDocument setDocument(InputFile | string $document)
  * @method sendDocument setCaption(string $caption)
  * @method sendDocument setParseMode(string $parseMode)
  * @method sendDocument setDisableNotification(boolean $disableNotification)
